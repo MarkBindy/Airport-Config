@@ -1,2 +1,2 @@
 # openclash-yaml
-软路由open clash
+自用机场配置分流故障转移规则yaml文件
