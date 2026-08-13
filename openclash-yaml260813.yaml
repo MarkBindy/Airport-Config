@@ -239,7 +239,7 @@ dns:
 # 节点信息
 proxies:
   - {name: 直连, type: direct}
-# 机场订阅(分享给别人时,只需要在下方 url 行双引号内填入订阅链接,双引号不要删除,即可保存）
+# 机场订阅(分享给别人时,只需要在下方 url 行双引号内填入订阅链接,双引号不要删除,即可保存)
 proxy-providers:
   Airport:
     type: http
