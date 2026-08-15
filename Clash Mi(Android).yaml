@@ -31,7 +31,7 @@ global-ua: clash.meta                             # 用户代理  全局默认UA
 profile:
   store-selected: true                            # 保存选择  记住选择的节点和策略组
   store-fake-ip: true                             # 保存选择  Fake-IP 映射
-geodata-loader: standard                          # geo数据加载模式 standard（标准）
+geodata-loader: standard                          # geo数据加载模式 standard（标准）memconservative（低内存）
 experimental:
   quic-go-disable-gso: true                       # 禁用 QUIC 防止 YouTube 等使用 QUIC 导致速度不佳
 
