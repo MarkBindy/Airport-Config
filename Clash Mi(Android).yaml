@@ -1,81 +1,104 @@
+# 机场订阅(分享给别人时,只需要在下方 url 行双引号内填入订阅链接,双引号不要删除,即可保存)
+proxy-providers:
+  Airport:
+    type: http
+    url: ""
+    interval: 86400
+    path: ./proxy_providers/Airport.yaml
+    proxy: 直连
+    exclude-type: "macc"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+
 # 全局配置 
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7895
-allow-lan: true
-bind-address: "*"
-mode: rule
-ipv6: false
-unified-delay: true
-tcp-concurrent: true
-log-level: warning
-keep-alive-idle: 600
-keep-alive-interval: 15
+port: 7890                                        # 监听端口  HTTP(S) 代理端口
+socks-port: 7891                                  # 监听端口  SOCKS5 代理端口
+redir-port: 7892                                  # 监听端口  重定向代理端口
+mixed-port: 7893                                  # 监听端口  HTTP + SOCKS5 混合代理端口
+tproxy-port: 7895                                 # 监听端口  透明代理端口
+allow-lan: true                                   # 局域连接  是否允许局域网设备连接
+bind-address: "*"                                 # 监听接口  监听的网络接口（* 表示所有接口）
+mode: rule                                        # 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
+ipv6: false                                       # 网络协议  是否启用 IPv6 支持
+log-level: warning                                # 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+unified-delay: true                               # 统一延迟  减少节点延迟抖动
+tcp-concurrent: true                              # 并发连接  提升多任务性能
+keep-alive-idle: 600                              # TCP保活时间
+keep-alive-interval: 15                           # TCP保活时间间隔
 profile:
-  store-selected: true
-  store-fake-ip: true
+  store-selected: true                            # 保存选择  记住选择的节点和策略组
+  store-fake-ip: true                             # 保存选择  Fake-IP 映射
+geodata-loader: standard                          # geo数据加载模式 standard（标准）
+experimental:
+  quic-go-disable-gso: true                       # 禁用 QUIC 防止 YouTube 等使用 QUIC 导致速度不佳
+
 # GEO规则订阅
-geodata-mode: true
-geo-auto-update: true
-geo-update-interval: 24
+geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
+geo-auto-update: true                             # 自动更新  geodata
+geo-update-interval: 24                           # 更新间隔  单位：小时
 geox-url:
   geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   mmdb: "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
-# 嗅探
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  override-destination: true
-  sniff:
-    QUIC:
-      ports: [443, 8443]
-    TLS:
-      ports: [443, 8443]
-    HTTP:
-      ports: [80, 8080-8880]
-  force-domain:
-    - "+.netflix.com"
-    - "+.nflxvideo.net"
-    - "+.amazonaws.com"
-    - "+.media.dssott.com"
-  skip-domain:
-    - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "+.oray.com"
-    - "+.sunlogin.net"
-    - "+.push.apple.com"
-    - "+.googlevideo.com"
-    parse-pure-ip: true
+
 # 入站
 tun:
-  enable: true
-  stack: mixed
+  enable: true                                    # 网卡模式  是否启用 TUN 虚拟网卡模式  
+  stack: mixed                                    # 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
   mtu: 1492
-  dns-hijack:
-    - any:53
+  dns-hijack:                                     # 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
+    - udp://any:53
     - tcp://any:53
-  auto-route: false
-  auto-detect-interface: false
-  auto-redirect: false
-  strict-route: false
+  auto-detect-interface: true                     # 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
+  auto-route: true                                # 自动路由  自动添加系统路由表      （仅内核模式有效）
+  auto-redirect: true                             # 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
+  strict-route: false                             # 路由模式  严格路由模式
+  endpoint-independent-nat: true                  # 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
+  route-exclude-address-set: [cn_ip]              # 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
+
+# 嗅探
+sniffer:
+  enable: true                                    # 启用嗅探  提升分流准确性
+  override-destination: true                      # 成功解析  使用嗅探到的域名覆盖原始目标地址
+  parse-pure-ip: true                             # 反向解析  解析纯 IP 连接（尝试反向解析获得域名）
+  force-dns-mapping: true                         # 强制映射  DNS 映射（对纯 IP 连接尝试 DNS 映射）
+  sniff:
+    QUIC:                                         # 嗅探参数  QUIC 协议流量（HTTP/3 常用端口
+      ports: [443, 8443]
+    TLS:                                          # 嗅探参数  HTTPS（TLS）常用及备用端口
+      ports: [443, 8443]
+    HTTP:                                         # 嗅探参数  HTTP 及常见 Web / 代理端口段
+      ports: [80, 8080-8880]
+  force-domain:
+    - "+.netflix.com"                             # 强制嗅探  Netflix 主域名
+    - "+.nflxvideo.net"                           # 强制嗅探  Netflix CDN
+    - "+.amazonaws.com"                           # 强制嗅探  AWS 云服务
+    - "+.media.dssott.com"                        # 强制嗅探  Disney+ 流媒体
+    - "+.tiktok.com"                              # 强制嗅探  TikTok 流媒体
+  skip-domain:
+    - Mijia Cloud                                 # 跳过嗅探  米家云服务
+    - dlg.io.mi.com                               # 跳过嗅探  小米设备通信
+    - "+.oray.com"                                # 跳过嗅探  花生壳服务
+    - "+.sunlogin.net"                            # 跳过嗅探  向日葵远程控制
+    - "+.push.apple.com"                          # 跳过嗅探  苹果推送服务
+
 # DNS模块
 dns:
-  enable: true
-  listen: 0.0.0.0:1053
-  cache-algorithm: arc
-  ipv6: false
-  prefer-h3: false
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
+  enable: true                                    # 解析服务  启用 Clash 内置 DNS 服务
+  listen: 0.0.0.0:1053                            # 监听服务  DNS 服务监听地址与端口
+  cache-algorithm: arc                            # 缓存算法
+  ipv6: false                                     # 网络协议  启用 IPv6 DNS 解析支持
+  prefer-h3: false                                # 首选H3
+  use-hosts: true                                 # 使用主机hosts
+  use-system-hosts: true                          # 使用系统hosts
+  respect-rules: true                             # 遵循规则  强制遵循规则顺序
+  enhanced-mode: fake-ip                          # 增强模式  FDNS 增强模式（Fake-IP，用于防止 DNS 泄露）
+  fake-ip-range: 198.18.0.1/16                    # 虚拟地址  Fake-IP 虚拟地址池范围
+  fake-ip-filter-mode: blacklist                  # 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
   fake-ip-filter:
-    - "*.lan"
+    - "*.lan"                                     # 真实解析  常见局域网域名后缀
     - "*.local"
     - "+.localdomain"
     - "localhost.ptlogin2.qq.com"
@@ -86,21 +109,20 @@ dns:
     - "+.xn--ngstr-lra8j.com"
     - "+.ntp.org.cn"
     - "+.pool.ntp.org"
-    - rule-set:fakeipfilter_domain
-    - rule-set:cn_domain
-# 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
-  default-nameserver:
+    - "rule-set:fakeipfilter_domain"
+    - "rule-set:Direct_Domain"                     # 真实解析  大陆冷门域名
+    - "geosite:cn"                                 # 真实解析  大陆域 GeoSite 数据
+    - "rule-set:cn_domain"                         # 真实解析  大陆域名
+  default-nameserver:                              # 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
     - 1.1.1.1
     - 8.8.8.8
-# 严格的分流策略：国内域名绝不走海外，海外域名绝不走国内大厂
-  nameserver-policy:
+  nameserver-policy:                               # 严格的分流策略：国内域名绝不走海外，海外域名绝不走国内大厂
     "geosite:private,cn,apple-cn,microsoft@cn,steam@cn":
       - 223.6.6.6
       - 223.5.5.5
       - 119.29.29.29
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-# 命中 Apple 服务的，走国内直连更顺畅
     "rule-set:apple_domain":
       - 223.6.6.6
       - 223.5.5.5
@@ -179,33 +201,27 @@ dns:
     "geosite:geolocation-!cn":
       - https://1.1.1.1/dns-query
       - https://dns.google/dns-query
-# 基础查询服务器：当规则未命中时，默认的兜底海外加密 DNS（阻断局域网直接向运营商泄漏）
-  nameserver:
+  nameserver:                                      # 基础查询服务器：当规则未命中时，默认的兜底海外加密 DNS（阻断局域网直接向运营商泄漏）
     - https://1.1.1.1/dns-query
     - https://1.0.0.1/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
-
-  fallback:
+  fallback:                                        # 备用查询服务器
     - 1.1.1.1
     - 8.8.8.8
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
-# 节点域名解析服务器：使用国内安全加密的 DoH 专门解析你的机场节点域名
-  proxy-server-nameserver:
+  proxy-server-nameserver:                         # 节点域名解析服务器：使用国内安全加密的 DoH 专门解析你的机场节点域名
     - 1.1.1.1
     - 8.8.8.8
-# 直流查询服务器
-  direct-nameserver:
+  direct-nameserver:                               # 直流查询服务器
     - 223.6.6.6
     - 223.5.5.5
     - 119.29.29.29
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-
-  direct-nameserver-follow-policy: true
-
-  fallback-filter:
+  direct-nameserver-follow-policy: true            #直接名称服务器遵循策略
+  fallback-filter:                                 #备用过滤器
     geoip: true
     geoip-code: CN
     geosite:
@@ -236,22 +252,11 @@ dns:
       - "+.telegram.org"
     ipcidr:
       - 240.0.0.0/4
+
 # 节点信息
 proxies:
   - {name: 直连, type: direct}
-# 机场订阅(分享给别人时,只需要在下方 url 行双引号内填入订阅链接,双引号不要删除,即可保存)
-proxy-providers:
-  Airport:
-    type: http
-    url: ""
-    interval: 86400
-    path: ./proxy_providers/Airport.yaml
-    proxy: 直连
-    exclude-type: "macc"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
+
 # 策略组(出站)
 proxy-groups:
 - name: "🚀 默认代理"
@@ -817,19 +822,20 @@ rules:
   - DOMAIN,injections.adguard.org,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
-  - GEOSITE,cn,DIRECT
-  - GEOIP,CN,DIRECT
-  - RULE-SET,cn_domain,DIRECT
-  - RULE-SET,cn_ip,DIRECT
   - GEOSITE,geolocation-!cn,🚀 默认代理
   - RULE-SET,geolocation-!cn,🚀 默认代理
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT
+  - RULE-SET,Direct_Domain,DIRECT
+  - RULE-SET,cn_domain,DIRECT
+  - RULE-SET,cn_ip,DIRECT
   - MATCH,🐟 漏网之鱼
+
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
-
 rule-providers:
   fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
@@ -884,6 +890,3 @@ rule-providers:
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
-geodata-loader: standard
-experimental:
-  quic-go-disable-gso: true
