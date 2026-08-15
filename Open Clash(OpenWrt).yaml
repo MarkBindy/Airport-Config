@@ -27,6 +27,7 @@ unified-delay: true                               # 统一延迟  减少节点�
 tcp-concurrent: true                              # 并发连接  提升多任务性能
 keep-alive-idle: 600                              # TCP保活时间
 keep-alive-interval: 15                           # TCP保活时间间隔
+global-ua: clash-verge                            # 用户代理  全局默认UA
 profile:
   store-selected: true                            # 保存选择  记住选择的节点和策略组
   store-fake-ip: true                             # 保存选择  Fake-IP 映射
