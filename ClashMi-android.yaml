@@ -274,29 +274,6 @@ Anchor:
   - "🇬🇧 英国-故转"
   - "🇺🇸 美国-故转"
   - "♻️ 其他-故转"
-Anchor_FB:
-  &Anchor_FB
-  type: fallback
-  empty-fallback: REJECT
-  interval: 300
-  lazy: false
-  timeout: 3000
-  url: "https://www.gstatic.com/generate_204"
-Anchor_ST:
-  &Anchor_ST
-  type: select
-  empty-fallback: REJECT
-  include-all: true
-Anchor_UT:
-  &Anchor_UT
-  type: url-test
-  empty-fallback: REJECT
-  interval: 300
-  lazy: false
-  timeout: 3000
-  tolerance: 50
-  include-all: true
-  url: "https://www.gstatic.com/generate_204"
 
 # 策略组(出站)
 proxy-groups:
