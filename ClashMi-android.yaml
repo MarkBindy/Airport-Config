@@ -11,7 +11,7 @@ Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check:
 # 如有多条机场信息,下方开头处 “机场名” 不能重复,最后的 “机场名” 作为添加节点的名称前缀,可自定义
 # 下方双引号内 “订阅链接” 替换为所用机场的订阅链接 <双引号不要删除>
 proxy-providers:
-  良心云: {<<: *Anchor_AP, url: 'https://liangxin.xyz/api/v1/liangxin?OwO=24396c91ce75be76fe3fec072858b1f0', override: {additional-prefix: '[良心云]'}}
+  机场名: {<<: *Anchor_AP, url: '订阅链接', override: {additional-prefix: '[机场名]'}}
 
 # 全局配置 
 port: 7890                                        # 监听端口  HTTP(S) 代理端口
