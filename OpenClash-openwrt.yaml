@@ -1,16 +1,17 @@
-# 机场订阅(分享给别人时,只需要在下方 url 行双引号内填入订阅链接,双引号不要删除,即可保存)
+# 版本： V2026.8.16
+# 地址： https://github.com/MarkBindy/Airport-Config/edit/main/OpenClash-openwrt.yaml
+# 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存，
+
+
+
+# 机场订阅锚点
+Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.gstatic.com/generate_204', interval: 300}}
+
+# ════════Airport机场订阅═════════
+# 如有多条机场信息,下方开头处 “机场名” 不能重复,最后的 “机场名” 作为添加节点的名称前缀,可自定义
+# 下方双引号内 “订阅链接” 替换为所用机场的订阅链接 <双引号不要删除>
 proxy-providers:
-  Airport:
-    type: http
-    url: ""
-    interval: 86400
-    path: ./proxy_providers/Airport.yaml
-    proxy: 直连
-    exclude-type: "macc"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
+  良心云: {<<: *Anchor_AP, url: 'https://liangxin.xyz/api/v1/liangxin?OwO=24396c91ce75be76fe3fec072858b1f0', override: {additional-prefix: '[良心云]'}}
 
 # 全局配置 
 port: 7890                                        # 监听端口  HTTP(S) 代理端口
@@ -258,302 +259,92 @@ dns:
 proxies:
   - {name: 直连, type: direct}
 
+# 策略出站锚点
+Anchor:
+  &Anchor
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "🇭🇰 香港-故转"
+  - "🇹🇼 台湾-故转"
+  - "🇯🇵 日本-故转"
+  - "🇰🇷 韩国-故转"
+  - "🇸🇬 狮城-故转"
+  - "🇬🇧 英国-故转"
+  - "🇺🇸 美国-故转"
+  - "♻️ 其他-故转"
+Anchor_FB:
+  &Anchor_FB
+  type: fallback
+  empty-fallback: REJECT
+  interval: 300
+  lazy: false
+  timeout: 3000
+  url: "https://www.gstatic.com/generate_204"
+Anchor_ST:
+  &Anchor_ST
+  type: select
+  empty-fallback: REJECT
+  include-all: true
+Anchor_UT:
+  &Anchor_UT
+  type: url-test
+  empty-fallback: REJECT
+  interval: 300
+  lazy: false
+  timeout: 3000
+  tolerance: 50
+  include-all: true
+  url: "https://www.gstatic.com/generate_204"
+
 # 策略组(出站)
 proxy-groups:
-- name: "🚀 默认代理"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "📹 YouTube"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🍀 Google"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🤖 Ai"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🎵 TikTok"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "📲 Telegram"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🎥 NETFLIX"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "👨🏿‍💻 GitHub"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "⚡ Speedtest"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🐟 漏网之鱼"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "♻️ 香港-故转"
-  - "♻️ 台湾-故转"
-  - "♻️ 日本-故转"
-  - "♻️ 韩国-故转"
-  - "♻️ 狮城-故转"
-  - "♻️ 英国-故转"
-  - "♻️ 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
+- {name: 默认代理,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
+- {name: Google,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
+- {name: Ai,        <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
+- {name: YouTube,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
+- {name: TikTok,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
+- {name: NETFLIX,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
+- {name: Telegram,  <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
+- {name: GitHub,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
+- {name: Speedtest, <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
+- {name: 漏网之鱼,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
   # 香港组
-- name: "♻️ 香港-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 香港-手动
-      - ♻️ 香港-自动
-- name: "♻️ 香港-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
-- name: "♻️ 香港-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
+- {name: 🇭🇰 香港-故转, <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
+- {name: 🇭🇰 香港-手动, <<: *Anchor_ST, filter: (?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$}
+- {name: 🇭🇰 香港-自动, <<: *Anchor_UT, filter: (?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$}
   # 台湾组
-- name: "♻️ 台湾-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 台湾-手动
-      - ♻️ 台湾-自动
-- name: "♻️ 台湾-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
-- name: "♻️ 台湾-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
+- {name: 🇹🇼 台湾-故转, <<: *Anchor_FB, proxies: [🇹🇼 台湾-手动, 🇹🇼 台湾-自动]}
+- {name: 🇹🇼 台湾-手动, <<: *Anchor_ST, filter: (?=.*(台湾|TW|台灣|Tai Wan|TaiWan|tw|tpe|khh|tsa|(?i)tai|taiwan|taipei|🇹🇼))^((?!(港|日|韩|新|英|美)).)*$}
+- {name: 🇹🇼 台湾-自动, <<: *Anchor_UT, filter: (?=.*(台湾|TW|台灣|Tai Wan|TaiWan|tw|tpe|khh|tsa|(?i)tai|taiwan|taipei|🇹🇼))^((?!(港|日|韩|新|英|美)).)*$}
   # 日本组
-- name: "♻️ 日本-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 日本-手动
-      - ♻️ 日本-自动
-- name: "♻️ 日本-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
-- name: "♻️ 日本-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
+- {name: 🇯🇵 日本-故转, <<: *Anchor_FB, proxies: [🇯🇵 日本-手动, 🇯🇵 日本-自动]}
+- {name: 🇯🇵 日本-手动, <<: *Anchor_ST, filter: (?=.*(日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|jp|nrt|hnd|kix|cts|fuk|(?i)Japan|japan|tokyo|🇯🇵))^((?!(港|台|韩|新|英|美)).)*$}
+- {name: 🇯🇵 日本-自动, <<: *Anchor_UT, filter: (?=.*(日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|jp|nrt|hnd|kix|cts|fuk|(?i)Japan|japan|tokyo|🇯🇵))^((?!(港|台|韩|新|英|美)).)*$}
   # 韩国组
-- name: "♻️ 韩国-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 韩国-手动
-      - ♻️ 韩国-自动
-- name: "♻️ 韩国-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
-- name: "♻️ 韩国-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
+- {name: 🇰🇷 韩国-故转, <<: *Anchor_FB, proxies: [🇰🇷 韩国-手动, 🇰🇷 韩国-自动]}
+- {name: 🇰🇷 韩国-手动, <<: *Anchor_ST, filter: (?=.*(韩国|KR|韓國|KR|首尔|春川|kr|icn|gmp|pus|(?i)Korea|korea|seoul|🇰🇷))^((?!(港|台|日|新|英|美)).)*$}
+- {name: 🇰🇷 韩国-自动, <<: *Anchor_UT, filter: (?=.*(韩国|KR|韓國|KR|首尔|春川|kr|icn|gmp|pus|(?i)Korea|korea|seoul|🇰🇷))^((?!(港|台|日|新|英|美)).)*$}
   # 新加坡组
-- name: "♻️ 狮城-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 狮城-手动
-      - ♻️ 狮城-自动
-- name: "♻️ 狮城-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
-- name: "♻️ 狮城-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
+- {name: 🇸🇬 狮城-故转, <<: *Anchor_FB, proxies: [🇸🇬 狮城-手动, 🇸🇬 狮城-自动]}
+- {name: 🇸🇬 狮城-手动, <<: *Anchor_ST, filter: (?=.*(新加坡|狮|SG|sg|sin|xsp|(?i)Singapore|singapore|🇸🇬))^((?!(港|台|日|韩|英|美)).)*$}
+- {name: 🇸🇬 狮城-自动, <<: *Anchor_UT, filter: (?=.*(新加坡|狮|SG|sg|sin|xsp|(?i)Singapore|singapore|🇸🇬))^((?!(港|台|日|韩|英|美)).)*$}
   # 英国组
-- name: "♻️ 英国-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 英国-手动
-      - ♻️ 英国-自动
-- name: "♻️ 英国-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
-- name: "♻️ 英国-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
+- {name: 🇬🇧 英国-故转, <<: *Anchor_FB, proxies: [🇬🇧 英国-手动, 🇬🇧 英国-自动]}
+- {name: 🇬🇧 英国-手动, <<: *Anchor_ST, filter: (?=.*(英国|UK|伦敦|London|(?i)United Kingdom|🇬🇧))^((?!(港|台|日|韩|新|美)).)*$}
+- {name: 🇬🇧 英国-自动, <<: *Anchor_UT, filter: (?=.*(英国|UK|伦敦|London|(?i)United Kingdom|🇬🇧))^((?!(港|台|日|韩|新|美)).)*$}
   # 美国组
-- name: "♻️ 美国-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 美国-手动
-      - ♻️ 美国-自动
-- name: "♻️ 美国-手动"
-  type: select
-  include-all: true
-  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
-- name: "♻️ 美国-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
+- {name: 🇺🇸 美国-故转, <<: *Anchor_FB, proxies: [🇺🇸 美国-手动, 🇺🇸 美国-自动]}
+- {name: 🇺🇸 美国-手动, <<: *Anchor_ST, filter: (?=.*(美国|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|us|usa|lax|sfo|jfk|sjc|(?i)States|America|america|united states|🇺🇸))^((?!(港|台|日|韩|新|英)).)*$}
+- {name: 🇺🇸 美国-自动, <<: *Anchor_UT, filter: (?=.*(美国|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|us|usa|lax|sfo|jfk|sjc|(?i)States|America|america|united states|🇺🇸))^((?!(港|台|日|韩|新|英)).)*$}
   # 其他组
-- name: "♻️ 其他-故转"
-  type: fallback
-  interval: 300
-  lazy: false
-  proxies:
-      - ♻️ 其他-手动
-      - ♻️ 其他-自动
-- name: "♻️ 其他-手动"
-  type: select
-  include-all: true
-  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
-- name: "♻️ 其他-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
+- {name: ♻️ 其他-故转, <<: *Anchor_FB, proxies: [♻️ 其他-手动, ♻️ 其他-自动]}
+- {name: ♻️ 其他-手动, <<: *Anchor_ST, filter: ^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT|香港|HK|hk|hkg|hongkong|hong kong|Hong|🇭🇰|台湾|TW|台灣|Tai Wan|TaiWan|tw|tpe|khh|tsa|tai|taiwan|taipei|🇹🇼|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|jp|nrt|hnd|kix|cts|fuk|Japan|japan|tokyo|🇯🇵|韩国|KR|韓國|KR|首尔|春川|kr|icn|gmp|pus|Korea|korea|seoul|🇰🇷|新加坡|狮|SG|sg|sin|xsp|Singapore|singapore|🇸🇬|英国|UK|伦敦|London|United Kingdom|🇬🇧|美国|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|us|usa|lax|sfo|jfk|sjc|States|America|america|united states|🇺🇸)).)*$}
+- {name: ♻️ 其他-自动, <<: *Anchor_UT, filter: ^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT|香港|HK|hk|hkg|hongkong|hong kong|Hong|🇭🇰|台湾|TW|台灣|Tai Wan|TaiWan|tw|tpe|khh|tsa|tai|taiwan|taipei|🇹🇼|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|jp|nrt|hnd|kix|cts|fuk|Japan|japan|tokyo|🇯🇵|韩国|KR|韓國|KR|首尔|春川|kr|icn|gmp|pus|Korea|korea|seoul|🇰🇷|新加坡|狮|SG|sg|sin|xsp|Singapore|singapore|🇸🇬|英国|UK|伦敦|London|United Kingdom|🇬🇧|美国|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|us|usa|lax|sfo|jfk|sjc|States|America|america|united states|🇺🇸)).)*$}
   # 全部组
-- name: "🌐 全部-手动"
-  type: select
-  include-all: true
-- name: "🌐 全部-自动"
-  type: url-test
-  include-all: true
-  tolerance: 20
-  interval: 300
-  filter: "^((?!(直连)).)*$"
+- {name: 🌐 全部-手动, <<: *Anchor_ST}
+- {name: 🌐 全部-自动, <<: *Anchor_UT, filter: ^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT)).)*$}
 
 # 规则匹配
 rules:
@@ -770,67 +561,67 @@ rules:
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
   #  --- AI 服务 --- 
-  - RULE-SET,OpenAI_Domain,🤖 Ai
-  - RULE-SET,Anthropic_Domain,🤖 Ai
-  - RULE-SET,Claude_Domain,🤖 Ai
-  - RULE-SET,Meta AI_Domain,🤖 Ai
-  - RULE-SET,Perplexity_Domain,🤖 Ai
-  - RULE-SET,Copilot_Domain,🤖 Ai
-  - RULE-SET,Gemini_Domain,🍀 Google
+  - RULE-SET,OpenAI_Domain,Ai
+  - RULE-SET,Anthropic_Domain,Ai
+  - RULE-SET,Claude_Domain,Ai
+  - RULE-SET,Meta AI_Domain,Ai
+  - RULE-SET,Perplexity_Domain,Ai
+  - RULE-SET,Copilot_Domain,Ai
+  - RULE-SET,Gemini_Domain,Google
   #  --- 国外服务 --- 
-  - GEOSITE,youtube,📹 YouTube
-  - RULE-SET,youtube_domain,📹 YouTube
-  - DOMAIN-SUFFIX,google.com,🍀 Google
-  - DOMAIN-SUFFIX,google.com.hk,🍀 Google
-  - DOMAIN-SUFFIX,googleapis.cn,🍀 Google
-  - DOMAIN-SUFFIX,googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,googleusercontent.com,🍀 Google
-  - DOMAIN-SUFFIX,android.com,🍀 Google
-  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
-  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,market.android.com,🍀 Google
-  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,gstatic.com,🍀 Google
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
-  - GEOSITE,tiktok,🎵 TikTok
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - GEOSITE,google,🍀 Google
-  - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,google_ip,🍀 Google
-  - RULE-SET,ai,🤖 Ai
-  - GEOSITE,telegram,📲 Telegram
-  - RULE-SET,telegram_domain,📲 Telegram
-  - RULE-SET,telegram_ip,📲 Telegram
-  - GEOSITE,github,👨🏿‍💻 GitHub
-  - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - GEOSITE,netflix,🎥 NETFLIX
-  - RULE-SET,netflix_domain,🎥 NETFLIX
-  - RULE-SET,netflix_ip,🎥 NETFLIX
-  - GEOSITE,disney,🎥 NETFLIX
-  - RULE-SET,speedtest_domain,⚡ Speedtest
-  - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
-  - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
-  - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
-  - RULE-SET,TEST_Domain,🚀 默认代理
+  - GEOSITE,youtube,YouTube
+  - RULE-SET,youtube_domain,YouTube
+  - DOMAIN-SUFFIX,google.com,Google
+  - DOMAIN-SUFFIX,google.com.hk,Google
+  - DOMAIN-SUFFIX,googleapis.cn,Google
+  - DOMAIN-SUFFIX,googleapis.com,Google
+  - DOMAIN-SUFFIX,play.googleapis.com,Google
+  - DOMAIN-SUFFIX,googleusercontent.com,Google
+  - DOMAIN-SUFFIX,android.com,Google
+  - DOMAIN-SUFFIX,android.clients.google.com,Google
+  - DOMAIN-SUFFIX,android.googleapis.com,Google
+  - DOMAIN-SUFFIX,market.android.com,Google
+  - DOMAIN-SUFFIX,dl.google.com,Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,Google
+  - DOMAIN-SUFFIX,gstatic.com,Google
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Google
+  - GEOSITE,tiktok,TikTok
+  - RULE-SET,tiktok_domain,TikTok
+  - GEOSITE,google,Google
+  - RULE-SET,google_domain,Google
+  - RULE-SET,google_ip,Google
+  - RULE-SET,ai,Ai
+  - GEOSITE,telegram,Telegram
+  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,telegram_ip,Telegram
+  - GEOSITE,github,GitHub
+  - RULE-SET,github_domain,GitHub
+  - GEOSITE,netflix,NETFLIX
+  - RULE-SET,netflix_domain,NETFLIX
+  - RULE-SET,netflix_ip,NETFLIX
+  - GEOSITE,disney,NETFLIX
+  - RULE-SET,speedtest_domain,Speedtest
+  - DOMAIN-KEYWORD,speedtest,Speedtest
+  - DOMAIN-SUFFIX,intercom.io,默认代理
+  - DOMAIN-SUFFIX,intercomcdn.com,默认代理
+  - RULE-SET,TEST_Domain,默认代理
   #  --- CN 兜底 --- 
   - IP-CIDR,111.208.73.0/24,DIRECT
-  - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
+  - DOMAIN-SUFFIX,microsoft.com,默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
-  - GEOSITE,geolocation-!cn,🚀 默认代理
-  - RULE-SET,geolocation-!cn,🚀 默认代理
+  - GEOSITE,geolocation-!cn,默认代理
+  - RULE-SET,geolocation-!cn,默认代理
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
   - RULE-SET,cn_ip,DIRECT
-  - MATCH,🐟 漏网之鱼
+  - MATCH,漏网之鱼
 
 # 规则集
 rule-anchor:
