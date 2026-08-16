@@ -259,7 +259,7 @@ proxies:
   - {name: 直连, type: direct}
 
   # 策略出站锚点
-Anchor: &Anchor {type: select, proxies: [🌐 全部-手动, 🌐 全部-自动, 🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转]}
+Anchor_PG: &Anchor_PG {type: select, proxies: [🌐 全部-手动, 🌐 全部-自动, 🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转]}
 Anchor_FB: &Anchor_FB {type: fallback, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204'}
 Anchor_ST: &Anchor_ST {type: select, empty-fallback: REJECT, include-all: true}
 Anchor_UT: &Anchor_UT {type: url-test, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204', tolerance: 50, include-all: true}
@@ -275,16 +275,16 @@ Anchor_OT: &Anchor_OT '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|�
 Anchor_al: &Anchor_al '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT)).)*$'
 # 策略组(出站)
 proxy-groups:
-  - {name: 默认代理,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
-  - {name: Google,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
-  - {name: Ai,        <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
-  - {name: YouTube,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
-  - {name: TikTok,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
-  - {name: NETFLIX,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
-  - {name: Telegram,  <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
-  - {name: GitHub,    <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
-  - {name: Speedtest, <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
-  - {name: 漏网之鱼,   <<: *Anchor, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
+  - {name: 默认代理,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
+  - {name: Google,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
+  - {name: Ai,        <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
+  - {name: YouTube,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
+  - {name: TikTok,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
+  - {name: NETFLIX,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
+  - {name: Telegram,  <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
+  - {name: GitHub,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
+  - {name: Speedtest, <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
+  - {name: 漏网之鱼,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
   # 香港组
   - {name: 🇭🇰 香港-故转,  <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
   - {name: 🇭🇰 香港-手动,  <<: *Anchor_ST, filter: *Anchor_HK}
