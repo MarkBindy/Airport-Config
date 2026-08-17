@@ -1,5 +1,5 @@
 # 版本： V2026.8.16
-# 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml
+# 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Geo&Rule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
 
@@ -587,9 +587,10 @@ rules:
   - GEOSITE,geolocation-!cn,默认代理
   - RULE-SET,geolocation-!cn,默认代理
   - GEOSITE,cn,DIRECT
-  - GEOIP,CN,DIRECT
+  - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
+  - GEOIP,CN,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,漏网之鱼
 
