@@ -246,20 +246,6 @@ proxy-groups:
   - "🇺🇸 美国-故转"
   - "♻️ 其他-故转"
   include-all: true
-- name: "📹 YouTube"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
 - name: "🍀 Google"
   type: select
   proxies:
@@ -288,6 +274,20 @@ proxy-groups:
   - "🇺🇸 美国-故转"
   - "♻️ 其他-故转"
   include-all: true
+- name: "📹 YouTube"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "🇭🇰 香港-故转"
+  - "🇹🇼 台湾-故转"
+  - "🇯🇵 日本-故转"
+  - "🇰🇷 韩国-故转"
+  - "🇸🇬 狮城-故转"
+  - "🇬🇧 英国-故转"
+  - "🇺🇸 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
 - name: "🎵 TikTok"
   type: select
   proxies:
@@ -302,7 +302,7 @@ proxy-groups:
   - "🇺🇸 美国-故转"
   - "♻️ 其他-故转"
   include-all: true
-- name: "📲 Telegram"
+- name: "🎥 NETFLIX"
   type: select
   proxies:
   - "🌐 全部-手动"
@@ -316,7 +316,7 @@ proxy-groups:
   - "🇺🇸 美国-故转"
   - "♻️ 其他-故转"
   include-all: true
-- name: "🎥 NETFLIX"
+- name: "📲 Telegram"
   type: select
   proxies:
   - "🌐 全部-手动"
