@@ -373,23 +373,30 @@ proxy-groups:
   - "♻️ 其他-故转"
   include-all: true
   # 香港组
-- name: "♻️ 香港-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 香港-手动
-      - ♻️ 香港-自动
-- name: "♻️ 香港-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
-- name: "♻️ 香港-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 台湾组
 - name: "♻️ 台湾-故转"
   type: fallback
