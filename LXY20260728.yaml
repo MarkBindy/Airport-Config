@@ -243,7 +243,7 @@ proxies:
 proxy-providers:
   Airport:
     type: http
-    url: "https://liangxin.xyz/api/v1/liangxin?OwO=24396c91ce75be76fe3fec072858b1f0"
+    url: ""
     interval: 86400
     path: ./proxy_providers/Airport.yaml
     proxy: 直连
