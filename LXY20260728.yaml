@@ -1,17 +1,3 @@
-# 机场订阅(分享给别人时,只需要替换下面的 url 订阅链接）
-proxy-providers:
-  Airport:
-    type: http
-    url: ""
-    interval: 86400
-    path: ./proxy_providers/Airport.yaml
-    proxy: 直连
-    exclude-type: "macc"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-
 # 全局配置 
 port: 7890                                        # 监听端口  HTTP(S) 代理端口
 socks-port: 7891                                  # 监听端口  SOCKS5 代理端口
