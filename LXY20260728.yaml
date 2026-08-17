@@ -1,3 +1,8 @@
+# 版本： V2026.8.16
+# 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/LXY20260728.yaml
+
+
+
 # 全局配置 
 port: 7890                                        # 监听端口  HTTP(S) 代理端口
 socks-port: 7891                                  # 监听端口  SOCKS5 代理端口
