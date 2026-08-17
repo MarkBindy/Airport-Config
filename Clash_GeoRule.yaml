@@ -595,8 +595,8 @@ rules:
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - GEOIP,CN,DIRECT,no-resolve
-  - RULE-SET,cn_ip,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT
+  - RULE-SET,cn_ip,DIRECT
   - MATCH,漏网之鱼
 
 # 规则集
