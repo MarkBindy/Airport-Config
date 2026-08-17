@@ -803,57 +803,57 @@ rules:
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
   #  --- AI 服务 --- 
-  - RULE-SET,OpenAI_Domain,Ai
-  - RULE-SET,Anthropic_Domain,Ai
-  - RULE-SET,Claude_Domain,Ai
-  - RULE-SET,Meta AI_Domain,Ai
-  - RULE-SET,Perplexity_Domain,Ai
-  - RULE-SET,Copilot_Domain,Ai
-  - RULE-SET,Gemini_Domain,Google
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/OpenAI/OpenAI_Resolve.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Anthropic/Anthropic.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Claude/Claude.list,🤖 Ai
+  - RULE-SET,Meta AI_Domain,🤖 Ai
+  - RULE-SET,Perplexity_Domain,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Copilot/Copilot_Resolve.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Gemini/Gemini.list,🍀 Google
   #  --- 国外服务 --- 
 
-  - RULE-SET,youtube_domain,YouTube
-  - DOMAIN-SUFFIX,google.com,Google
-  - DOMAIN-SUFFIX,google.com.hk,Google
-  - DOMAIN-SUFFIX,googleapis.cn,Google
-  - DOMAIN-SUFFIX,googleapis.com,Google
-  - DOMAIN-SUFFIX,play.googleapis.com,Google
-  - DOMAIN-SUFFIX,googleusercontent.com,Google
-  - DOMAIN-SUFFIX,android.com,Google
-  - DOMAIN-SUFFIX,android.clients.google.com,Google
-  - DOMAIN-SUFFIX,android.googleapis.com,Google
-  - DOMAIN-SUFFIX,market.android.com,Google
-  - DOMAIN-SUFFIX,dl.google.com,Google
-  - DOMAIN-SUFFIX,dl-ssl.google.com,Google
-  - DOMAIN-SUFFIX,gstatic.com,Google
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Google
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/YouTube/YouTube_Resolve.list,📹 YouTube
+  - DOMAIN-SUFFIX,google.com,🍀 Google
+  - DOMAIN-SUFFIX,google.com.hk,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.cn,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,googleusercontent.com,🍀 Google
+  - DOMAIN-SUFFIX,android.com,🍀 Google
+  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,market.android.com,🍀 Google
+  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,gstatic.com,🍀 Google
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
 
   - RULE-SET,tiktok_domain,TikTok
 
-  - RULE-SET,google_domain,Google
+  - RULE-SET,google_domain,🍀 Google
 
-  - RULE-SET,google_ip,Google
-  - RULE-SET,ai,Ai
+  - RULE-SET,google_ip,🍀 Google
+  - RULE-SET,ai,🤖 Ai
 
-  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,telegram_domain,📲 Telegram
 
-  - RULE-SET,telegram_ip,Telegram
+  - RULE-SET,telegram_ip,📲 Telegram
 
-  - RULE-SET,github_domain,GitHub
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
 
-  - RULE-SET,netflix_domain,NETFLIX
+  - RULE-SET,netflix_domain,🎥 NETFLIX
 
-  - RULE-SET,netflix_ip,NETFLIX
+  - RULE-SET,netflix_ip,🎥 NETFLIX
 
 
-  - RULE-SET,speedtest_domain,Speedtest
-  - DOMAIN-KEYWORD,speedtest,Speedtest
-  - DOMAIN-SUFFIX,intercom.io,默认代理
-  - DOMAIN-SUFFIX,intercomcdn.com,默认代理
-  - RULE-SET,TEST_Domain,默认代理
+  - RULE-SET,speedtest_domain,⚡ Speedtest
+  - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
+  - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
+  - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
+  - RULE-SET,TEST_Domain,🚀 默认代理
   #  --- CN 兜底 --- 
   - IP-CIDR,111.208.73.0/24,DIRECT
-  - DOMAIN-SUFFIX,microsoft.com,默认代理
+  - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
@@ -861,14 +861,14 @@ rules:
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
 
-  - RULE-SET,geolocation-!cn,默认代理
+  - RULE-SET,geolocation-!cn,🚀 默认代理
 
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
 
   - RULE-SET,cn_ip,DIRECT,no-resolve
-  - MATCH,漏网之鱼
+  - MATCH,🐟 漏网之鱼
 
 # 规则集
 rule-anchor:
