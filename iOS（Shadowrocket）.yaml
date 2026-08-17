@@ -839,6 +839,7 @@ rules:
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
   - RULE-SET,https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list,DIRECT
-  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMax/ChinaMax_Domain.list,DIRECT
-  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMax/ChinaMax_Resolve.list,DIRECT
+  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMax/ChinaMaxNoIP_Domain.list,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMax/ChinaMaxNoIP.list,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMax/ChinaIPs_Resolve.list,DIRECT
   - MATCH,🐟 漏网之鱼
