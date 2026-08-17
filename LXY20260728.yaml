@@ -35,15 +35,6 @@ geodata-loader: standard                          # geo数据加载模式 standa
 experimental:
   quic-go-disable-gso: true                       # 禁用 QUIC 防止 YouTube 等使用 QUIC 导致速度不佳
 
-# GEO规则订阅
-geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
-geo-auto-update: true                             # 自动更新  geodata
-geo-update-interval: 24                           # 更新间隔  单位：小时
-geox-url:
-  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
-
 # 入站
 tun:
   enable: true                                    # 网卡模式  是否启用 TUN 虚拟网卡模式  
