@@ -594,10 +594,6 @@ proxy-groups:
 # 规则匹配
 rules:
   #  --- 本地/局域网 ---
-  - GEOSITE,private,DIRECT
-  - RULE-SET,private_domain,DIRECT
-  - GEOIP,private,DIRECT,no-resolve
-  - RULE-SET,private_ip,DIRECT,no-resolve
   - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN,local.adguard.org,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
@@ -815,7 +811,7 @@ rules:
   - RULE-SET,Copilot_Domain,Ai
   - RULE-SET,Gemini_Domain,Google
   #  --- 国外服务 --- 
-  - GEOSITE,youtube,YouTube
+
   - RULE-SET,youtube_domain,YouTube
   - DOMAIN-SUFFIX,google.com,Google
   - DOMAIN-SUFFIX,google.com.hk,Google
@@ -831,25 +827,25 @@ rules:
   - DOMAIN-SUFFIX,dl-ssl.google.com,Google
   - DOMAIN-SUFFIX,gstatic.com,Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Google
-  - GEOSITE,tiktok,TikTok
+
   - RULE-SET,tiktok_domain,TikTok
-  - GEOSITE,google,Google
+
   - RULE-SET,google_domain,Google
-  - GEOIP,google,Google
+
   - RULE-SET,google_ip,Google
   - RULE-SET,ai,Ai
-  - GEOSITE,telegram,Telegram
+
   - RULE-SET,telegram_domain,Telegram
-  - GEOIP,telegram,Telegram
+
   - RULE-SET,telegram_ip,Telegram
-  - GEOSITE,github,GitHub
+
   - RULE-SET,github_domain,GitHub
-  - GEOSITE,netflix,NETFLIX
+
   - RULE-SET,netflix_domain,NETFLIX
-  - GEOIP,netflix,NETFLIX
+
   - RULE-SET,netflix_ip,NETFLIX
-  - GEOSITE,disney,NETFLIX
-  - GEOSITE,category-speedtest,Speedtest
+
+
   - RULE-SET,speedtest_domain,Speedtest
   - DOMAIN-KEYWORD,speedtest,Speedtest
   - DOMAIN-SUFFIX,intercom.io,默认代理
@@ -864,13 +860,13 @@ rules:
   - DOMAIN,injections.adguard.org,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
-  - GEOSITE,geolocation-!cn,默认代理
+
   - RULE-SET,geolocation-!cn,默认代理
-  - GEOSITE,cn,DIRECT
+
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - GEOIP,CN,DIRECT,no-resolve
+
   - RULE-SET,cn_ip,DIRECT,no-resolve
   - MATCH,漏网之鱼
 
