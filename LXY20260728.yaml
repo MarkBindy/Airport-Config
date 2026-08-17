@@ -1,0 +1,889 @@
+# 全局配置 
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+allow-lan: true
+bind-address: "*"
+mode: rule
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+keep-alive-idle: 600
+keep-alive-interval: 15
+profile:
+  store-selected: true
+  store-fake-ip: true
+# GEO规则订阅
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
+# 嗅探
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    QUIC:
+      ports: [443, 8443]
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+  force-domain:
+    - "+.netflix.com"
+    - "+.nflxvideo.net"
+    - "+.amazonaws.com"
+    - "+.media.dssott.com"
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.oray.com"
+    - "+.sunlogin.net"
+    - "+.push.apple.com"
+    - "+.googlevideo.com"
+# 入站
+tun:
+  enable: true
+  stack: mixed
+  mtu: 1492
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: false
+  auto-detect-interface: false
+  auto-redirect: false
+  strict-route: false
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  ipv6: false
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "+.localdomain"
+    - "localhost.ptlogin2.qq.com"
+    - "time.windows.com"
+    - "time.apple.com"
+    - "time.android.com"
+    - "+.googleapis.cn"
+    - "+.xn--ngstr-lra8j.com"
+    - "+.ntp.org.cn"
+    - "+.pool.ntp.org"
+    - rule-set:fakeipfilter_domain
+    - rule-set:cn_domain
+# 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+# 严格的分流策略：国内域名绝不走海外，海外域名绝不走国内大厂
+  nameserver-policy:
+    "geosite:private,cn,apple-cn,microsoft@cn,steam@cn":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+# 命中 Apple 服务的，走国内直连更顺畅
+    "rule-set:apple_domain":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.cn":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.中国":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.公司":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.网络":
+      - 223.6.6.6
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.google.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.googleapis.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.googleapis.cn":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.gstatic.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.gvt1.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.gvt2.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.gvt3.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.googleusercontent.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.ggpht.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.android.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.xn--ngstr-lra8j.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.openai.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.chatgpt.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.anthropic.com":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "+.claude.ai":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+    "geosite:geolocation-!cn":
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+# 基础查询服务器：当规则未命中时，默认的兜底海外加密 DNS（阻断局域网直接向运营商泄漏）
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://1.0.0.1/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+
+  fallback:
+    - 1.1.1.1
+    - 8.8.8.8
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+# 节点域名解析服务器：使用国内安全加密的 DoH 专门解析你的机场节点域名
+  proxy-server-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+# 直流查询服务器
+  direct-nameserver:
+    - 223.6.6.6
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  direct-nameserver-follow-policy: true
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    domain:
+      - "+.openai.com"
+      - "+.chatgpt.com"
+      - "+.anthropic.com"
+      - "+.claude.ai"
+      - "+.google.com"
+      - "+.googleapis.com"
+      - "+.googleapis.cn"
+      - "+.gstatic.com"
+      - "+.gvt1.com"
+      - "+.gvt2.com"
+      - "+.gvt3.com"
+      - "+.googleusercontent.com"
+      - "+.ggpht.com"
+      - "+.android.com"
+      - "+.xn--ngstr-lra8j.com"
+      - "+.googlevideo.com"
+      - "+.youtube.com"
+      - "+.ytimg.com"
+      - "+.facebook.com"
+      - "+.instagram.com"
+      - "+.x.com"
+      - "+.twitter.com"
+      - "+.telegram.org"
+    ipcidr:
+      - 240.0.0.0/4
+# 节点信息
+proxies:
+  - {name: 直连, type: direct}
+# 机场订阅(分享给别人时,只需要替换下面的 url 订阅链接）
+proxy-providers:
+  Airport:
+    type: http
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=24396c91ce75be76fe3fec072858b1f0"
+    interval: 86400
+    path: ./proxy_providers/Airport.yaml
+    proxy: 直连
+    exclude-type: "macc"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+# 策略组(出站)
+proxy-groups:
+- name: "🚀 默认代理"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "📹 YouTube"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "🍀 Google"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "🤖 Ai"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "🎵 TikTok"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "📲 Telegram"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "🎥 NETFLIX"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "👨🏿‍💻 GitHub"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "⚡ Speedtest"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+- name: "🐟 漏网之鱼"
+  type: select
+  proxies:
+  - "🌐 全部-手动"
+  - "🌐 全部-自动"
+  - "♻️ 香港-故转"
+  - "♻️ 台湾-故转"
+  - "♻️ 日本-故转"
+  - "♻️ 韩国-故转"
+  - "♻️ 狮城-故转"
+  - "♻️ 英国-故转"
+  - "♻️ 美国-故转"
+  - "♻️ 其他-故转"
+  include-all: true
+  # 香港组
+- name: "♻️ 香港-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 香港-手动
+      - ♻️ 香港-自动
+- name: "♻️ 香港-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "♻️ 香港-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|英|美)).)*$"
+  # 台湾组
+- name: "♻️ 台湾-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 台湾-手动
+      - ♻️ 台湾-自动
+- name: "♻️ 台湾-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
+- name: "♻️ 台湾-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
+  # 日本组
+- name: "♻️ 日本-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 日本-手动
+      - ♻️ 日本-自动
+- name: "♻️ 日本-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
+- name: "♻️ 日本-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
+  # 韩国组
+- name: "♻️ 韩国-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 韩国-手动
+      - ♻️ 韩国-自动
+- name: "♻️ 韩国-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
+- name: "♻️ 韩国-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
+  # 新加坡组
+- name: "♻️ 狮城-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 狮城-手动
+      - ♻️ 狮城-自动
+- name: "♻️ 狮城-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
+- name: "♻️ 狮城-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
+  # 英国组
+- name: "♻️ 英国-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 英国-手动
+      - ♻️ 英国-自动
+- name: "♻️ 英国-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
+- name: "♻️ 英国-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
+  # 美国组
+- name: "♻️ 美国-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 美国-手动
+      - ♻️ 美国-自动
+- name: "♻️ 美国-手动"
+  type: select
+  include-all: true
+  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
+- name: "♻️ 美国-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
+  # 其他组
+- name: "♻️ 其他-故转"
+  type: fallback
+  interval: 300
+  lazy: false
+  proxies:
+      - ♻️ 其他-手动
+      - ♻️ 其他-自动
+- name: "♻️ 其他-手动"
+  type: select
+  include-all: true
+  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
+- name: "♻️ 其他-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
+  # 全部组
+- name: "🌐 全部-手动"
+  type: select
+  include-all: true
+- name: "🌐 全部-自动"
+  type: url-test
+  include-all: true
+  tolerance: 20
+  interval: 300
+  filter: "^((?!(直连)).)*$"
+
+# 规则匹配
+rules:
+  #  --- 本地/局域网 ---
+  - GEOSITE,private,DIRECT
+  - RULE-SET,private_ip,DIRECT,no-resolve
+  - RULE-SET,private_domain,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - DOMAIN,local.adguard.org,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
+  #  --- 银行登录修复：风控安全 SDK --- 
+  - DOMAIN-SUFFIX,tongdun.net,DIRECT
+  - DOMAIN-SUFFIX,tongduncdn.com,DIRECT
+  - DOMAIN-SUFFIX,ishumei.com,DIRECT
+  - DOMAIN-SUFFIX,riskradar.net,DIRECT
+  - DOMAIN-SUFFIX,geetest.com,DIRECT
+  - DOMAIN-SUFFIX,dingxiangyun.com,DIRECT
+  - DOMAIN-SUFFIX,dingxiangyun.cn,DIRECT
+  - DOMAIN-SUFFIX,trustdevice.net,DIRECT
+  - DOMAIN-SUFFIX,aegis.qq.com,DIRECT
+  - DOMAIN-SUFFIX,antpay.com,DIRECT
+  - DOMAIN-SUFFIX,rong360.com,DIRECT
+  #  --- 银行 APP 推送/统计服务 --- 
+  - DOMAIN-SUFFIX,jiguang.cn,DIRECT
+  - DOMAIN-SUFFIX,jpush.cn,DIRECT
+  - DOMAIN-SUFFIX,jpush.io,DIRECT
+  - DOMAIN-SUFFIX,umeng.com,DIRECT
+  - DOMAIN-SUFFIX,umengcloud.com,DIRECT
+  - DOMAIN-SUFFIX,rongcloud.cn,DIRECT
+  - DOMAIN-SUFFIX,rongcloud.com,DIRECT
+  #  --- 国内银行域名 --- 
+  - DOMAIN-KEYWORD,bank,DIRECT
+  - DOMAIN-SUFFIX,95516.com,DIRECT
+  - DOMAIN-SUFFIX,unionpay.com,DIRECT
+  - DOMAIN-SUFFIX,unionpaysecure.com,DIRECT
+  - DOMAIN-SUFFIX,icbc.com.cn,DIRECT
+  - DOMAIN-SUFFIX,ccb.com,DIRECT
+  - DOMAIN-SUFFIX,ccblife.com,DIRECT
+  - DOMAIN-SUFFIX,boc.cn,DIRECT
+  - DOMAIN-SUFFIX,abchina.com,DIRECT
+  - DOMAIN-SUFFIX,psbc.com,DIRECT
+  - DOMAIN-SUFFIX,bankcomm.com,DIRECT
+  - DOMAIN-SUFFIX,cmbchina.com,DIRECT
+  - DOMAIN-SUFFIX,spdb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cib.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cebbank.com,DIRECT
+  - DOMAIN-SUFFIX,pingan.com,DIRECT
+  - DOMAIN-SUFFIX,pingan.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cmbwinglungbank.com,DIRECT
+  - DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cgbchina.com.cn,DIRECT
+  - DOMAIN-SUFFIX,hxb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,bankofshanghai.com,DIRECT
+  - DOMAIN-SUFFIX,shrcb.com,DIRECT
+  - DOMAIN-SUFFIX,gzcb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,nbcb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,njcb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cqrcb.com,DIRECT
+  - DOMAIN-SUFFIX,brcb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,czbank.com,DIRECT
+  - DOMAIN-SUFFIX,hkbchina.com,DIRECT
+  - DOMAIN-SUFFIX,bocd.com.cn,DIRECT
+  - DOMAIN-SUFFIX,bocsh.com,DIRECT
+  - DOMAIN-SUFFIX,srcb.com.cn,DIRECT
+  - DOMAIN-SUFFIX,gdb.com.cn,DIRECT
+  #  --- 支付 / 微信生态 --- 
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,alipayobjects.com,DIRECT
+  - DOMAIN-SUFFIX,alipayhk.com,DIRECT
+  - DOMAIN-SUFFIX,antgroup.com,DIRECT
+  - DOMAIN-SUFFIX,antfinancial.com,DIRECT
+  - DOMAIN-SUFFIX,tenpay.com,DIRECT
+  - DOMAIN-SUFFIX,weixin.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wechat.com,DIRECT
+  - DOMAIN-SUFFIX,servicewechat.com,DIRECT
+  - DOMAIN-SUFFIX,qpic.cn,DIRECT
+  - DOMAIN-SUFFIX,qlogo.cn,DIRECT
+  - DOMAIN-SUFFIX,url.cn,DIRECT
+  - DOMAIN-SUFFIX,wechatpay.cn,DIRECT
+  - DOMAIN-SUFFIX,wx.qq.com,DIRECT
+  - DOMAIN-SUFFIX,weixinbridge.com,DIRECT
+  #  --- 内容社区：小红书 --- 
+  - DOMAIN-SUFFIX,xiaohongshu.com,DIRECT
+  - DOMAIN-SUFFIX,xiaohongshu.net,DIRECT
+  - DOMAIN-SUFFIX,xhscdn.com,DIRECT
+  #  --- 政务与公共服务 --- 
+  - DOMAIN-SUFFIX,12315.cn,DIRECT
+  - DOMAIN-SUFFIX,gov.cn,DIRECT
+  - DOMAIN-KEYWORD,12315,DIRECT
+  - DOMAIN-KEYWORD,gjzwfw,DIRECT
+  - DOMAIN-KEYWORD,12306,DIRECT
+  - DOMAIN-SUFFIX,12306.cn,DIRECT
+  - DOMAIN-SUFFIX,govapp.cn,DIRECT
+  #  --- 运营商与网络服务 --- 
+  - DOMAIN-SUFFIX,10086.cn,DIRECT
+  - DOMAIN-SUFFIX,10010.com,DIRECT
+  - DOMAIN-SUFFIX,189.cn,DIRECT
+  - DOMAIN-SUFFIX,chinamobile.com,DIRECT
+  - DOMAIN-SUFFIX,chinaunicom.com,DIRECT
+  - DOMAIN-SUFFIX,chinatelecom.com.cn,DIRECT
+  #  --- 小米 / 米家生态 --- 
+  - DOMAIN-SUFFIX,mi.com,DIRECT
+  - DOMAIN-SUFFIX,miui.com,DIRECT
+  - DOMAIN-SUFFIX,miwifi.com,DIRECT
+  - DOMAIN-SUFFIX,xiaomi.com,DIRECT
+  - DOMAIN-SUFFIX,xiaomicp.com,DIRECT
+  - DOMAIN-SUFFIX,miot-spec.com,DIRECT
+  #  --- 智能家居 / 家电品牌 --- 
+  - DOMAIN-SUFFIX,midea.com,DIRECT
+  - DOMAIN-SUFFIX,midea.com.cn,DIRECT
+  - DOMAIN-SUFFIX,smartmidea.net,DIRECT
+  - DOMAIN-SUFFIX,haier.net,DIRECT
+  - DOMAIN-SUFFIX,haier.com,DIRECT
+  - DOMAIN-SUFFIX,hisense.com,DIRECT
+  - DOMAIN-SUFFIX,tcl.com,DIRECT
+  - DOMAIN-SUFFIX,yeelight.com,DIRECT
+  - DOMAIN-SUFFIX,aqara.com,DIRECT
+  - DOMAIN-SUFFIX,tuya.com,DIRECT
+  - DOMAIN-SUFFIX,tuyaus.com,DIRECT
+  #  --- 电商购物 --- 
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.net,DIRECT
+  - DOMAIN-SUFFIX,meituan.com,DIRECT
+  - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
+  - DOMAIN-SUFFIX,suning.com,DIRECT
+  #  --- 内容平台 / 短视频 --- 
+  - DOMAIN-SUFFIX,douyin.com,DIRECT
+  - DOMAIN-SUFFIX,douyinpic.com,DIRECT
+  - DOMAIN-SUFFIX,iesdouyin.com,DIRECT
+  - DOMAIN-SUFFIX,snssdk.com,DIRECT
+  - DOMAIN-SUFFIX,amemv.com,DIRECT
+  - DOMAIN-SUFFIX,byteimg.com,DIRECT
+  - DOMAIN-SUFFIX,ibytedtos.com,DIRECT
+  - DOMAIN-SUFFIX,volccdn.com,DIRECT
+  - DOMAIN-SUFFIX,ixigua.com,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,bilivideo.com,DIRECT
+  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
+  - DOMAIN-SUFFIX,youku.com,DIRECT
+  - DOMAIN-SUFFIX,weibo.com,DIRECT
+  - DOMAIN-SUFFIX,zhihu.com,DIRECT
+  #  --- 腾讯/Apple/百度 / QQ / 云服务/其它 --- 
+  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,me.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,cdn20.com,DIRECT
+  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+  - DOMAIN-SUFFIX,akadns.net,DIRECT
+  - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
+  - DOMAIN-SUFFIX,edgekey.net,DIRECT
+  - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
+  - DOMAIN-SUFFIX,mwcname.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
+  - RULE-SET,apple_domain,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-SUFFIX,中国,DIRECT
+  - DOMAIN-SUFFIX,公司,DIRECT
+  - DOMAIN-SUFFIX,网络,DIRECT
+  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,office365.com,DIRECT
+  - DOMAIN-KEYWORD,officecdn,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,qqurl.com,DIRECT
+  - DOMAIN-SUFFIX,tencent.com,DIRECT
+  - DOMAIN-SUFFIX,gtimg.com,DIRECT
+  - DOMAIN-SUFFIX,gtimg.cn,DIRECT
+  - DOMAIN-SUFFIX,gtimg.net,DIRECT
+  - DOMAIN-SUFFIX,idqqimg.com,DIRECT
+  - DOMAIN-SUFFIX,qqmail.com,DIRECT
+  - DOMAIN-SUFFIX,foxmail.com,DIRECT
+  - DOMAIN-SUFFIX,weiyun.com,DIRECT
+  - DOMAIN-SUFFIX,myapp.com,DIRECT
+  - DOMAIN-SUFFIX,qcloud.com,DIRECT
+  - DOMAIN-SUFFIX,myqcloud.com,DIRECT
+  - DOMAIN-SUFFIX,tencentcloud.com,DIRECT
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
+  - DOMAIN-SUFFIX,baidu.com,DIRECT
+  - DOMAIN-SUFFIX,gtimg.com,DIRECT
+  - DOMAIN-SUFFIX,amemv.com,DIRECT
+  - DOMAIN-SUFFIX,bytedance.com,DIRECT
+  - DOMAIN-SUFFIX,byteimg.com,DIRECT
+  - DOMAIN,cn.bing.com,DIRECT
+  - DOMAIN-SUFFIX,csdn.net,DIRECT
+  - DOMAIN-SUFFIX,douban.com,DIRECT
+  - DOMAIN-SUFFIX,doubanio.com,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,126.com,DIRECT
+  - DOMAIN-SUFFIX,127.net,DIRECT
+  - DOMAIN-SUFFIX,xmcdn.com,DIRECT
+  - DOMAIN-SUFFIX,xunlei.com,DIRECT
+  #  --- AI 服务 --- 
+  - RULE-SET,OpenAI_Domain,🤖 Ai
+  - RULE-SET,Anthropic_Domain,🤖 Ai
+  - RULE-SET,Claude_Domain,🤖 Ai
+  - RULE-SET,Meta AI_Domain,🤖 Ai
+  - RULE-SET,Perplexity_Domain,🤖 Ai
+  - RULE-SET,Copilot_Domain,🤖 Ai
+  - RULE-SET,Gemini_Domain,🍀 Google
+  #  --- 国外服务 --- 
+  - GEOSITE,youtube,📹 YouTube
+  - RULE-SET,youtube_domain,📹 YouTube
+  - DOMAIN-SUFFIX,google.com,🍀 Google
+  - DOMAIN-SUFFIX,google.com.hk,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.cn,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,googleusercontent.com,🍀 Google
+  - DOMAIN-SUFFIX,android.com,🍀 Google
+  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,market.android.com,🍀 Google
+  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,gstatic.com,🍀 Google
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
+  - GEOSITE,tiktok,🎵 TikTok
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - GEOSITE,google,🍀 Google
+  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,google_ip,🍀 Google
+  - RULE-SET,ai,🤖 Ai
+  - GEOSITE,telegram,📲 Telegram
+  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,telegram_ip,📲 Telegram
+  - GEOSITE,github,👨🏿‍💻 GitHub
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - GEOSITE,netflix,🎥 NETFLIX
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,netflix_ip,🎥 NETFLIX
+  - GEOSITE,disney,🎥 NETFLIX
+  - RULE-SET,speedtest_domain,⚡ Speedtest
+  - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
+  - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
+  - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
+  - RULE-SET,TEST_Domain,🚀 默认代理
+  #  --- CN 兜底 --- 
+  - IP-CIDR,111.208.73.0/24,DIRECT
+  - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
+  - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
+  - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
+  - DOMAIN-SUFFIX,msftncsi.com,DIRECT
+  - DOMAIN,injections.adguard.org,DIRECT
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,-cn,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT
+  - RULE-SET,cn_domain,DIRECT
+  - RULE-SET,cn_ip,DIRECT
+  - GEOSITE,geolocation-!cn,🚀 默认代理
+  - RULE-SET,geolocation-!cn,🚀 默认代理
+  - MATCH,🐟 漏网之鱼
+# 规则集
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+
+rule-providers:
+  fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  TEST_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
+  OpenAI_Domain: {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list"}
+  Anthropic_Domain: {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Anthropic/Anthropic.list"}
+  Claude_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"}
+  Meta AI_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list"}
+  Perplexity_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/perplexity.mrs"}
+  Copilot_Domain: {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list"}
+  Gemini_Domain: {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list"}
+  ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  youtube_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list"}
+  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  Twitter_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/x.mrs"}
+  WhatsApp_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Whatsapp/Whatsapp.list"}
+  Facebook_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/facebook.mrs"}
+  Amazon_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/amazon.mrs"}
+  telegram_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list"}
+  netflix_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list"}
+  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  apple-cn / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple-cn.mrs"}
+  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  OKX_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/okx.mrs"}
+  Bybit_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/bybit.mrs"}
+  Binance_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/binance.mrs"}
+  Disney_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/disney.mrs"}
+  HBO_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.mrs"}
+  Spotify_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.mrs"}
+  Steam_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"}
+  Epic_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list"}
+  EA_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
+  Blizzard_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
+  UBI_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list"}
+  PlayStation_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
+  Nintend_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list"}
+  Proxy_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
+  Direct_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list"}
+  Block_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
+  Nvidia_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nvidia/Nvidia.list"}
+  Crunchyroll_Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Crunchyroll.list"}
+  Reddit_Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
+  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
+geodata-loader: standard
+experimental:
+  quic-go-disable-gso: true
