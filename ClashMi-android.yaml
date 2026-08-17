@@ -66,12 +66,9 @@ sniffer:
   parse-pure-ip: true                             # 反向解析  解析纯 IP 连接（尝试反向解析获得域名）
   force-dns-mapping: true                         # 强制映射  DNS 映射（对纯 IP 连接尝试 DNS 映射）
   sniff:
-    QUIC:                                         # 嗅探参数  QUIC 协议流量（HTTP/3 常用端口
-      ports: [443, 8443]
-    TLS:                                          # 嗅探参数  HTTPS（TLS）常用及备用端口
-      ports: [443, 8443]
-    HTTP:                                         # 嗅探参数  HTTP 及常见 Web / 代理端口段
-      ports: [80, 8080-8880]
+    QUIC: { ports: [443, 8443] }                  # 嗅探参数  QUIC 协议流量（HTTP/3 常用端口）
+    TLS:  { ports: [443, 8443] }                  # 嗅探参数  HTTPS（TLS）常用及备用端口
+    HTTP: { ports: [80, 8080-8880] }              # 嗅探参数  HTTP 及常见 Web / 代理端口段
   force-domain:
     - "+.netflix.com"                             # 强制嗅探  Netflix 主域名
     - "+.nflxvideo.net"                           # 强制嗅探  Netflix CDN
@@ -111,7 +108,7 @@ dns:
     - "+.ntp.org.cn"
     - "+.pool.ntp.org"
     - "rule-set:fakeipfilter_domain"
-    - "rule-set:Direct_Domain"                     # 真实解析  大陆冷门域名
+    - "rule-set:add_direct_domain"                 # 真实解析  大陆冷门域名
     - "geosite:cn"                                 # 真实解析  大陆域 GeoSite 数据
     - "rule-set:cn_domain"                         # 真实解析  大陆域名
   default-nameserver:                              # 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
@@ -606,6 +603,7 @@ rule-anchor:
 rule-providers:
   # 域名集
   cn_domain:           {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  add_direct_domain:   {<<: *Anchor_DN, url: "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"}
   private_domain:      {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   Direct_Domain:       {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list"}
   Proxy_Domain:        {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
