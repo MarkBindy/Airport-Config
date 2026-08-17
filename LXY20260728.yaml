@@ -398,131 +398,180 @@ proxy-groups:
   url: 'https://www.gstatic.com/generate_204'
   filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 台湾组
-- name: "♻️ 台湾-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 台湾-手动
-      - ♻️ 台湾-自动
-- name: "♻️ 台湾-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
-- name: "♻️ 台湾-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(台|TW|台灣|Tai Wan|TaiWan|Taiwan|(?i)tai))^((?!(港|日|韩|新|英|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 日本组
-- name: "♻️ 日本-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 日本-手动
-      - ♻️ 日本-自动
-- name: "♻️ 日本-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
-- name: "♻️ 日本-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|(?i)Japan))^((?!(港|台|韩|新|英|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 韩国组
-- name: "♻️ 韩国-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 韩国-手动
-      - ♻️ 韩国-自动
-- name: "♻️ 韩国-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
-- name: "♻️ 韩国-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(韩|KR|韓國|KR|首尔|春川|(?i)Korea))^((?!(港|台|日|新|英|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 新加坡组
-- name: "♻️ 狮城-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 狮城-手动
-      - ♻️ 狮城-自动
-- name: "♻️ 狮城-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
-- name: "♻️ 狮城-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(新|狮|SG|(?i)Singapore))^((?!(港|台|日|韩|英|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 英国组
-- name: "♻️ 英国-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 英国-手动
-      - ♻️ 英国-自动
-- name: "♻️ 英国-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
-- name: "♻️ 英国-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(英|UK|伦敦|London|(?i)United Kingdom))^((?!(港|台|日|韩|新|美)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 美国组
-- name: "♻️ 美国-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 美国-手动
-      - ♻️ 美国-自动
-- name: "♻️ 美国-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
-- name: "♻️ 美国-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "(?=.*(美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States|(?i)States|America))^((?!(港|台|日|韩|新|英)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 其他组
-- name: "♻️ 其他-故转"
+- name: "🇭🇰 香港-故转"
   type: fallback
+  empty-fallback: REJECT
   interval: 300
   lazy: false
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
   proxies:
-      - ♻️ 其他-手动
-      - ♻️ 其他-自动
-- name: "♻️ 其他-手动"
+      - 🇭🇰 香港-手动
+      - 🇭🇰 香港-自动
+- name: "🇭🇰 香港-手动"
   type: select
+  empty-fallback: REJECT
   include-all: true
-  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
-- name: "♻️ 其他-自动"
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
+- name: "🇭🇰 香港-自动"
   type: url-test
+  empty-fallback: REJECT
   include-all: true
   tolerance: 20
   interval: 300
-  filter: "^((?!(直连|港|HK|台|TW|台灣|Tai Wan|TaiWan|Taiwan|日|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|韩|KR|韓國|KR|首尔|春川|新|狮|SG|英|UK|伦敦|London|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|United States)).)*$"
+  timeout: 3000
+  url: 'https://www.gstatic.com/generate_204'
+  filter: "(?=.*(香港|HK|hk|hkg|(?i)hongkong|hong kong|Hong|🇭🇰))^((?!(台|日|韩|新|英|美)).)*$"
   # 全部组
 - name: "🌐 全部-手动"
   type: select
