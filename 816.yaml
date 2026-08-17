@@ -595,8 +595,9 @@ proxy-groups:
 rules:
   #  --- 本地/局域网 ---
   - GEOSITE,private,DIRECT
-  - RULE-SET,private_ip,DIRECT,no-resolve
   - RULE-SET,private_domain,DIRECT
+  - GEOIP,private,DIRECT,no-resolve
+  - RULE-SET,private_ip,DIRECT,no-resolve
   - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN,local.adguard.org,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
@@ -834,17 +835,21 @@ rules:
   - RULE-SET,tiktok_domain,TikTok
   - GEOSITE,google,Google
   - RULE-SET,google_domain,Google
+  - GEOIP,google,Google
   - RULE-SET,google_ip,Google
   - RULE-SET,ai,Ai
   - GEOSITE,telegram,Telegram
   - RULE-SET,telegram_domain,Telegram
+  - GEOIP,telegram,Telegram
   - RULE-SET,telegram_ip,Telegram
   - GEOSITE,github,GitHub
   - RULE-SET,github_domain,GitHub
   - GEOSITE,netflix,NETFLIX
   - RULE-SET,netflix_domain,NETFLIX
+  - GEOIP,netflix,NETFLIX
   - RULE-SET,netflix_ip,NETFLIX
   - GEOSITE,disney,NETFLIX
+  - GEOSITE,category-speedtest,Speedtest
   - RULE-SET,speedtest_domain,Speedtest
   - DOMAIN-KEYWORD,speedtest,Speedtest
   - DOMAIN-SUFFIX,intercom.io,默认代理
@@ -865,8 +870,8 @@ rules:
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - GEOIP,CN,DIRECT
-  - RULE-SET,cn_ip,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - RULE-SET,cn_ip,DIRECT,no-resolve
   - MATCH,漏网之鱼
 
 # 规则集
