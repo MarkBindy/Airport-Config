@@ -270,16 +270,16 @@ Anchor_AL: &Anchor_AL '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|�
 
 # 策略组(出站)
 proxy-groups:
-  - {name: 默认代理,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
-  - {name: Google,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
-  - {name: Ai,          <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
-  - {name: YouTube,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
-  - {name: TikTok,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
-  - {name: NETFLIX,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
-  - {name: Telegram,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
-  - {name: GitHub,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
-  - {name: Speedtest,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
-  - {name: 漏网之鱼,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
+  - {name: 🚀 默认代理,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
+  - {name: 🍀 Google,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
+  - {name: 🤖 Ai,          <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
+  - {name: 📹 YouTube,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
+  - {name: 🎵 TikTok,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
+  - {name: 🎥 NETFLIX,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
+  - {name: 📲 Telegram,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
+  - {name: 👨🏿‍💻 GitHub,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
+  - {name: ⚡ Speedtest,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
+  - {name: 🐟 漏网之鱼,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
   # 香港组
   - {name: 🇭🇰 香港-故转, <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
   - {name: 🇭🇰 香港-手动, <<: *Anchor_ST, filter: *Anchor_HK}
@@ -535,70 +535,70 @@ rules:
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
   #  --- AI 服务 --- 
-  - RULE-SET,OpenAI_Domain,Ai
-  - RULE-SET,Anthropic_Domain,Ai
-  - RULE-SET,Claude_Domain,Ai
-  - RULE-SET,Meta AI_Domain,Ai
-  - RULE-SET,Perplexity_Domain,Ai
-  - RULE-SET,Copilot_Domain,Ai
-  - RULE-SET,Gemini_Domain,Google
-  - GEOSITE,category-ai-!cn,Ai
+  - RULE-SET,OpenAI_Domain,🤖 Ai
+  - RULE-SET,Anthropic_Domain,🤖 Ai
+  - RULE-SET,Claude_Domain,🤖 Ai
+  - RULE-SET,Meta AI_Domain,🤖 Ai
+  - RULE-SET,Perplexity_Domain,🤖 Ai
+  - RULE-SET,Copilot_Domain,🤖 Ai
+  - RULE-SET,Gemini_Domain,🍀 Google
+  - GEOSITE,category-ai-!cn,🤖 Ai
   #  --- 国外服务 --- 
-  - GEOSITE,youtube,YouTube
-  - RULE-SET,youtube_domain,YouTube
-  - DOMAIN-SUFFIX,google.com,Google
-  - DOMAIN-SUFFIX,google.com.hk,Google
-  - DOMAIN-SUFFIX,googleapis.cn,Google
-  - DOMAIN-SUFFIX,googleapis.com,Google
-  - DOMAIN-SUFFIX,play.googleapis.com,Google
-  - DOMAIN-SUFFIX,googleusercontent.com,Google
-  - DOMAIN-SUFFIX,android.com,Google
-  - DOMAIN-SUFFIX,android.clients.google.com,Google
-  - DOMAIN-SUFFIX,android.googleapis.com,Google
-  - DOMAIN-SUFFIX,market.android.com,Google
-  - DOMAIN-SUFFIX,dl.google.com,Google
-  - DOMAIN-SUFFIX,dl-ssl.google.com,Google
-  - DOMAIN-SUFFIX,gstatic.com,Google
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Google
-  - GEOSITE,tiktok,TikTok
-  - RULE-SET,tiktok_domain,TikTok
-  - GEOSITE,google,Google
-  - RULE-SET,google_domain,Google
-  - GEOIP,google,Google
-  - RULE-SET,google_ip,Google
-  - RULE-SET,ai,Ai
-  - GEOSITE,telegram,Telegram
-  - RULE-SET,telegram_domain,Telegram
-  - GEOIP,telegram,Telegram
-  - RULE-SET,telegram_ip,Telegram
-  - GEOSITE,github,GitHub
-  - RULE-SET,github_domain,GitHub
-  - GEOSITE,netflix,NETFLIX
-  - RULE-SET,netflix_domain,NETFLIX
-  - GEOIP,netflix,NETFLIX
-  - RULE-SET,netflix_ip,NETFLIX
-  - GEOSITE,disney,NETFLIX
-  - GEOSITE,category-speedtest,Speedtest
-  - RULE-SET,speedtest_domain,Speedtest
-  - DOMAIN-KEYWORD,speedtest,Speedtest
-  - DOMAIN-SUFFIX,intercom.io,默认代理
-  - DOMAIN-SUFFIX,intercomcdn.com,默认代理
-  - RULE-SET,TEST_Domain,默认代理
+  - GEOSITE,youtube,📹 YouTube
+  - RULE-SET,youtube_domain,📹 YouTube
+  - DOMAIN-SUFFIX,google.com,🍀 Google
+  - DOMAIN-SUFFIX,google.com.hk,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.cn,🍀 Google
+  - DOMAIN-SUFFIX,googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,googleusercontent.com,🍀 Google
+  - DOMAIN-SUFFIX,android.com,🍀 Google
+  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,market.android.com,🍀 Google
+  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,gstatic.com,🍀 Google
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
+  - GEOSITE,tiktok,🎵 TikTok
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - GEOSITE,google,🍀 Google
+  - RULE-SET,google_domain,🍀 Google
+  - GEOIP,google,🍀 Google
+  - RULE-SET,google_ip,🍀 Google
+  - RULE-SET,ai,🤖 Ai
+  - GEOSITE,telegram,📲 Telegram
+  - RULE-SET,telegram_domain,📲 Telegram
+  - GEOIP,telegram,📲 Telegram
+  - RULE-SET,telegram_ip,📲 Telegram
+  - GEOSITE,github,👨🏿‍💻 GitHub
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - GEOSITE,netflix,🎥 NETFLIX
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - GEOIP,netflix,🎥 NETFLIX
+  - RULE-SET,netflix_ip,🎥 NETFLIX
+  - GEOSITE,disney,🎥 NETFLIX
+  - GEOSITE,category-speedtest,⚡ Speedtest
+  - RULE-SET,speedtest_domain,⚡ Speedtest
+  - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
+  - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
+  - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
+  - RULE-SET,TEST_Domain,🚀 默认代理
   #  --- CN 兜底 --- 
   - IP-CIDR,111.208.73.0/24,DIRECT
-  - DOMAIN-SUFFIX,microsoft.com,默认代理
+  - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
-  - GEOSITE,geolocation-!cn,默认代理
-  - RULE-SET,geolocation-!cn,默认代理
+  - GEOSITE,geolocation-!cn,🚀 默认代理
+  - RULE-SET,geolocation-!cn,🚀 默认代理
   - GEOSITE,cn,DIRECT
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
   - GEOIP,CN,DIRECT
   - RULE-SET,cn_ip,DIRECT
-  - MATCH,漏网之鱼
+  - MATCH,🐟 漏网之鱼
 
 # 规则集
 rule-anchor:
