@@ -566,7 +566,6 @@ rules:
   - RULE-SET,google_domain,🍀 Google
   - GEOIP,google,🍀 Google
   - RULE-SET,google_ip,🍀 Google
-  - RULE-SET,ai,🤖 Ai
   - GEOSITE,telegram,📲 Telegram
   - RULE-SET,telegram_domain,📲 Telegram
   - GEOIP,telegram,📲 Telegram
