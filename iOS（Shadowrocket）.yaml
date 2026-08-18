@@ -511,12 +511,12 @@ rules:
   #  --- CN 兜底 --- 
   - IP-CIDR,111.208.73.0/24,DIRECT
   - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
+  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Domain.list,🚀 默认代理
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Resolve.list,🚀 默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
-  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Domain.list,DIRECT
-  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Resolve.list,DIRECT
   - RULE-SET,https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list,DIRECT
   - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP_Domain.list,DIRECT
   - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP.list,DIRECT
