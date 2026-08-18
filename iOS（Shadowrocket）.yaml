@@ -213,6 +213,7 @@ proxies:
   - {name: 直连, type: direct}
 
 # 策略组(出站)
+- {name: 🚀 默认代理, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
 proxy-groups:
 - name: "🚀 默认代理"
   type: select
