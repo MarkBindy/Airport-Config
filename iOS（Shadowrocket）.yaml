@@ -213,156 +213,63 @@ proxies:
   - {name: 直连, type: direct}
 
 # 策略组(出站)
-- {name: 🚀 默认代理, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
 proxy-groups:
-- name: "🚀 默认代理"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🍀 Google"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🤖 Ai"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "📹 YouTube"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🎵 TikTok"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🎥 NETFLIX"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "📲 Telegram"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "👨🏿‍💻 GitHub"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "⚡ Speedtest"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
-- name: "🐟 漏网之鱼"
-  type: select
-  proxies:
-  - "🌐 全部-手动"
-  - "🌐 全部-自动"
-  - "🇭🇰 香港-故转"
-  - "🇹🇼 台湾-故转"
-  - "🇯🇵 日本-故转"
-  - "🇰🇷 韩国-故转"
-  - "🇸🇬 狮城-故转"
-  - "🇬🇧 英国-故转"
-  - "🇺🇸 美国-故转"
-  - "♻️ 其他-故转"
-  include-all: true
+  - {name: 🚀 默认代理, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 🍀 Google, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 🤖 Ai, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 📹 YouTube, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 🎵 TikTok, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 🎥 NETFLIX, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 📲 Telegram, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 👨🏿‍💻 GitHub, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: ⚡ Speedtest, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+  - {name: 🐟 漏网之鱼, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
   # 香港组
+  - {name: 🐟 漏网之鱼, type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动],include-all: true}
+- {name: ♻️ 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+# 香港组
+  - {name: 🇭🇰 香港-故转, type: fallback, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: "https://www.gstatic.com/generate_204", proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
+  - {name: 🇭🇰 香港-手动, <<: *Anchor_ST, filter: *Anchor_HK}
+  - {name: 🇭🇰 香港-自动, <<: *Anchor_UT, filter: *Anchor_HK}
+  # 台湾组
+  - {name: 🇹🇼 台湾-故转, <<: *Anchor_FB, proxies: [🇹🇼 台湾-手动, 🇹🇼 台湾-自动]}
+  - {name: 🇹🇼 台湾-手动, <<: *Anchor_ST, filter: *Anchor_TW}
+  - {name: 🇹🇼 台湾-自动, <<: *Anchor_UT, filter: *Anchor_TW}
+  # 日本组
+  - {name: 🇯🇵 日本-故转, <<: *Anchor_FB, proxies: [🇯🇵 日本-手动, 🇯🇵 日本-自动]}
+  - {name: 🇯🇵 日本-手动, <<: *Anchor_ST, filter: *Anchor_JP}
+  - {name: 🇯🇵 日本-自动, <<: *Anchor_UT, filter: *Anchor_JP}
+  # 韩国组
+  - {name: 🇰🇷 韩国-故转, <<: *Anchor_FB, proxies: [🇰🇷 韩国-手动, 🇰🇷 韩国-自动]}
+  - {name: 🇰🇷 韩国-手动, <<: *Anchor_ST, filter: *Anchor_KR}
+  - {name: 🇰🇷 韩国-自动, <<: *Anchor_UT, filter: *Anchor_KR}
+  # 新加坡组
+  - {name: 🇸🇬 狮城-故转, <<: *Anchor_FB, proxies: [🇸🇬 狮城-手动, 🇸🇬 狮城-自动]}
+  - {name: 🇸🇬 狮城-手动, <<: *Anchor_ST, filter: *Anchor_SG}
+  - {name: 🇸🇬 狮城-自动, <<: *Anchor_UT, filter: *Anchor_SG}
+  # 英国组
+  - {name: 🇬🇧 英国-故转, <<: *Anchor_FB, proxies: [🇬🇧 英国-手动, 🇬🇧 英国-自动]}
+  - {name: 🇬🇧 英国-手动, <<: *Anchor_ST, filter: *Anchor_GB}
+  - {name: 🇬🇧 英国-自动, <<: *Anchor_UT, filter: *Anchor_GB}
+  # 美国组
+  - {name: 🇺🇸 美国-故转, <<: *Anchor_FB, proxies: [🇺🇸 美国-手动, 🇺🇸 美国-自动]}
+  - {name: 🇺🇸 美国-手动, <<: *Anchor_ST, filter: *Anchor_US}
+  - {name: 🇺🇸 美国-自动, <<: *Anchor_UT, filter: *Anchor_US}
+  # 其他组
+  - {name: ♻️ 其他-故转, <<: *Anchor_FB, proxies: [♻️ 其他-手动, ♻️ 其他-自动]}
+  - {name: ♻️ 其他-手动, <<: *Anchor_ST, filter: *Anchor_OT}
+  - {name: ♻️ 其他-自动, <<: *Anchor_UT, filter: *Anchor_OT}
+  # 全部组
+  - {name: 🌐 全部-手动, <<: *Anchor_ST}
+  - {name: 🌐 全部-自动, <<: *Anchor_UT, filter: *Anchor_AL}
+
 - name: "🇭🇰 香港-故转"
   type: fallback
-  empty-fallback: REJECT
-  interval: 300
-  lazy: false
-  timeout: 3000
-  url: "https://www.gstatic.com/generate_204"
+  
+  
+  
+  
+  
   proxies:
       - 🇭🇰 香港-手动
       - 🇭🇰 香港-自动
