@@ -470,10 +470,13 @@ rules:
   - DOMAIN-SUFFIX,youku.com,DIRECT
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
-  #  --- 腾讯/Apple/百度 / QQ / 云服务/其它 --- 
+  #  --- 腾讯/Apple/百度/QQ/云服务/其它 --- 
   - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,steam@cn,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,apple,DIRECT
+  - RULE-SET,apple_domain,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
   - DOMAIN-SUFFIX,icloud.com,DIRECT
@@ -490,8 +493,8 @@ rules:
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
-  - RULE-SET,apple_domain,DIRECT
-  - GEOSITE,steam@cn,DIRECT
+  
+  - DOMAIN-KEYWORD,-cn,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-SUFFIX,中国,DIRECT
   - DOMAIN-SUFFIX,公司,DIRECT
@@ -539,6 +542,7 @@ rules:
   - RULE-SET,Perplexity_Domain,Ai
   - RULE-SET,Copilot_Domain,Ai
   - RULE-SET,Gemini_Domain,Google
+  - GEOSITE,category-ai-!cn,Ai
   #  --- 国外服务 --- 
   - GEOSITE,youtube,YouTube
   - RULE-SET,youtube_domain,YouTube
@@ -587,13 +591,10 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
-  - DOMAIN-SUFFIX,cn,DIRECT
-  - DOMAIN-KEYWORD,-cn,DIRECT
   - GEOSITE,geolocation-!cn,默认代理
   - RULE-SET,geolocation-!cn,默认代理
   - GEOSITE,cn,DIRECT
   - RULE-SET,add_direct_domain,DIRECT
-  - RULE-SET,Direct_Domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
   - GEOIP,CN,DIRECT
   - RULE-SET,cn_ip,DIRECT
