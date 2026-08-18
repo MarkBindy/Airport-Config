@@ -20,6 +20,7 @@ global-ua: clash-verge                            # 用户代理  全局默认UA
 profile:
   store-selected: true                            # 保存选择  记住选择的节点和策略组
   store-fake-ip: true                             # 保存选择  Fake-IP 映射
+geodata-loader: standard                          # geo数据加载模式 standard（标准）memconservative（低内存）
 experimental:
   quic-go-disable-gso: true                       # 禁用 QUIC 防止 YouTube 等使用 QUIC 导致速度不佳
 
@@ -263,10 +264,8 @@ proxy-groups:
 # 规则匹配
 rules:
   #  --- 本地/局域网 ---
-  - GEOSITE,private,DIRECT
-  - RULE-SET,private_domain,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Lan/Lan_Resolve.list,DIRECT
   - GEOIP,private,DIRECT,no-resolve
-  - RULE-SET,private_ip,DIRECT,no-resolve
   - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN,local.adguard.org,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
@@ -415,13 +414,8 @@ rules:
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
   #  --- Apple/微软/腾讯/阿里/百度/云服务/其它 --- 
-  - GEOSITE,category-games@cn,DIRECT
-  - GEOSITE,steam@cn,DIRECT
-  - GEOSITE,microsoft@cn,DIRECT
-  - GEOSITE,apple-cn,DIRECT
-  - RULE-SET,apple-cn_Domain,DIRECT
-  - GEOSITE,apple,DIRECT
-  - RULE-SET,apple_domain,DIRECT
+  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Apple/Apple_Domain.list,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Apple/Apple_Resolve.list,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
   - DOMAIN-SUFFIX,icloud.com,DIRECT
@@ -479,17 +473,14 @@ rules:
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
   #  --- AI 服务 --- 
-  - RULE-SET,OpenAI_Domain,🤖 Ai
-  - RULE-SET,Anthropic_Domain,🤖 Ai
-  - RULE-SET,Claude_Domain,🤖 Ai
-  - RULE-SET,Meta AI_Domain,🤖 Ai
-  - RULE-SET,Perplexity_Domain,🤖 Ai
-  - RULE-SET,Copilot_Domain,🤖 Ai
-  - RULE-SET,Gemini_Domain,🍀 Google
-  - GEOSITE,category-ai-!cn,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/OpenAI/OpenAI_Resolve.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Anthropic/Anthropic.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Claude/Claude.list,🤖 Ai
+  - RULE-SET,https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Copilot/Copilot_Resolve.list,🤖 Ai
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Gemini/Gemini.list,🍀 Google
   #  --- 国外服务 --- 
-  - GEOSITE,youtube,📹 YouTube
-  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/YouTube/YouTube_Resolve.list,📹 YouTube
   - DOMAIN-SUFFIX,google.com,🍀 Google
   - DOMAIN-SUFFIX,google.com.hk,🍀 Google
   - DOMAIN-SUFFIX,googleapis.cn,🍀 Google
@@ -504,29 +495,19 @@ rules:
   - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
   - DOMAIN-SUFFIX,gstatic.com,🍀 Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
-  - GEOSITE,tiktok,🎵 TikTok
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - GEOSITE,google,🍀 Google
-  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/TikTok/TikTok.list,🎵 TikTok
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Google/Google_Resolve.list,🍀 Google
   - GEOIP,google,🍀 Google
-  - RULE-SET,google_ip,🍀 Google
-  - GEOSITE,telegram,📲 Telegram
-  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Telegram/Telegram_Resolve.list,📲 Telegram
   - GEOIP,telegram,📲 Telegram
-  - RULE-SET,telegram_ip,📲 Telegram
-  - GEOSITE,github,👨🏿‍💻 GitHub
-  - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - GEOSITE,netflix,🎥 NETFLIX
-  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/GitHub/GitHub.list,👨🏿‍💻 GitHub
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Netflix/Netflix_Resolve.list,🎥 NETFLIX
   - GEOIP,netflix,🎥 NETFLIX
-  - RULE-SET,netflix_ip,🎥 NETFLIX
-  - GEOSITE,disney,🎥 NETFLIX
-  - GEOSITE,category-speedtest,⚡ Speedtest
-  - RULE-SET,speedtest_domain,⚡ Speedtest
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Speedtest/Speedtest.list,⚡ Speedtest
   - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
   - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
   - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
-  - RULE-SET,TEST_Domain,🚀 默认代理
+  - RULE-SET,https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list,🚀 默认代理
   #  --- CN 兜底 --- 
   - IP-CIDR,111.208.73.0/24,DIRECT
   - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
@@ -534,11 +515,11 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
-  - GEOSITE,geolocation-!cn,🚀 默认代理
-  - RULE-SET,geolocation-!cn,🚀 默认代理
-  - GEOSITE,cn,DIRECT
-  - RULE-SET,add_direct_domain,DIRECT
-  - RULE-SET,cn_domain,DIRECT
+  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Domain.list,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/Proxy/Proxy_Resolve.list,DIRECT
+  - RULE-SET,https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list,DIRECT
+  - DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP_Domain.list,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaMaxNoIP/ChinaMaxNoIP.list,DIRECT
   - GEOIP,CN,DIRECT
-  - RULE-SET,cn_ip,DIRECT
+  - RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Shadowrocket/ChinaIPs/ChinaIPs_Resolve.list,DIRECT
   - MATCH,🐟 漏网之鱼
