@@ -254,7 +254,7 @@ proxies:
   - {name: 直连, type: direct}
 
 # 策略出站/区域锚点
-Anchor_PG: &Anchor_PG {type: select, proxies: [🌐 全部-手动, 🌐 全部-自动, 🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转]}
+Anchor_PG: &Anchor_PG {type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🌐 全部-手动, 🌐 全部-自动]}
 Anchor_FB: &Anchor_FB {type: fallback, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204'}
 Anchor_ST: &Anchor_ST {type: select, empty-fallback: REJECT, include-all: true}
 Anchor_UT: &Anchor_UT {type: url-test, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204', tolerance: 50, include-all: true}
