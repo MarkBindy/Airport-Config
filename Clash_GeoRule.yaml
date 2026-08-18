@@ -470,11 +470,12 @@ rules:
   - DOMAIN-SUFFIX,youku.com,DIRECT
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
-  #  --- 腾讯/Apple/百度/QQ/云服务/其它 --- 
+  #  --- Apple/微软/腾讯/阿里/百度/云服务/其它 --- 
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,steam@cn,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
+  - RULE-SET,apple-cn_Domain,DIRECT
   - GEOSITE,apple,DIRECT
   - RULE-SET,apple_domain,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
@@ -493,15 +494,15 @@ rules:
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
-  
+  - DOMAIN,cn.bing.com,DIRECT
+  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,office365.com,DIRECT
+  - DOMAIN-KEYWORD,officecdn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-SUFFIX,中国,DIRECT
   - DOMAIN-SUFFIX,公司,DIRECT
   - DOMAIN-SUFFIX,网络,DIRECT
-  - DOMAIN-SUFFIX,office.com,DIRECT
-  - DOMAIN-SUFFIX,office365.com,DIRECT
-  - DOMAIN-KEYWORD,officecdn,DIRECT
   - DOMAIN-SUFFIX,qq.com,DIRECT
   - DOMAIN-SUFFIX,qqurl.com,DIRECT
   - DOMAIN-SUFFIX,tencent.com,DIRECT
@@ -525,7 +526,6 @@ rules:
   - DOMAIN-SUFFIX,amemv.com,DIRECT
   - DOMAIN-SUFFIX,bytedance.com,DIRECT
   - DOMAIN-SUFFIX,byteimg.com,DIRECT
-  - DOMAIN,cn.bing.com,DIRECT
   - DOMAIN-SUFFIX,csdn.net,DIRECT
   - DOMAIN-SUFFIX,douban.com,DIRECT
   - DOMAIN-SUFFIX,doubanio.com,DIRECT
@@ -613,6 +613,8 @@ rule-providers:
   Direct_Domain:       {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list"}
   Proxy_Domain:        {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
   fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  apple_domain:        {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  apple-cn_Domain:     {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple-cn.mrs"}
   Block_Domain:        {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
   TEST_Domain:         {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
   speedtest_domain:    {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
@@ -636,8 +638,6 @@ rule-providers:
   Facebook_Domain:     {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/facebook.mrs"}
   telegram_domain:     {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list"}
   Spotify_Domain:      {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.mrs"}
-  apple_domain:        {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
-  apple-cn / Domain:   {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple-cn.mrs"}
   paypal_domain:       {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   Amazon_Domain:       {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/amazon.mrs"}
   microsoft_domain:    {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
