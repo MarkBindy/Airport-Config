@@ -270,51 +270,51 @@ Anchor_AL: &Anchor_AL '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|�
 
 # 策略组(出站)
 proxy-groups:
-  - {name: 🚀 默认代理,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
-  - {name: 🍀 Google,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
-  - {name: 🤖 Ai,          <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
-  - {name: 📹 YouTube,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
-  - {name: 🎵 TikTok,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
-  - {name: 🎥 NETFLIX,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
-  - {name: 📲 Telegram,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
-  - {name: 👨🏿‍💻 GitHub,      <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
-  - {name: ⚡ Speedtest,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
-  - {name: 🐟 漏网之鱼,     <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
+  - {name: 🚀 默认代理,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
+  - {name: 🍀 Google,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
+  - {name: 🤖 Ai,        <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
+  - {name: 📹 YouTube,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
+  - {name: 🎵 TikTok,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
+  - {name: 🎥 NETFLIX,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
+  - {name: 📲 Telegram,  <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
+  - {name: 👨🏿‍💻 GitHub,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
+  - {name: ⚡ Speedtest, <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
+  - {name: 🐟 漏网之鱼,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
   # 香港组
-  - {name: 🇭🇰 香港-故转, <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
-  - {name: 🇭🇰 香港-手动, <<: *Anchor_ST, filter: *Anchor_HK}
-  - {name: 🇭🇰 香港-自动, <<: *Anchor_UT, filter: *Anchor_HK}
+  - {name: 🇭🇰 香港-故转,  <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
+  - {name: 🇭🇰 香港-手动,  <<: *Anchor_ST, filter: *Anchor_HK}
+  - {name: 🇭🇰 香港-自动,  <<: *Anchor_UT, filter: *Anchor_HK}
   # 台湾组
-  - {name: 🇹🇼 台湾-故转, <<: *Anchor_FB, proxies: [🇹🇼 台湾-手动, 🇹🇼 台湾-自动]}
-  - {name: 🇹🇼 台湾-手动, <<: *Anchor_ST, filter: *Anchor_TW}
-  - {name: 🇹🇼 台湾-自动, <<: *Anchor_UT, filter: *Anchor_TW}
+  - {name: 🇹🇼 台湾-故转,  <<: *Anchor_FB, proxies: [🇹🇼 台湾-手动, 🇹🇼 台湾-自动]}
+  - {name: 🇹🇼 台湾-手动,  <<: *Anchor_ST, filter: *Anchor_TW}
+  - {name: 🇹🇼 台湾-自动,  <<: *Anchor_UT, filter: *Anchor_TW}
   # 日本组
-  - {name: 🇯🇵 日本-故转, <<: *Anchor_FB, proxies: [🇯🇵 日本-手动, 🇯🇵 日本-自动]}
-  - {name: 🇯🇵 日本-手动, <<: *Anchor_ST, filter: *Anchor_JP}
-  - {name: 🇯🇵 日本-自动, <<: *Anchor_UT, filter: *Anchor_JP}
+  - {name: 🇯🇵 日本-故转,  <<: *Anchor_FB, proxies: [🇯🇵 日本-手动, 🇯🇵 日本-自动]}
+  - {name: 🇯🇵 日本-手动,  <<: *Anchor_ST, filter: *Anchor_JP}
+  - {name: 🇯🇵 日本-自动,  <<: *Anchor_UT, filter: *Anchor_JP}
   # 韩国组
-  - {name: 🇰🇷 韩国-故转, <<: *Anchor_FB, proxies: [🇰🇷 韩国-手动, 🇰🇷 韩国-自动]}
-  - {name: 🇰🇷 韩国-手动, <<: *Anchor_ST, filter: *Anchor_KR}
-  - {name: 🇰🇷 韩国-自动, <<: *Anchor_UT, filter: *Anchor_KR}
+  - {name: 🇰🇷 韩国-故转,  <<: *Anchor_FB, proxies: [🇰🇷 韩国-手动, 🇰🇷 韩国-自动]}
+  - {name: 🇰🇷 韩国-手动,  <<: *Anchor_ST, filter: *Anchor_KR}
+  - {name: 🇰🇷 韩国-自动,  <<: *Anchor_UT, filter: *Anchor_KR}
   # 新加坡组
-  - {name: 🇸🇬 狮城-故转, <<: *Anchor_FB, proxies: [🇸🇬 狮城-手动, 🇸🇬 狮城-自动]}
-  - {name: 🇸🇬 狮城-手动, <<: *Anchor_ST, filter: *Anchor_SG}
-  - {name: 🇸🇬 狮城-自动, <<: *Anchor_UT, filter: *Anchor_SG}
+  - {name: 🇸🇬 狮城-故转,  <<: *Anchor_FB, proxies: [🇸🇬 狮城-手动, 🇸🇬 狮城-自动]}
+  - {name: 🇸🇬 狮城-手动,  <<: *Anchor_ST, filter: *Anchor_SG}
+  - {name: 🇸🇬 狮城-自动,  <<: *Anchor_UT, filter: *Anchor_SG}
   # 英国组
-  - {name: 🇬🇧 英国-故转, <<: *Anchor_FB, proxies: [🇬🇧 英国-手动, 🇬🇧 英国-自动]}
-  - {name: 🇬🇧 英国-手动, <<: *Anchor_ST, filter: *Anchor_GB}
-  - {name: 🇬🇧 英国-自动, <<: *Anchor_UT, filter: *Anchor_GB}
+  - {name: 🇬🇧 英国-故转,  <<: *Anchor_FB, proxies: [🇬🇧 英国-手动, 🇬🇧 英国-自动]}
+  - {name: 🇬🇧 英国-手动,  <<: *Anchor_ST, filter: *Anchor_GB}
+  - {name: 🇬🇧 英国-自动,  <<: *Anchor_UT, filter: *Anchor_GB}
   # 美国组
-  - {name: 🇺🇸 美国-故转, <<: *Anchor_FB, proxies: [🇺🇸 美国-手动, 🇺🇸 美国-自动]}
-  - {name: 🇺🇸 美国-手动, <<: *Anchor_ST, filter: *Anchor_US}
-  - {name: 🇺🇸 美国-自动, <<: *Anchor_UT, filter: *Anchor_US}
+  - {name: 🇺🇸 美国-故转,  <<: *Anchor_FB, proxies: [🇺🇸 美国-手动, 🇺🇸 美国-自动]}
+  - {name: 🇺🇸 美国-手动,  <<: *Anchor_ST, filter: *Anchor_US}
+  - {name: 🇺🇸 美国-自动,  <<: *Anchor_UT, filter: *Anchor_US}
   # 其他组
-  - {name: ♻️ 其他-故转, <<: *Anchor_FB, proxies: [♻️ 其他-手动, ♻️ 其他-自动]}
-  - {name: ♻️ 其他-手动, <<: *Anchor_ST, filter: *Anchor_OT}
-  - {name: ♻️ 其他-自动, <<: *Anchor_UT, filter: *Anchor_OT}
+  - {name: ♻️ 其他-故转,  <<: *Anchor_FB, proxies: [♻️ 其他-手动, ♻️ 其他-自动]}
+  - {name: ♻️ 其他-手动,  <<: *Anchor_ST, filter: *Anchor_OT}
+  - {name: ♻️ 其他-自动,  <<: *Anchor_UT, filter: *Anchor_OT}
   # 全部组
-  - {name: 🌐 全部-手动, <<: *Anchor_ST}
-  - {name: 🌐 全部-自动, <<: *Anchor_UT, filter: *Anchor_AL}
+  - {name: 🌐 全部-手动,  <<: *Anchor_ST}
+  - {name: 🌐 全部-自动,  <<: *Anchor_UT, filter: *Anchor_AL}
 
 # 规则匹配
 rules:
