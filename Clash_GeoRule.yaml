@@ -272,16 +272,16 @@ Anchor_AL: &Anchor_AL '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|�
 
 # 策略组(出站)
 proxy-groups:
-  - {name: 🚀 默认代理,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Rocket.png}
-  - {name: 🍀 Google,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Google.png}
-  - {name: 🤖 Ai,        <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/ChatGPT.png}
-  - {name: 📹 YouTube,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/YouTube.png}
-  - {name: 🎵 TikTok,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/TikTok.png}
-  - {name: 🎥 NETFLIX,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Netflix.png}
-  - {name: 📲 Telegram,  <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Telegram.png}
-  - {name: 👨🏿‍💻 GitHub,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/GitHub.png}
-  - {name: ⚡ Speedtest, <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/Speedtest.png}
-  - {name: 🐟 漏网之鱼,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/raw/main/icons/MATCH.png}
+  - {name: 🚀 默认代理,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Rocket.png}
+  - {name: 🍀 Google,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Google.png}
+  - {name: 🤖 Ai,        <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/ChatGPT.png}
+  - {name: 📹 YouTube,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/YouTube.png}
+  - {name: 🎵 TikTok,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/TikTok.png}
+  - {name: 🎥 NETFLIX,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Netflix.png}
+  - {name: 📲 Telegram,  <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Telegram.png}
+  - {name: 👨🏿‍💻 GitHub,    <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/GitHub.png}
+  - {name: ⚡ Speedtest, <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Speedtest.png}
+  - {name: 🐟 漏网之鱼,   <<: *Anchor_PG, include-all: true, icon: https://github.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/MATCH.png}
   # 香港组
   - {name: 🇭🇰 香港-故转,  <<: *Anchor_FB, proxies: [🇭🇰 香港-手动, 🇭🇰 香港-自动]}
   - {name: 🇭🇰 香港-手动,  <<: *Anchor_ST, filter: *Anchor_HK}
