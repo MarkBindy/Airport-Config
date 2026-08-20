@@ -10,7 +10,7 @@
   </a>
   &nbsp;
   <a href="https://github.com/MarkBindy/Airport-Config" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-Airport-Config-181717?logo=github&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GitHub-Yaml-181717?logo=github&logoColor=white"/>
   </a>
 </p>
 
