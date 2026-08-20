@@ -25,10 +25,10 @@
 > 
 >  配置文件默认开启 **绕过中国大陆模式** ，匹配大陆IP-CIDR（流量不进入代理）。
 
-### 🗂️ 配置区分
+### 🗂️ 配置文件
 | 说明 | 使用 **GeoSite、GeoIP、Rule-Set** 数据库/规则集分流
 
-| 文件 | [Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml) | [Seven1_fallback_Rule-Set.yaml](https://github.com/Seven1echo/Yaml/blob/main/Seven1_fallback_Rule-Set.yaml)
+| 文件 | [Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml) | [Shadowrocket(IOS).conf](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Shadowrocket(IOS).conf)
 
 
 ## 特别声明
