@@ -31,9 +31,9 @@
 >  配置文件默认开启 **绕过中国大陆** 模式 ，匹配大陆IP-CIDR（流量不进入代理）。
 
 # 🗂️ 配置文件
-| 说明 | 使用 **GeoSite、GeoIP、Rule-Set** 数据库/规则集分流
-
-| 文件下载 |
+>| 说明 | 使用 **GeoSite、GeoIP、Rule-Set** 数据库/规则集分流
+>
+>| 文件下载 |
 
 Mihomo核心：[Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml)
 
