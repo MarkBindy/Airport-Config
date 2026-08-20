@@ -38,7 +38,4 @@ Mihomo核心：[Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/
 
 
 ## 特别声明
-```
-binutils bzip2 diff find flex gawk gcc-6+ getopt grep install libc-dev libz-dev
-make4.1+ perl python3.7+ rsync subversion unzip which
-```
+
