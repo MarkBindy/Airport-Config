@@ -15,7 +15,7 @@
 
 ---
 
-## 前言 自用多平台机场配置分流规则文件
+## 前言
 >使用前需完善填入自己的 **订阅链接** 与 **机场名** 即可保存导入相应软件，其余默认无需修改！
 >
 >苹果IOS小火箭配置文件 **Shadowrocket(IOS).conf**，无需修改直接导入即可使用！
@@ -36,6 +36,5 @@ Mihomo核心：[Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/
 
 小火箭IOS：[Shadowrocket(IOS).conf](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Shadowrocket(IOS).conf)
 
-
 ## 特别声明
-
+自用多平台机场配置分流规则文件
