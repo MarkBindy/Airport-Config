@@ -11,10 +11,13 @@
   <a href="" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-MarkBindy-26A5E4?logo=telegram&logoColor=white"/>
   </a>
+  &nbsp;
+  <a href="https://github.com/Eilte/Mobaxterm-Chinese/releases" target="_blank">
+    <img src="https://img.shields.io/badge/SSH-工具终端下载-FF0000?logo=SSH&logoColor=white"/>
+  </a>
 </p>
 
 ---
-
 ## 前言
 >Clash_GeoRule.yaml 使用前需完善填入自己的 **订阅链接** 与 **机场名** 即可保存导入相应软件，其余默认无需修改！
 >
