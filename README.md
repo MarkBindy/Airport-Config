@@ -5,7 +5,7 @@
   </a>
   &nbsp;
   <a href="" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-@MarkBindy-FF0000?logo=youtube&logoColor=white"/>
+    <img src="https://img.shields.io/badge/YouTube-MarkBindy-FF0000?logo=youtube&logoColor=white"/>
   </a>
   &nbsp;
   <a href="" target="_blank">
