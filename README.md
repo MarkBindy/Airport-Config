@@ -1,4 +1,19 @@
 
+<!-- 官方徽标 -->
+<p align="center">
+  <a href="="_blank">
+    <img src="https://img.shields.io/badge/Telegram-Channel-26A5E4?logo=telegram&logoColor=white" />
+  </a>
+  &nbsp;
+  <a href="" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-@seven1echo-FF0000?logo=youtube&logoColor=white" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/MarkBindy/Airport-Config" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Yaml-181717?logo=github&logoColor=white" />
+  </a>
+</p>
+---
 自用机场配置分流故障转移规则yaml文件
 # Rules And Scripts
 
