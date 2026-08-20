@@ -28,7 +28,7 @@
 ### 🗂️ 配置区分
 | 说明 | 使用 **GeoSite、GeoIP、Rule-Set** 数据库/规则集分流
 
-| 文件 | [Seven1_fallback_Geo.yaml](https://github.com/Seven1echo/Yaml/blob/main/Seven1_fallback_Geo.yaml) | [Seven1_fallback_Rule-Set.yaml](https://github.com/Seven1echo/Yaml/blob/main/Seven1_fallback_Rule-Set.yaml) | ***_Overwrite.yaml |
+| 文件 | [Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml) | [Seven1_fallback_Rule-Set.yaml](https://github.com/Seven1echo/Yaml/blob/main/Seven1_fallback_Rule-Set.yaml)
 
 
 ## 特别声明
