@@ -2,7 +2,7 @@
 <!-- 官方徽标 -->
 <p align="Left">
   <a href="" target="_blank">
-    <img src="https://img.shields.io/badge/Telegram-Channel-26A5E4?logo=telegram&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Telegram-MarkBindy-26A5E4?logo=telegram&logoColor=white"/>
   </a>
   &nbsp;
   <a href="" target="_blank">
