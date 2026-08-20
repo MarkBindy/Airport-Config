@@ -3,7 +3,7 @@
 <p align="Left">
   <a href="" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-Channel-26A5E4?logo=telegram&logoColor=white" />
-
+  </a>
   &nbsp;
   <a href="" target="_blank">
     <img src="https://img.shields.io/badge/YouTube-@seven1echo-FF0000?logo=youtube&logoColor=white" />
