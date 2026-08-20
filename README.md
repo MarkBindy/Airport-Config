@@ -15,14 +15,17 @@
 
 ---
 
-自用机场配置分流故障转移规则yaml文件
-# Rules And Scripts
-各平台的分流规则、复写规则及自动化脚本。
 ## 前言
+自用多平台机场配置分流规则文件
+
 ### 📝 配置随笔
 > [!TIP]
 >
->  本项目的配置文件适用于 **[Mihomo](https://github.com/MetaCubeX/mihomo) 核心** 的工具使用，如：**[OpenWrt](https://firmware-selector.immortalwrt.org/)插件（ [OpenClash](https://github.com/vernesong/openclash) / [Nikki](https://github.com/nikkinikki-org/OpenWrt-nikki) ）、[Clashmi](https://github.com/KaringX/clashmi)、[FlClash](https://github.com/chen08209/FlClash)、[Bettbox](https://github.com/appshubcc/Bettbox)  ……**
+>  本分流规则配置文件适用于 **[Mihomo](https://github.com/MetaCubeX/mihomo) 核心** 工具使用：
+> **[OpenWrt](https://firmware-selector.immortalwrt.org/)插件（ [OpenClash](https://github.com/vernesong/openclash) / [Nikki](https://github.com/nikkinikki-org/OpenWrt-nikki) ）
+> [Clashmi](https://github.com/KaringX/clashmi)
+> [FlClash](https://github.com/chen08209/FlClash)
+> [Bettbox](https://github.com/appshubcc/Bettbox)  ……**
 > 
 >  使用需完善 **订阅链接** 与 **机场名**，
 >
