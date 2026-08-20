@@ -1,7 +1,7 @@
 
 <!-- 官方徽标 -->
 <p align="center">
-  <a href="="_blank">
+  <a href="" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-Channel-26A5E4?logo=telegram&logoColor=white" />
   </a>
   &nbsp;
