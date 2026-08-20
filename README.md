@@ -37,7 +37,7 @@
 
 Mihomo核心：[Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml)
 
-小火箭IOS：[Shadowrocket(IOS).conf](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Shadowrocket(IOS).conf)
+小火箭IOS：[Shadowrocket(IOS).conf](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Shadowrocket(IOS).conf)
 
 # 特别声明
 自用多平台机场配置分流规则文件
