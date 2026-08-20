@@ -17,7 +17,7 @@
 
 ## 前言
 自用多平台机场配置分流规则文件
-> [!TIP]
+
 ### 📝 配置随笔
 >
 >  本分流规则配置文件适用于 **[Mihomo](https://github.com/MetaCubeX/mihomo) 核心** 工具使用：
