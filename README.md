@@ -30,7 +30,7 @@
 ### 🗂️ 配置文件
 | 说明 | 使用 **GeoSite、GeoIP、Rule-Set** 数据库/规则集分流
 
-| 文件 |
+| 文件下载 |
 
 Mihomo核心：[Clash_GeoRule.yaml](https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml)
 
