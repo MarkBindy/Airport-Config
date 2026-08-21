@@ -18,17 +18,17 @@
 </p>
 
 ---
-## 前言
+# 前言
 >**Clash_GeoRule.yaml** 使用前需完善填入自己的 **订阅链接** 与 **机场名** 即可保存导入相应软件，其余保持默认无需修改！
 >
 >**Shadowrocket(IOS).conf** 苹果IOS配置文件，无需修改直接导入即可使用！
 
 # 📝 配置随笔
 >
->  本分流规则配置文件适用于 **[Mihomo](https://github.com/MetaCubeX/mihomo) 核心** 工具使用：
-> **[OpenWrt](https://firmware-selector.immortalwrt.org/)插件（ [OpenClash](https://github.com/vernesong/openclash) / [Nikki](https://github.com/nikkinikki-org/OpenWrt-nikki) ）、[Clashmi](https://github.com/KaringX/clashmi) 、[FlClash](https://github.com/chen08209/FlClash) 、[Bettbox](https://github.com/appshubcc/Bettbox)**
-> 
->  Clash 配置文件默认开启 **绕过中国大陆** 模式 ，匹配大陆IP-CIDR（流量不进入代理）。
+>本分流规则配置文件适用于 **[Mihomo](https://github.com/MetaCubeX/mihomo) 核心** 工具使用：
+>**[OpenWrt](https://firmware-selector.immortalwrt.org/)插件（ [OpenClash](https://github.com/vernesong/openclash) / [Nikki](https://github.com/nikkinikki-org/OpenWrt-nikki) ）、[Clashmi](https://github.com/KaringX/clashmi) 、[FlClash](https://github.com/chen08209/FlClash) 、[Bettbox](https://github.com/appshubcc/Bettbox)**
+>
+>Clash 配置文件默认开启 **绕过中国大陆** 模式 ，匹配大陆IP-CIDR（流量不进入代理）。
 
 # 🗂️ 配置文件
 >使用 **GeoSite/GeoIP数据库、Rule-Set规则集** 分流
