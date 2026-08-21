@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/Deployed%20on-Vercel-9cf) 
+![GitHub last commit](https://img.shields.io/github/last-commit/bestony/logoly.svg) 
+![GitHub issues](https://img.shields.io/github/issues/bestony/logoly.svg) 
+![GitHub stars](https://img.shields.io/github/stars/bestony/logoly.svg?style=social)
 <!-- 官方徽标 -->
 <p align="Left">
   <a href="https://github.com/MarkBindy/Airport-Config" target="_blank">
