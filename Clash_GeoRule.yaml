@@ -265,9 +265,9 @@ Anchor_TW: &Anchor_TW '(?i)^(?=.*(台湾|台灣|(?<![a-zA-Z])(TW|tw|tpe|khh|tsa)
 Anchor_JP: &Anchor_JP '(?i)^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<![a-zA-Z])(JP|jp|nrt|hnd|kix|cts|fuk)(?![a-zA-Z])|Japan|japan|Tokyo|tokyo|🇯🇵)).*$'
 Anchor_KR: &Anchor_KR '(?i)^(?=.*(韩国|韓國|首尔|春川|(?<![a-zA-Z])(KR|kr|icn|gmp|pus)(?![a-zA-Z])|Korea|korea|seoul|🇰🇷)).*$'
 Anchor_SG: &Anchor_SG '(?i)^(?=.*(新加坡|狮城|(?<![a-zA-Z])(SG|sg|sin|xsp)(?![a-zA-Z])|Singapore|singapore|🇸🇬)).*$'
-Anchor_GB: &Anchor_GB '(?i)^(?=.*(英国|伦敦|(?<![a-zA-Z])(UK|uk|GB|gb|sfo|jfk|sjc|MAD|BCN)(?![a-zA-Z])|United Kingdom|united Kingdom|Great Britain|great britain|🇬🇧)).*$'
+Anchor_GB: &Anchor_GB '(?i)^(?=.*(英国|伦敦|(?<![a-zA-Z])(UK|uk|G B|g b|sfo|jfk|sjc|MAD|BCN)(?![a-zA-Z])|United Kingdom|united Kingdom|Great Britain|great britain|🇬🇧)).*$'
 Anchor_US: &Anchor_US '(?i)^(?=.*(美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|(?<![a-zA-Z])(US|us|usa|lax|sfo|jfk|sjc)(?![a-zA-Z])|America|america|United States|united states|States|🇺🇸)).*$'
-Anchor_OT: &Anchor_OT '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT|香港|HK|hk|hkg|Hong|Hong Kong|HongKong|hong kong|hongkong|🇭🇰|台湾|台灣|TW|tw|tpe|khh|tsa|Tai|Tai Wan|TaiWan|tai wan|taiwan|taipei|🇹🇼|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|nrt|hnd|kix|cts|fuk|Japan|japan|Tokyo|tokyo|🇯🇵|韩国|韓國|首尔|春川|KR|kr|icn|gmp|pus|Korea|korea|seoul|🇰🇷|新加坡|狮城|SG|sg|sin|xsp|Singapore|singapore|🇸🇬|英国|伦敦|UK|uk|GB|gb|sfo|jfk|sjc|MAD|BCN|United Kingdom|united Kingdom|Great Britain|great britain|🇬🇧|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|US|us|usa|lax|sfo|jfk|sjc|America|america|United States|united states|States|🇺🇸)).)*$'
+Anchor_OT: &Anchor_OT '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT|香港|HK|hk|hkg|Hong|Hong Kong|HongKong|hong kong|hongkong|🇭🇰|台湾|台灣|TW|tw|tpe|khh|tsa|Tai|Tai Wan|TaiWan|tai wan|taiwan|taipei|🇹🇼|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|jp|nrt|hnd|kix|cts|fuk|Japan|japan|Tokyo|tokyo|🇯🇵|韩国|韓國|首尔|春川|KR|kr|icn|gmp|pus|Korea|korea|seoul|🇰🇷|新加坡|狮城|SG|sg|sin|xsp|Singapore|singapore|🇸🇬|英国|伦敦|UK|uk|G B|g b|sfo|jfk|sjc|MAD|BCN|United Kingdom|united Kingdom|Great Britain|great britain|🇬🇧|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|US|us|usa|lax|sfo|jfk|sjc|America|america|United States|united states|States|🇺🇸)).)*$'
 Anchor_AL: &Anchor_AL '^((?!(到期|过期|剩余|网址|官网|邮箱|订阅|套餐|流量|说明|重置|直连|DIRECT)).)*$'
 
 # 策略组(出站)
