@@ -260,9 +260,6 @@ Anchor_PG: &Anchor_PG {type: select, proxies: [🇭🇰 香港-故转, 🇹🇼 
 Anchor_FB: &Anchor_FB {type: fallback, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204'}
 Anchor_ST: &Anchor_ST {type: select, empty-fallback: REJECT, include-all: true}
 Anchor_UT: &Anchor_UT {type: url-test, empty-fallback: REJECT, interval: 300, lazy: false, timeout: 3000, url: 'https://www.gstatic.com/generate_204', tolerance: 50, include-all: true}
-                      
-                      
-                      
 Anchor_HK: &Anchor_HK '(?i)^(?=.*(香港|(?<![a-zA-Z])(HK|hk|hkg)(?![a-zA-Z])|Hong|Hong Kong|HongKong|hong kong|hongkong|🇭🇰)).*$'
 Anchor_TW: &Anchor_TW '(?i)^(?=.*(台湾|台灣|(?<![a-zA-Z])(TW|tw|tpe|khh|tsa)(?![a-zA-Z])|Tai|Tai Wan|TaiWan|tai wan|taiwan|taipei|🇹🇼)).*$'
 Anchor_JP: &Anchor_JP '(?i)^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<![a-zA-Z])(JP|jp|nrt|hnd|kix|cts|fuk)(?![a-zA-Z])|Japan|japan|Tokyo|tokyo|🇯🇵)).*$'
