@@ -34,7 +34,7 @@ profile:
   store-fake-ip: true                             # 保存选择  Fake-IP 映射
 geodata-loader: standard                          # geo数据加载模式 standard（标准）memconservative（低内存）
 experimental:
-  quic-go-disable-gso: true                       # 禁用 QUIC 防止 YouTube 等使用 QUIC 导致速度不佳
+  quic-go-disable-gso: true
 
 # GEO规则订阅
 geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
