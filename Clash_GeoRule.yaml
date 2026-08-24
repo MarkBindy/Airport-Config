@@ -560,18 +560,18 @@ rules:
   - RULE-SET,tiktok_domain,🎵 TikTok
   - GEOSITE,google,🍀 Google
   - RULE-SET,google_domain,🍀 Google
-  - GEOIP,google,🍀 Google
-  - RULE-SET,google_ip,🍀 Google
+  - GEOIP,google,🍀 Google,no-resolve
+  - RULE-SET,google_ip,🍀 Google,no-resolve
   - GEOSITE,telegram,📲 Telegram
   - RULE-SET,telegram_domain,📲 Telegram
-  - GEOIP,telegram,📲 Telegram
-  - RULE-SET,telegram_ip,📲 Telegram
+  - GEOIP,telegram,📲 Telegram,no-resolve
+  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
   - GEOSITE,github,👨🏿‍💻 GitHub
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - GEOSITE,netflix,🎥 NETFLIX
   - RULE-SET,netflix_domain,🎥 NETFLIX
-  - GEOIP,netflix,🎥 NETFLIX
-  - RULE-SET,netflix_ip,🎥 NETFLIX
+  - GEOIP,netflix,🎥 NETFLIX,no-resolve
+  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
   - GEOSITE,disney,🎥 NETFLIX
   - GEOSITE,category-speedtest,⚡ Speedtest
   - RULE-SET,speedtest_domain,⚡ Speedtest
@@ -580,7 +580,7 @@ rules:
   - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
   - RULE-SET,TEST_Domain,🚀 默认代理
   #  --- CN 兜底 --- 
-  - IP-CIDR,111.208.73.0/24,DIRECT
+  - IP-CIDR,111.208.73.0/24,DIRECT,no-resolve
   - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
@@ -591,8 +591,8 @@ rules:
   - GEOSITE,cn,DIRECT
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - GEOIP,CN,DIRECT
-  - RULE-SET,cn_ip,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - RULE-SET,cn_ip,DIRECT,no-resolve
   - MATCH,🐟 漏网之鱼
 
 # 规则集
