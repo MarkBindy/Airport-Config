@@ -537,7 +537,7 @@ rules:
   - RULE-SET,Meta AI_Domain,🤖 Ai
   - RULE-SET,Perplexity_Domain,🤖 Ai
   - RULE-SET,Copilot_Domain,🤖 Ai
-  - RULE-SET,Gemini_Domain,🍀 Google
+  - RULE-SET,Gemini_Domain,🤖 Ai
   - GEOSITE,category-ai-!cn,🤖 Ai
   #  --- 国外服务 --- 
   - GEOSITE,youtube,📹 YouTube
@@ -616,7 +616,7 @@ rule-providers:
   Meta AI_Domain:      {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list"}
   Perplexity_Domain:   {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/perplexity.mrs"}
   Copilot_Domain:      {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list"}
-  Gemini_Domain:       {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list"}
+  Gemini_Domain:       {<<: *class, url: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Rule/Gemini.list"}
   google_domain:       {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
   youtube_domain:      {<<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list"}
   tiktok_domain:       {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
