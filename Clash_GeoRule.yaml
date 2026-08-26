@@ -5,7 +5,7 @@
 
 
 # 机场订阅锚点
-Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
+Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 180}}
 
 # ════════Airport机场订阅═════════
 # 如有多条机场信息,下方开头处 “机场名” 不能重复,最后的 “机场名” 作为添加节点的名称前缀,可自定义
