@@ -283,7 +283,7 @@ proxy-groups:
 # 规则匹配
 rules:
   #  --- 本地/局域网 ---
-  - "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_domain),(RULE-SET,cn_ip,no-resolve)))))),REJECT"  #禁用国外 QUIC 流量
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_domain),(RULE-SET,cn_ip,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
   #- GEOSITE,private,DIRECT
   - RULE-SET,private_domain,DIRECT
   - GEOIP,private,DIRECT,no-resolve
