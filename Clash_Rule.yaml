@@ -109,7 +109,6 @@ dns:
     - "+.pool.ntp.org"
     - "rule-set:fakeipfilter_domain"
     - "rule-set:add_direct_domain"                 # 真实解析  大陆冷门域名
-    - "geosite:cn"                                 # 真实解析  大陆域 GeoSite 数据
     - "rule-set:cn_domain"                         # 真实解析  大陆域名
   default-nameserver:                              # 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
     - 1.1.1.1
@@ -219,37 +218,6 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   direct-nameserver-follow-policy: true            #直连查询服务器遵循策略
-  fallback-filter:                                 #备用过滤器
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    domain:
-      - "+.openai.com"
-      - "+.chatgpt.com"
-      - "+.anthropic.com"
-      - "+.claude.ai"
-      - "+.google.com"
-      - "+.googleapis.com"
-      - "+.googleapis.cn"
-      - "+.gstatic.com"
-      - "+.gvt1.com"
-      - "+.gvt2.com"
-      - "+.gvt3.com"
-      - "+.googleusercontent.com"
-      - "+.ggpht.com"
-      - "+.android.com"
-      - "+.xn--ngstr-lra8j.com"
-      - "+.googlevideo.com"
-      - "+.youtube.com"
-      - "+.ytimg.com"
-      - "+.facebook.com"
-      - "+.instagram.com"
-      - "+.x.com"
-      - "+.twitter.com"
-      - "+.telegram.org"
-    ipcidr:
-      - 240.0.0.0/4
 
 # 节点信息
 proxies:
