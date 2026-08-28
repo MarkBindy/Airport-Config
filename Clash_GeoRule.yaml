@@ -1,11 +1,11 @@
-# 版本： V2026.8.26
+# 版本： V2026.8.28
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
 
 
 # 机场订阅锚点
-Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 180}}
+Anchor_AP: &Anchor_AP {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 
 # ════════Airport机场订阅═════════
 # 如有多条机场信息,下方开头处 “机场名” 不能重复,最后的 “机场名” 作为添加节点的名称前缀,可自定义
@@ -152,63 +152,63 @@ dns:
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
     "+.google.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.googleapis.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.googleapis.cn":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.gstatic.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.gvt1.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.gvt2.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.gvt3.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.googleusercontent.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.ggpht.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.android.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.xn--ngstr-lra8j.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.openai.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.chatgpt.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.anthropic.com":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "+.claude.ai":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
     "geosite:geolocation-!cn":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
+      - "https://1.1.1.1/dns-query#PROXY"
+      - "https://dns.google/dns-query#PROXY"
   nameserver:                                      # 基础查询服务器：当规则未命中时，默认的兜底海外加密 DNS（阻断局域网直接向运营商泄漏）
-    - https://1.1.1.1/dns-query
-    - https://1.0.0.1/dns-query
-    - https://dns.google/dns-query
+    - "https://1.1.1.1/dns-query#PROXY"
+    - "https://1.0.0.1/dns-query#PROXY"
+    - "https://dns.google/dns-query#PROXY"
   fallback:                                        # 备用查询服务器
     - 1.1.1.1
     - 8.8.8.8
-    - https://1.1.1.1/dns-query
-    - https://dns.google/dns-query
-    - https://dns.cloudflare.com/dns-query
+    - "https://1.1.1.1/dns-query#PROXY"
+    - "https://dns.google/dns-query#PROXY"
+    - "https://dns.cloudflare.com/dns-query#PROXY"
   proxy-server-nameserver:                         # 节点域名解析服务器
     - 1.1.1.1
     - 8.8.8.8
