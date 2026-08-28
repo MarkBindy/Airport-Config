@@ -202,14 +202,14 @@ dns:
   nameserver:                                      # 基础查询服务器：当规则未命中时，默认的兜底海外加密 DNS（阻断局域网直接向运营商泄漏）
     - https://1.1.1.1/dns-query
     - https://1.0.0.1/dns-query
-    - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   fallback:                                        # 备用查询服务器
     - 1.1.1.1
     - 8.8.8.8
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
-  proxy-server-nameserver:                         # 节点域名解析服务器：使用国内安全加密的 DoH 专门解析你的机场节点域名
+    - https://dns.cloudflare.com/dns-query
+  proxy-server-nameserver:                         # 节点域名解析服务器
     - 1.1.1.1
     - 8.8.8.8
   direct-nameserver:                               # 直流查询服务器
