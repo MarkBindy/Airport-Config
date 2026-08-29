@@ -229,7 +229,7 @@ dns:
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
-  fallback-filter:                                #备用过滤器
+  fallback-filter:                                # 备用过滤器
     geoip: true
     geoip-code: CN
     geosite:
