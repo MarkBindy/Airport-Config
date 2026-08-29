@@ -129,7 +129,7 @@ dns:
     - https://doh.pub/dns-query
   direct-nameserver-follow-policy: true           # 直连查询服务器遵循策略
   proxy-server-nameserver:                        # 节点域名解析服务器
-    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
     - https://120.53.53.53/dns-query
   nameserver:                                     # 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
     - https://1.1.1.1/dns-query
@@ -224,11 +224,10 @@ dns:
       - https://1.1.1.1/dns-query
       - https://dns.google/dns-query
   fallback:                                       # 备用查询服务器
-    - 1.1.1.1
-    - 8.8.8.8
-    - https://1.1.1.1/dns-query
-    - https://dns.google/dns-query
+    - 1.0.0.1
+    - 8.8.4.4
     - https://dns.cloudflare.com/dns-query
+    - https://1dot1dot1dot1.cloudflare-dns.com/
   fallback-filter:                                # 备用过滤器
     geoip: true
     geoip-code: CN
