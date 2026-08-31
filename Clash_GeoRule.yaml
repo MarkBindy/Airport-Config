@@ -38,9 +38,9 @@ experimental:
 
 # GEO规则订阅
 geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
-geo-auto-update: true                             # 自动更新  geodata
+geo-auto-update: true                             # 自动更新  geodata 开启
 geo-update-interval: 24                           # 更新间隔  单位：小时
-geox-url:
+geox-url:                                         # 数据地址
   geosite: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
   geoip:   https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
   mmdb:    https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb
@@ -50,7 +50,7 @@ geox-url:
 tun:
   enable: true                                    # 网卡模式  是否启用 TUN 虚拟网卡模式  
   stack: mixed                                    # 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
-  mtu: 1492
+  mtu: 1492                                       # 最大传输  单元
   dns-hijack: [udp://any:53, tcp://any:53]        # 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
   auto-route: true                                # 自动路由  自动添加系统路由表      （仅内核模式有效）
   auto-redirect: true                             # 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
