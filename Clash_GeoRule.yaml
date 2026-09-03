@@ -56,7 +56,7 @@ tun:
   auto-redirect: true                             # 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
   auto-detect-interface: true                     # 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
   strict-route: true                              # 路由模式  严格路由,所有流量包括未匹配 auto-route 规则、其他网卡产生的流量,都会被强制送入 TUN，避免 DNS/流量 绕过代理直接从物理网卡发出而泄露
-  route-exclude-address:                          # 路由排除  本机连接局域网设备/Docker/虚拟网卡等可能受影响，按需把相关网段/接口排除掉，保证局域网访问和虚拟化网络正常
+  route-exclude-address:                          # 路由排除  本机连接 局域网设备/Docker/虚拟网卡 等可能受影响，按需把相关网段/接口排除掉，保证局域网访问和虚拟化网络正常
     - 192.168.0.0/16
     - 10.0.0.0/8
     - 172.16.0.0/12
@@ -104,7 +104,6 @@ dns:
   fake-ip-range: 198.18.0.1/16                    # 虚拟地址  Fake-IP 虚拟地址池范围
   fake-ip-filter-mode: blacklist                  # 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
   fake-ip-filter:
-    - "*"
     - "+.lan"                                     # 真实解析  常见局域网域名后缀
     - "+.local"
     - "+.localdomain"
