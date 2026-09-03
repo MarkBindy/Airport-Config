@@ -211,10 +211,7 @@ dns:
     "+.claude.ai":
       - https://1.1.1.1/dns-query
       - https://dns.google/dns-query
-    "geosite:category-ai-!cn":
-      - https://1.1.1.1/dns-query
-      - https://dns.google/dns-query
-    "geosite:geolocation-!cn":
+    "geosite:category-ai-!cn,geolocation-!cn":
       - https://1.1.1.1/dns-query
       - https://dns.google/dns-query
   fallback:                                       # 备用查询服务器
