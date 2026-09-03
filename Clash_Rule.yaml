@@ -75,8 +75,7 @@ sniffer:
   sniff:
     QUIC: { ports: [443, 8443] }                  # 嗅探参数  QUIC 协议流量（HTTP/3 常用端口）
     TLS:  { ports: [443, 8443] }                  # 嗅探参数  HTTPS（TLS）常用及备用端口
-    HTTP: { ports: [80, 8080-8880] }              # 嗅探参数  HTTP 及常见 Web / 代理端口段
-    override-destination: true
+    HTTP: { ports: [80, 8080-8880] }              # 嗅探参数  HTTP 及常见 Web 代理端口段
   force-domain:
     - "+.netflix.com"                             # 强制嗅探  Netflix 主域名
     - "+.nflxvideo.net"                           # 强制嗅探  Netflix CDN
