@@ -136,13 +136,7 @@ dns:
     - https://1.0.0.1/dns-query
     - https://dns.google/dns-query
   nameserver-policy:                              # 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
-    "geosite:private,cn,apple-cn,microsoft@cn,steam@cn":
-      - 223.6.6.6
-      - 223.5.5.5
-      - 119.29.29.29
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    "rule-set:apple_domain":
+    "geosite:private,cn,apple-cn,apple,microsoft@cn,category-games@cn,steam@cn":
       - 223.6.6.6
       - 223.5.5.5
       - 119.29.29.29
