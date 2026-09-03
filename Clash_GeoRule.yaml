@@ -104,8 +104,9 @@ dns:
   fake-ip-range: 198.18.0.1/16                    # 虚拟地址  Fake-IP 虚拟地址池范围
   fake-ip-filter-mode: blacklist                  # 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
   fake-ip-filter:
-    - "*.lan"                                     # 真实解析  常见局域网域名后缀
-    - "*.local"
+    - "*"
+    - "+.lan"                                     # 真实解析  常见局域网域名后缀
+    - "+.local"
     - "+.localdomain"
     - "localhost.ptlogin2.qq.com"
     - "time.windows.com"
