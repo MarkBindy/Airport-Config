@@ -1,5 +1,5 @@
 # 版本： V2026.9.3
-# 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml
+# 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Rule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
 
@@ -315,10 +315,10 @@ proxy-groups:
 # 规则匹配
 rules:
   #  --- 本地/局域网 ---
-  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve),(RULE-SET,cn_domain),(RULE-SET,cn_ip,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
-  - GEOSITE,private,DIRECT
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_domain),(RULE-SET,cn_ip,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
+  # - GEOSITE,private,DIRECT
   - RULE-SET,private_domain,DIRECT
-  - GEOIP,private,DIRECT,no-resolve
+  # - GEOIP,private,DIRECT,no-resolve
   - RULE-SET,private_ip,DIRECT,no-resolve
   - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN,local.adguard.org,DIRECT
@@ -469,12 +469,12 @@ rules:
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
   #  --- Apple/微软/腾讯/阿里/百度/云服务/其它 --- 
-  - GEOSITE,category-games@cn,DIRECT
-  - GEOSITE,steam@cn,DIRECT
-  - GEOSITE,microsoft@cn,DIRECT
-  - GEOSITE,apple-cn,DIRECT
+  # - GEOSITE,category-games@cn,DIRECT
+  # - GEOSITE,steam@cn,DIRECT
+  # - GEOSITE,microsoft@cn,DIRECT
+  # - GEOSITE,apple-cn,DIRECT
   - RULE-SET,apple-cn,DIRECT
-  - GEOSITE,apple,DIRECT
+  # - GEOSITE,apple,DIRECT
   - RULE-SET,apple_domain,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
@@ -539,13 +539,13 @@ rules:
   - RULE-SET,copilot_classical,🤖 Ai
   - RULE-SET,gemini_classical,🤖 Ai
   - RULE-SET,ai-!cn,🤖 Ai
-  - GEOSITE,category-ai-!cn,🤖 Ai
+  # - GEOSITE,category-ai-!cn,🤖 Ai
   #  --- 国外服务 --- 
-  - GEOSITE,youtube,📹 YouTube
+  # - GEOSITE,youtube,📹 YouTube
   - RULE-SET,youtube_classical,📹 YouTube
-  - GEOSITE,google,🍀 Google
+  # - GEOSITE,google,🍀 Google
   - RULE-SET,google_domain,🍀 Google
-  - GEOIP,google,🍀 Google,no-resolve
+  # - GEOIP,google,🍀 Google,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
   - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
   - DOMAIN-SUFFIX,android.com,🍀 Google
@@ -556,21 +556,21 @@ rules:
   - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
   - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
-  - GEOSITE,tiktok,🎵 TikTok
+  # - GEOSITE,tiktok,🎵 TikTok
   - RULE-SET,tiktok_domain,🎵 TikTok
   - DOMAIN-KEYWORD,tiktok,🎵 TikTok
-  - GEOSITE,telegram,📲 Telegram
+  # - GEOSITE,telegram,📲 Telegram
   - RULE-SET,telegram_classical,📲 Telegram
-  - GEOIP,telegram,📲 Telegram,no-resolve
+  # - GEOIP,telegram,📲 Telegram,no-resolve
   - RULE-SET,telegram_ip,📲 Telegram,no-resolve
-  - GEOSITE,github,👨🏿‍💻 GitHub
+  # - GEOSITE,github,👨🏿‍💻 GitHub
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - GEOSITE,netflix,🎥 NETFLIX
+  # - GEOSITE,netflix,🎥 NETFLIX
   - RULE-SET,netflix_classical,🎥 NETFLIX
-  - GEOIP,netflix,🎥 NETFLIX,no-resolve
+  # - GEOIP,netflix,🎥 NETFLIX,no-resolve
   - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
-  - GEOSITE,disney,🎥 NETFLIX
-  - GEOSITE,category-speedtest,⚡ Speedtest
+  # - GEOSITE,disney,🎥 NETFLIX
+  # - GEOSITE,category-speedtest,⚡ Speedtest
   - RULE-SET,speedtest_domain,⚡ Speedtest
   - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
   - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
@@ -582,12 +582,12 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
-  - GEOSITE,geolocation-!cn,🚀 默认代理
+  # - GEOSITE,geolocation-!cn,🚀 默认代理
   - RULE-SET,geolocation-!cn,🚀 默认代理
-  - GEOSITE,cn,DIRECT
+  # - GEOSITE,cn,DIRECT
   - RULE-SET,add_direct_domain,DIRECT
   - RULE-SET,cn_domain,DIRECT
-  - GEOIP,CN,DIRECT
+  # - GEOIP,CN,DIRECT
   - RULE-SET,cn_ip,DIRECT
   - MATCH,🐟 漏网之鱼
 
