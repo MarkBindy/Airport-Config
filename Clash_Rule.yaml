@@ -1,4 +1,4 @@
-# 版本： V2026.9.3
+# 版本： V2026.9.8
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Rule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
@@ -93,7 +93,7 @@ sniffer:
 dns:
   enable: true                                    # 解析服务  启用 Clash 内置 DNS 服务
   ipv6: false                                     # 网络协议  启用 IPv6 DNS 解析支持
-  prefer-h3: false                                # 首选H3
+  prefer-h3: true                                 # 首选 H3
   respect-rules: true                             # 遵循规则  强制遵循规则顺序
   use-hosts: true                                 # 配置映射  使用 Mihomo 配置中的 hosts 映射,优先使用 hosts 记录，减少不必要外部查询
   use-system-hosts: false                         # 系统映射  使用操作系统 hosts 文件中的域名映射
@@ -134,6 +134,8 @@ dns:
   nameserver:                                     # 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
     - https://1.1.1.1/dns-query
     - https://1.0.0.1/dns-query
+    - https://8.8.8.8/dns-query
+    - https://8.8.4.4/dns-query
     - https://dns.google/dns-query
   nameserver-policy:                              # 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
     "geosite:private,cn,apple-cn,apple,microsoft@cn,category-games@cn,steam@cn":
