@@ -19,7 +19,7 @@
 
 ---
 # 自用机场推荐
-**[良心云](https://xn--9kqz23b19z.com/#/register?code=78iQOdY2)**、**[星维](https://xinweicloud.com/?mode=register&invite=WoasI9xS)**、**[云帆](https://fan8.yunfan.app/#/register?code=ESQ25KeV)**、**[赔钱机场](https://xn--mes358aby2apfg.com/register?code=tqtpirVU&cover=sfw)**
+**[良心云](https://xn--9kqz23b19z.com/#/register?code=78iQOdY2)** | **[星维](https://xinweicloud.com/?mode=register&invite=WoasI9xS)** | **[云帆](https://fan8.yunfan.app/#/register?code=ESQ25KeV)** | **[赔钱机场](https://xn--mes358aby2apfg.com/register?code=tqtpirVU&cover=sfw)**
 
 # 前言
 >**Clash_GeoRule.yaml** 使用前需完善填入自己的 **订阅链接** 与 **机场名** 即可保存导入相应软件，其余保持默认无需修改！
