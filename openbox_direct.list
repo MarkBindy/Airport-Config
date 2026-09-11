@@ -1,5 +1,4 @@
 rules:
-  #  --- 本地/局域网 ---
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
   - GEOSITE,private,DIRECT
   - GEOIP,private,DIRECT,no-resolve
@@ -17,7 +16,6 @@ rules:
   - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
   - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
   - IP-CIDR,111.208.73.0/24,DIRECT,no-resolve
-  #  --- 银行登录修复：风控安全 SDK --- 
   - DOMAIN-SUFFIX,tongdun.net,DIRECT
   - DOMAIN-SUFFIX,tongduncdn.com,DIRECT
   - DOMAIN-SUFFIX,ishumei.com,DIRECT
@@ -29,7 +27,6 @@ rules:
   - DOMAIN-SUFFIX,aegis.qq.com,DIRECT
   - DOMAIN-SUFFIX,antpay.com,DIRECT
   - DOMAIN-SUFFIX,rong360.com,DIRECT
-  #  --- 银行 APP 推送/统计服务 --- 
   - DOMAIN-SUFFIX,jiguang.cn,DIRECT
   - DOMAIN-SUFFIX,jpush.cn,DIRECT
   - DOMAIN-SUFFIX,jpush.io,DIRECT
@@ -37,7 +34,6 @@ rules:
   - DOMAIN-SUFFIX,umengcloud.com,DIRECT
   - DOMAIN-SUFFIX,rongcloud.cn,DIRECT
   - DOMAIN-SUFFIX,rongcloud.com,DIRECT
-  #  --- 国内银行域名 --- 
   - DOMAIN-KEYWORD,bank,DIRECT
   - DOMAIN-SUFFIX,95516.com,DIRECT
   - DOMAIN-SUFFIX,unionpay.com,DIRECT
@@ -72,7 +68,6 @@ rules:
   - DOMAIN-SUFFIX,bocsh.com,DIRECT
   - DOMAIN-SUFFIX,srcb.com.cn,DIRECT
   - DOMAIN-SUFFIX,gdb.com.cn,DIRECT
-  #  --- 支付 / 微信生态 --- 
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,alipayobjects.com,DIRECT
   - DOMAIN-SUFFIX,alipayhk.com,DIRECT
@@ -88,11 +83,9 @@ rules:
   - DOMAIN-SUFFIX,wechatpay.cn,DIRECT
   - DOMAIN-SUFFIX,wx.qq.com,DIRECT
   - DOMAIN-SUFFIX,weixinbridge.com,DIRECT
-  #  --- 内容社区：小红书 --- 
   - DOMAIN-SUFFIX,xiaohongshu.com,DIRECT
   - DOMAIN-SUFFIX,xiaohongshu.net,DIRECT
   - DOMAIN-SUFFIX,xhscdn.com,DIRECT
-  #  --- 政务与公共服务 --- 
   - DOMAIN-SUFFIX,12315.cn,DIRECT
   - DOMAIN-SUFFIX,gov.cn,DIRECT
   - DOMAIN-KEYWORD,12315,DIRECT
@@ -100,21 +93,18 @@ rules:
   - DOMAIN-KEYWORD,12306,DIRECT
   - DOMAIN-SUFFIX,12306.cn,DIRECT
   - DOMAIN-SUFFIX,govapp.cn,DIRECT
-  #  --- 运营商与网络服务 --- 
   - DOMAIN-SUFFIX,10086.cn,DIRECT
   - DOMAIN-SUFFIX,10010.com,DIRECT
   - DOMAIN-SUFFIX,189.cn,DIRECT
   - DOMAIN-SUFFIX,chinamobile.com,DIRECT
   - DOMAIN-SUFFIX,chinaunicom.com,DIRECT
   - DOMAIN-SUFFIX,chinatelecom.com.cn,DIRECT
-  #  --- 小米 / 米家生态 --- 
   - DOMAIN-SUFFIX,mi.com,DIRECT
   - DOMAIN-SUFFIX,miui.com,DIRECT
   - DOMAIN-SUFFIX,miwifi.com,DIRECT
   - DOMAIN-SUFFIX,xiaomi.com,DIRECT
   - DOMAIN-SUFFIX,xiaomicp.com,DIRECT
   - DOMAIN-SUFFIX,miot-spec.com,DIRECT
-  #  --- 智能家居 / 家电品牌 --- 
   - DOMAIN-SUFFIX,midea.com,DIRECT
   - DOMAIN-SUFFIX,midea.com.cn,DIRECT
   - DOMAIN-SUFFIX,smartmidea.net,DIRECT
@@ -126,7 +116,6 @@ rules:
   - DOMAIN-SUFFIX,aqara.com,DIRECT
   - DOMAIN-SUFFIX,tuya.com,DIRECT
   - DOMAIN-SUFFIX,tuyaus.com,DIRECT
-  #  --- 电商购物 --- 
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-KEYWORD,taobao,DIRECT
   - DOMAIN-SUFFIX,tmall.com,DIRECT
@@ -135,7 +124,6 @@ rules:
   - DOMAIN-SUFFIX,meituan.com,DIRECT
   - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
   - DOMAIN-SUFFIX,suning.com,DIRECT
-  #  --- 内容平台 / 短视频 --- 
   - DOMAIN-SUFFIX,douyin.com,DIRECT
   - DOMAIN-SUFFIX,douyinpic.com,DIRECT
   - DOMAIN-SUFFIX,iesdouyin.com,DIRECT
@@ -151,7 +139,6 @@ rules:
   - DOMAIN-SUFFIX,youku.com,DIRECT
   - DOMAIN-SUFFIX,weibo.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
-  #  --- Apple/微软/腾讯/阿里/百度/云服务/其它 --- 
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,steam@cn,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
@@ -214,6 +201,5 @@ rules:
   - DOMAIN-SUFFIX,127.net,DIRECT
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
-
 
 
