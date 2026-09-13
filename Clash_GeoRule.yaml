@@ -473,6 +473,7 @@ rules:
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - RULE-SET,apple-cn,DIRECT
+  - GEOSITE,apple@cn,DIRECT
   - GEOSITE,apple,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
