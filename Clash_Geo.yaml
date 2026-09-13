@@ -575,7 +575,9 @@ rules:
   - GEOSITE,disney,🎥 NETFLIX
   - GEOSITE,category-speedtest,⚡ Speedtest
   # - RULE-SET,speedtest_domain,⚡ Speedtest
-  - DOMAIN-KEYWORD,speedtest,⚡ Speedtest
+  - GEOSITE,category-speedtest@cn,⚡ Speedtest
+  - GEOSITE,category-speedtest@!cn,⚡ Speedtest
+  - GEOSITE,speedtest,⚡ Speedtest
   - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
   - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
   # - RULE-SET,test_classical,🚀 默认代理
