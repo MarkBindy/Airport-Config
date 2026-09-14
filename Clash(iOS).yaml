@@ -98,7 +98,6 @@ dns:
     - "rule-set:fakeipfilter_domain"
     - "rule-set:add_direct_domain"                # 真实解析  大陆冷门域名
     - "geosite:cn"                                # 真实解析  大陆域 GeoSite 数据
-    # - "rule-set:cn_domain"                        # 真实解析  大陆域名
   default-nameserver:                             # 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
     - 1.1.1.1
     - 8.8.8.8
