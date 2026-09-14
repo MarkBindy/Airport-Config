@@ -1,4 +1,4 @@
-# 版本： V2026.9.13
+# 版本： V2026.9.14
 # name:  Clash（iOS）
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Geo.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
@@ -23,19 +23,18 @@ tproxy-port: 7895                                 # 监听端口  透明代理�
 allow-lan: true                                   # 局域连接  是否允许局域网设备连接
 bind-address: "*"                                 # 监听接口  监听的网络接口（* 表示所有接口）
 mode: rule                                        # 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
-ipv6: false                                       # 网络协议  是否启用 IPv6 支持
-log-level: warning                                # 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+ipv6: true                                        # 网络协议  是否启用 IPv6 支持
+log-level: info                                   # 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
 unified-delay: true                               # 统一延迟  减少节点延迟抖动
 tcp-concurrent: true                              # 并发连接  提升多任务性能
 keep-alive-idle: 600                              # 保活时间  TCP 
 keep-alive-interval: 15                           # 保活时间  间隔 TCP
-global-ua: clash.meta                             # 用户代理  全局默认UA
+global-ua: clash                                  # 用户代理  全局默认UA
 profile:
   store-selected: true                            # 保存选择  记住选择的节点和策略组
   store-fake-ip: true                             # 保存选择  Fake-IP 映射
-geodata-loader: standard                          # 数据加载  模式 standard（标准）memconservative（低内存）
-experimental:
-  quic-go-disable-gso: true                       # 快速禁用  GSO
+geodata-loader: memconservative                   # 数据加载  模式 standard（标准）memconservative（低内存）
+quic-go-disable-gso: true                         # 快速禁用  GSO
 
 # GEO规则订阅
 geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
@@ -320,22 +319,7 @@ rules:
   #  --- 本地/局域网 ---
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
   - GEOSITE,private,DIRECT
-  # - RULE-SET,private_domain,DIRECT
   - GEOIP,private,DIRECT,no-resolve
-  # - RULE-SET,private_ip,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,localhost,DIRECT
-  - DOMAIN,local.adguard.org,DIRECT
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,lan,DIRECT
-  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
-  - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
   - IP-CIDR,111.208.73.0/24,DIRECT,no-resolve
   #  --- 银行登录修复：风控安全 SDK --- 
   - DOMAIN-SUFFIX,tongdun.net,DIRECT
@@ -476,10 +460,8 @@ rules:
   - GEOSITE,steam@cn,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
-  # - RULE-SET,apple-cn,DIRECT
   - GEOSITE,apple@cn,DIRECT
   - GEOSITE,apple,DIRECT
-  # - RULE-SET,apple_domain,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
   - DOMAIN-SUFFIX,icloud.com,DIRECT
@@ -537,20 +519,11 @@ rules:
   - DOMAIN-SUFFIX,xmcdn.com,DIRECT
   - DOMAIN-SUFFIX,xunlei.com,DIRECT
   #  --- AI 服务 --- 
-  # - RULE-SET,openai_classical,🤖 Ai
-  # - RULE-SET,anthropic_classical,🤖 Ai
-  # - RULE-SET,claude_classical,🤖 Ai
-  # - RULE-SET,copilot_classical,🤖 Ai
-  # - RULE-SET,gemini_classical,🤖 Ai
-  # - RULE-SET,ai-!cn,🤖 Ai
   - GEOSITE,category-ai-!cn,🤖 Ai
   #  --- 国外服务 --- 
   - GEOSITE,youtube,📹 YouTube
-  # - RULE-SET,youtube_classical,📹 YouTube
   - GEOSITE,google,🍀 Google
-  # - RULE-SET,google_domain,🍀 Google
   - GEOIP,google,🍀 Google,no-resolve
-  # - RULE-SET,google_ip,🍀 Google,no-resolve
   - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
   - DOMAIN-SUFFIX,android.com,🍀 Google
   - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
@@ -561,27 +534,19 @@ rules:
   - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
   - GEOSITE,tiktok,🎵 TikTok
-  # - RULE-SET,tiktok_domain,🎵 TikTok
   - DOMAIN-KEYWORD,tiktok,🎵 TikTok
   - GEOSITE,telegram,📲 Telegram
-  # - RULE-SET,telegram_classical,📲 Telegram
   - GEOIP,telegram,📲 Telegram,no-resolve
-  # - RULE-SET,telegram_ip,📲 Telegram,no-resolve
   - GEOSITE,github,👨🏿‍💻 GitHub
-  # - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - GEOSITE,netflix,🎥 NETFLIX
-  # - RULE-SET,netflix_classical,🎥 NETFLIX
   - GEOIP,netflix,🎥 NETFLIX,no-resolve
-  # - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
   - GEOSITE,disney,🎥 NETFLIX
   - GEOSITE,category-speedtest,⚡ Speedtest
-  # - RULE-SET,speedtest_domain,⚡ Speedtest
   - GEOSITE,category-speedtest@cn,⚡ Speedtest
   - GEOSITE,category-speedtest@!cn,⚡ Speedtest
   - GEOSITE,speedtest,⚡ Speedtest
   - DOMAIN-SUFFIX,intercom.io,🚀 默认代理
   - DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理
-  # - RULE-SET,test_classical,🚀 默认代理
   #  --- CN 兜底 --- 
   - DOMAIN-SUFFIX,microsoft.com,🚀 默认代理
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
@@ -589,12 +554,9 @@ rules:
   - DOMAIN-SUFFIX,msftncsi.com,DIRECT
   - DOMAIN,injections.adguard.org,DIRECT
   - GEOSITE,geolocation-!cn,🚀 默认代理
-  # - RULE-SET,geolocation-!cn,🚀 默认代理
   - GEOSITE,cn,DIRECT
   - RULE-SET,add_direct_domain,DIRECT
-  # - RULE-SET,cn_domain,DIRECT
   - GEOIP,CN,DIRECT
-  # - RULE-SET,cn_ip,DIRECT
   - MATCH,🐟 漏网之鱼
 
 # 规则锚点
@@ -608,52 +570,5 @@ rule-providers:
   # 域名集
   fakeipfilter_domain:  {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
   add_direct_domain:    {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"}
-  # cn_domain:            {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
-  # private_domain:       {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
-  # apple_domain:         {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
-  # apple-cn:             {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
-  # ai-!cn:               {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"}
-  # openai_classical:     {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list"}
-  # anthropic_classical:  {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Anthropic/Anthropic.list"}
-  # claude_classical:     {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"}
-  # copilot_classical:    {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list"}
-  # gemini_classical:     {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Rule/Gemini.list"}
-  # google_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  # youtube_classical:    {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list"}
-  # netflix_classical:    {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list"}
-  # tiktok_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-  # disney_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs"}
-  # hbo_domain:           {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hbo.mrs"}
-  # telegram_classical:   {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list"}
-  # whatsapp_classical:   {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Whatsapp/Whatsapp.list"}
-  # facebook_domain:      {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs"}
-  # twitter_domain:       {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
-  # spotify_domain:       {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs"}
-  # paypal_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  # amazon_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/amazon.mrs"}
-  # microsoft_domain:     {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-  # onedrive_domain:      {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
-  # reddit_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs"}
-  # github_domain:        {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-  # okx_domain:           {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/okx.mrs"}
-  # bybit_domain:         {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bybit.mrs"}
-  # binance_domain:       {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/binance.mrs"}
-  # games@cn_domain:      {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games@cn.mrs"}
-  # steam_domain:         {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs"}
-  # epic_classical:       {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.list"}
-  # ea_classical:         {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EA/EA.list"}
-  # blizzard_classical:   {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Blizzard/Blizzard.list"}
-  # ubi_classical:        {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/UBI/UBI.list"}
-  # nintendo_classical:   {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nintendo/Nintendo.list"}
-  # nvidia_classical:     {<<: *Anchor_CL, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nvidia/Nvidia.list"}
-  # geolocation-!cn:      {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
-  # speedtest_domain:     {<<: *Anchor_DM, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-speedtest.mrs"}
-  # block_classical:      {<<: *Anchor_CL, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
-  # test_classical:       {<<: *Anchor_CL, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
   # IP集
   cn_ip:                {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
-  # private_ip:           {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
-  # google_ip:            {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
-  # telegram_ip:          {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
-  # twitter_ip:           {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs"}
-  # netflix_ip:           {<<: *Anchor_IP, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
