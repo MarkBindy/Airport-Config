@@ -28,6 +28,7 @@ geodata-loader: memconservative                   # 数据加载  模式 standar
 experimental:                                     # 实验配置
   quic-go-disable-gso: true                       # 快速禁用  GSO
   quic-go-disable-ecn: true                       # 快速禁用  ECN
+  dialer-ip4p-convert: false                      # 地址转换  IP4P
 
 # GEO规则订阅
 geodata-mode: true                                # 数据分流  使用数据集进行规则与分流匹配
