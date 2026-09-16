@@ -1,4 +1,4 @@
-# 版本： V2026.9.15
+# 版本： V2026.9.16
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Geo.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
@@ -523,17 +523,15 @@ rules:
   - GEOSITE,category-ai-!cn,🤖 Ai
   #  --- 国外服务 --- 
   - GEOSITE,youtube,📹 YouTube
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
+  - DOMAIN-SUFFIX,market.android.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
+  - DOMAIN-SUFFIX,developers.google.cn,🍀 Google
   - GEOSITE,google,🍀 Google
   - GEOIP,google,🍀 Google,no-resolve
-  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,android.com,🍀 Google
-  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
-  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,market.android.com,🍀 Google
-  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
   - GEOSITE,tiktok,🎵 TikTok
   - DOMAIN-KEYWORD,tiktok,🎵 TikTok
   - GEOSITE,telegram,📲 Telegram
