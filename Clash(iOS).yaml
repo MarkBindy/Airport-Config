@@ -233,6 +233,10 @@ dns:
     ipcidr:
       - 240.0.0.0/4
 
+# 节点信息
+proxies:
+  - {name: 直连, type: direct}
+
 # 策略出站/区域锚点
 Anchor_PG: &Anchor_PG {type: select, include-all: true, proxies: [🇭🇰 香港-故转, 🇹🇼 台湾-故转, 🇯🇵 日本-故转, 🇰🇷 韩国-故转, 🇸🇬 狮城-故转, 🇬🇧 英国-故转, 🇺🇸 美国-故转, ♻️ 其他-故转, 🇭🇰 香港-自动, 🇹🇼 台湾-自动, 🇯🇵 日本-自动, 🇰🇷 韩国-自动, 🇸🇬 狮城-自动, 🇬🇧 英国-自动, 🇺🇸 美国-自动, ♻️ 其他-自动, 🌐 全部-自动, DIRECT]}
 Anchor_FB: &Anchor_FB {type: fallback, empty-fallback: REJECT, interval: 150, lazy: false, timeout: 3000, max-failed-times: 2, hidden: true, url: 'https://www.gstatic.com/generate_204'}
