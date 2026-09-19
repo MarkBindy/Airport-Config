@@ -189,43 +189,30 @@ function main(config) {
 
   fixed["proxy-groups"].push(
     {
-      "name": "默认代理",
+      "name": "YouTube",
       "type": "select",
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
+      "icon": "https://github.com/MarkBindy/Airport-Config/raw/main/icon/qure/color/YouTube.png",
       "proxies": [
-        "🌐 全部",
+        "🇭🇰 香港-故转",
+        "🇹🇼 台湾-故转",
+        "🇯🇵 日本-故转",
+        "🇰🇷 韩国-故转",
+        "🇸🇬 狮城-故转",
+        "🇬🇧 英国-故转",
+        "🇺🇸 美国-故转",
+        "♻️ 其他-故转",
+        "🌐 全部-手动",
         "DIRECT"
       ]
     },
-
+        
     {
-      "name": "🌐 全部",
+      "name": "🌐 全部-手动",
       "type": "select",
+      "empty-fallback": "REJECT",
       "proxies": currentProxyNames.slice()
     }
   );
-
-  // ============================================================
-  // 2. 普通服务策略组
-  //
-  // 这里暂时只放 All-Nodes / PROXY-Gate / DIRECT。
-  // 后面检测完节点地区后，再把实际存在的 Auto 组插入。
-  //
-  // 因此：
-  // 没有法国节点 → 不会出现 FR-Auto
-  // 没有俄罗斯节点 → 不会出现 RU-Auto
-  // ============================================================
-
-  fixed["proxy-groups"].push({
-    "name": "YouTube",
-    "type": "select",
-    "icon": "https://github.com/MarkBindy/Airport-Config/raw/main/icon/qure/color/YouTube.png",
-    "proxies": [
-      "🌐 全部",
-      "默认代理",
-      "DIRECT"
-    ]
-  });
 
   // ============================================================
   // 3. 地区 Auto
@@ -276,27 +263,13 @@ function main(config) {
 
   // ============================================================
   // 4. 将实际存在的 Auto 组加入服务策略组
-  //
-  // 顺序固定为：
-  //
-  // 🖥️ All-Nodes
-  // 🌍 Global-Fallback
-  // 🇺🇸 US-Auto
-  // 🇸🇬 SG-Auto
-  // ...
-  // PROXY-Gate
-  // DIRECT
-  //
-  // Global-Fallback 是用户主动选择的跨地区容灾模式。
-  // ============================================================
 
   const serviceProxyChoices = [
-    "🌐 全部",
     ...(existingRegionalAutos.length
       ? []
       : []),
     ...existingRegionalAutos,
-    "默认代理",
+    "🌐 全部-手动",
     "DIRECT"
   ];
 
@@ -311,62 +284,16 @@ function main(config) {
   });
 
   // ============================================================
-  // 5. PROXY-Gate
-  //
-  // 顺序固定为：
-  //
-  // 🖥️ All-Nodes
-  // 🌍 Global-Fallback
-  // 🇺🇸 US-Auto
-  // 🇸🇬 SG-Auto
-  // ...
-  // DIRECT
-  //
-  // Global-Fallback 同样只是一个可手动选择的出口。
-  // ============================================================
 
-  const proxyGate = fixed["proxy-groups"].find(
-    group => group.name === "默认代理"
-  );
+  fixed["proxy-groups"].push({
+    name: "🇭🇰 香港-故转",
+    type: "fallback",
+    proxies: [
+      existingRegionalAutos,
 
-  if (proxyGate) {
-    proxyGate.proxies = [
-      "🌐 全部",
-      ...(existingRegionalAutos.length
-        ? []
-        : []),
-      ...existingRegionalAutos,
-      "DIRECT"
-    ];
-  }
-
-  // ============================================================
-  // 6. Apple Push 专用 APNs-Fallback
-  //
-  // 只引用实际生成的地区 Auto。
-  //
-  // 少于 3 个节点的地区不会出现在这里。
-  // ============================================================
-
-
-  // ============================================================
-  // 7. Global-Fallback
-  //
-  // 放在整个策略组列表最后，与 APNs-Fallback 相邻。
-  //
-  // 它引用地区 Auto，而不是直接引用原始节点。
-  //
-  // 因此逻辑为：
-  //
-  // 地区内部：
-  //     US-Auto → 自动选择 US 地区可用节点
-  //
-  // 地区之间：
-  //     US-Auto → SG-Auto → HK-Auto → ...
-  //
-  // 只有用户主动选择 🌍 Global-Fallback 时才启用。
-  // ============================================================
-
+    ],
+    interval: 300
+  });
 
   // ============================================================
   // Rules
