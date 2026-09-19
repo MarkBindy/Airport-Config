@@ -201,7 +201,6 @@ function main(config) {
         "🇬🇧 英国-故转",
         "🇺🇸 美国-故转",
         "♻️ 其他-故转",
-        "🌐 全部-手动",
         "DIRECT"
       ]
     },
@@ -266,7 +265,7 @@ function main(config) {
 
   const serviceProxyChoices = [
     ...(existingRegionalAutos.length
-      ? []
+      ? ["🇭🇰 香港-故转"]
       : []),
     ...existingRegionalAutos,
     "🌐 全部-手动",
