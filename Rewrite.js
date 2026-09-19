@@ -300,11 +300,12 @@ function main(config) {
   // ============================================================
 
   fixed.rules = [
+    "GEOSITE,youtube,YouTube",
     "GEOSITE,CN,DIRECT",
     "GEOIP,CN,DIRECT,no-resolve",
 
     // 最终兜底
-    "MATCH,默认代理"
+    "MATCH,YouTube"
   ];
 
   // ============================================================
