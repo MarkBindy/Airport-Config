@@ -289,7 +289,7 @@ function main(config) {
     name: "🇭🇰 香港-故转",
     type: "fallback",
     proxies: [
-      existingRegionalAutos,
+      "🇭🇰 香港-自动",
       "🌐 全部-手动",
     ],
     interval: 300
