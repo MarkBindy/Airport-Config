@@ -377,7 +377,7 @@ function main(config) {
     "GEOIP,CN,DIRECT,no-resolve",
 
     // 最终兜底
-    "MATCH,PROXY-Gate"
+    "MATCH,默认代理"
   ];
 
   // ============================================================
