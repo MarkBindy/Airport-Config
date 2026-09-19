@@ -1,4 +1,4 @@
-# 版本： V2026.9.17
+# 版本： V2026.9.19
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash(iOS).yaml
 
 
@@ -298,9 +298,9 @@ proxy-groups:
 rules:
   #  --- 本地/局域网 ---
   - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT  #禁用国外 QUIC 流量
+  - IP-CIDR,111.208.73.0/24,DIRECT,no-resolve
   - GEOSITE,private,DIRECT
   - GEOIP,private,DIRECT,no-resolve
-  - IP-CIDR,111.208.73.0/24,DIRECT,no-resolve
   #  --- 银行登录修复：风控安全 SDK --- 
   - DOMAIN-SUFFIX,tongdun.net,DIRECT
   - DOMAIN-SUFFIX,tongduncdn.com,DIRECT
