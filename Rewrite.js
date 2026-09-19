@@ -290,7 +290,7 @@ function main(config) {
     type: "fallback",
     proxies: [
       existingRegionalAutos,
-
+      "🌐 全部-手动",
     ],
     interval: 300
   });
