@@ -60,24 +60,29 @@ function main(config) {
       "fake-ip-range": "198.18.0.1/16",
 
       "default-nameserver": [
-        "223.5.5.5",
-        "119.29.29.119",
-        "2400:3200::1"
+        "1.1.1.1",
+        "8.8.8.8",
       ],
 
       "nameserver": [
-        "https://dns.cloudflare.com/dns-query",
+        "https://1.1.1.1/dns-query",
+        "https://1.0.0.1/dns-query",
+        "https://8.8.8.8/dns-query",
+        "https://8.8.4.4/dns-query",
         "https://dns.google/dns-query"
       ],
 
       "proxy-server-nameserver-policy": null,
 
       "proxy-server-nameserver": [
-        "https://dns.alidns.com/dns-query",
-        "https://doh.pub/dns-query"
+        "1.1.1.1",
+        "8.8.8.8"
       ],
 
       "direct-nameserver": [
+        "223.6.6.6",
+        "223.5.5.5",
+        "119.29.29.29",
         "https://dns.alidns.com/dns-query",
         "https://doh.pub/dns-query"
       ],
@@ -115,6 +120,10 @@ function main(config) {
       },
 
       "fallback": [
+        "1.0.0.1",
+        "8.8.4.4",
+        "https://dns.cloudflare.com/dns-query",
+        "https://1dot1dot1dot1.cloudflare-dns.com/",
         "https://anycast.uncensoreddns.org/dns-query"
       ],
 
@@ -132,11 +141,17 @@ function main(config) {
         "*.lan",
         "*.local",
         "localhost",
+        "+.localdomain",
         "*.msftconnecttest.com",
         "*.msftncsi.com",
         "*.msidentity.com",
         "captive.apple.com",
         "*.push.apple.com",
+        "time.windows.com",
+        "time.apple.com",
+        "+.googleapis.cn",
+        "+.ntp.org.cn",
+        "+.pool.ntp.org",
         "stun.*",
         "+.stun.*.*",
         "+.stun.*.*.*",
@@ -146,7 +161,9 @@ function main(config) {
         "+.wechat.com",
         "+.qq.com",
         "+.tencent.com",
-        "speedtest.net"
+        "localhost.ptlogin2.qq.com",
+        "speedtest.net",
+        "geosite:cn"
       ]
     },
 
