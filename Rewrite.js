@@ -189,32 +189,19 @@ function main(config) {
 
   fixed["proxy-groups"].push(
     {
-      "name": "PROXY-Gate",
+      "name": "默认代理",
       "type": "select",
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
       "proxies": [
-        "🖥️ All-Nodes",
+        "🌐 全部",
         "DIRECT"
       ]
     },
 
     {
-      "name": "Apple Push",
-      "type": "fallback",
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      "proxies": [
-        "APNs-Fallback",
-        "DIRECT"
-      ],
-      "url": "http://captive.apple.com/hotspot-detect.html",
-      "interval": 300
-    },
-
-    {
-      "name": "🖥️ All-Nodes",
+      "name": "🌐 全部",
       "type": "select",
-      "proxies": currentProxyNames.slice(),
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
+      "proxies": currentProxyNames.slice()
     }
   );
 
@@ -232,10 +219,10 @@ function main(config) {
   fixed["proxy-groups"].push({
     "name": "YouTube",
     "type": "select",
-    "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png",
+    "icon": "https://github.com/MarkBindy/Airport-Config/raw/main/icon/qure/color/YouTube.png",
     "proxies": [
-      "🖥️ All-Nodes",
-      "PROXY-Gate",
+      "🌐 全部",
+      "默认代理",
       "DIRECT"
     ]
   });
@@ -258,9 +245,8 @@ function main(config) {
   const regionGroups = [
     {
       key: "HK",
-      name: "🇭🇰 HK",
-      filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+      name: "🇭🇰 香港",
+      filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i
     }
   ];
 
@@ -271,12 +257,7 @@ function main(config) {
       name => region.filter.test(name)
     );
 
-    const autoName = region.name + "-Auto";
-
-    // 只有 3 个及以上节点才生成该地区 Auto。
-    if (matched.length < 3) {
-      return;
-    }
+    const autoName = region.name + "-自动";
 
     fixed["proxy-groups"].push({
       name: autoName,
@@ -310,18 +291,17 @@ function main(config) {
   // ============================================================
 
   const serviceProxyChoices = [
-    "🖥️ All-Nodes",
+    "🌐 全部",
     ...(existingRegionalAutos.length
-      ? ["🌍 Global-Fallback"]
+      ? []
       : []),
     ...existingRegionalAutos,
-    "PROXY-Gate",
+    "默认代理",
     "DIRECT"
   ];
 
   const serviceGroupNames = [
-    "YouTube",
-    "Speedtest"
+    "YouTube"
   ];
 
   fixed["proxy-groups"].forEach(group => {
@@ -346,14 +326,14 @@ function main(config) {
   // ============================================================
 
   const proxyGate = fixed["proxy-groups"].find(
-    group => group.name === "PROXY-Gate"
+    group => group.name === "默认代理"
   );
 
   if (proxyGate) {
     proxyGate.proxies = [
-      "🖥️ All-Nodes",
+      "🌐 全部",
       ...(existingRegionalAutos.length
-        ? ["🌍 Global-Fallback"]
+        ? []
         : []),
       ...existingRegionalAutos,
       "DIRECT"
@@ -368,14 +348,6 @@ function main(config) {
   // 少于 3 个节点的地区不会出现在这里。
   // ============================================================
 
-  fixed["proxy-groups"].push({
-    name: "APNs-Fallback",
-    type: "fallback",
-    proxies: existingRegionalAutos,
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available_1.png",
-    url: "http://captive.apple.com/hotspot-detect.html",
-    interval: 300
-  });
 
   // ============================================================
   // 7. Global-Fallback
@@ -395,16 +367,6 @@ function main(config) {
   // 只有用户主动选择 🌍 Global-Fallback 时才启用。
   // ============================================================
 
-  if (existingRegionalAutos.length) {
-    fixed["proxy-groups"].push({
-      name: "🌍 Global-Fallback",
-      type: "fallback",
-      proxies: existingRegionalAutos,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available_1.png",
-      url: "http://www.gstatic.com/generate_204",
-      interval: 600
-    });
-  }
 
   // ============================================================
   // Rules
