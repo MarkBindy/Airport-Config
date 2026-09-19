@@ -384,15 +384,5 @@ function main(config) {
   // Rule Providers
   // ============================================================
 
-  fixed["rule-providers"] = {
-    "Apple": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
-    }
-  };
-
   return fixed;
 }
