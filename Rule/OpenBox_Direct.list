@@ -1,3 +1,6 @@
+# NAME: Direct
+# URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Rule/OpenBox_Direct.list
+
 IP-CIDR,240.0.0.0/4
 IP-CIDR,111.208.73.0/24
 DOMAIN-SUFFIX,tongdun.net
