@@ -560,6 +560,13 @@ function main(config) {
       icon: region.icon
     });
 
+    // 3. 生成地区 Auto 自动选择组
+    fixed["proxy-groups"].push({
+      name: autoName,
+      type: "select",
+      proxies: matched,
+      icon: region.icon
+    });
     existingRegionalFallbacks.push(fallbackName);
     allRegionalGroupNames.push(fallbackName);  // 按顺序排列：故障转移 -> 手动
   });
