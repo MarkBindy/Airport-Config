@@ -395,8 +395,6 @@ function main(config) {
   // ============================================================
 
   const regionGroups = [
-    
-    
     {
       key: "HK",
       name: "🇭🇰 香港",
@@ -565,7 +563,9 @@ function main(config) {
       name: autoName,
       type: "url-test",
       proxies: matched,
-      icon: region.icon
+      icon: region.icon，
+      url: "http://www.gstatic.com/generate_204",
+      interval: 300
     });
     existingRegionalFallbacks.push(fallbackName);
     allRegionalGroupNames.push(fallbackName);  // 按顺序排列：故障转移 -> 手动
