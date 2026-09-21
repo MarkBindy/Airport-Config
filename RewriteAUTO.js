@@ -532,6 +532,7 @@ function main(config) {
     );
 
     const fallbackName = region.name + "-故转";
+    const autoName = region.name + "-自动";
     const manualName = region.name + "-手动";
 
     if (matched.length === 0) {
@@ -563,9 +564,10 @@ function main(config) {
       name: autoName,
       type: "url-test",
       proxies: matched,
-      icon: region.icon，
+      icon: region.icon,
       url: "http://www.gstatic.com/generate_204",
-      interval: 300
+      interval: 900,
+      tolerance: 50
     });
     existingRegionalFallbacks.push(fallbackName);
     allRegionalGroupNames.push(fallbackName);  // 按顺序排列：故障转移 -> 手动
