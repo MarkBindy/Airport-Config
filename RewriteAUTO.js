@@ -1,6 +1,6 @@
 /*
  * Clash / Mihomo 配置文件预处理脚本
- * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/RewriteAUTO.json
+ * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/RewriteAUTO.js
  *
  * 包含：
  * 1. 完整的高级全局配置、TUN、Sniffer 以及分流 DNS 设置
