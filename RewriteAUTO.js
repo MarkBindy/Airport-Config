@@ -317,7 +317,7 @@ function main(config) {
       "type": "select",
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
       "proxies": [
-        "🖥️ All-Nodes",
+        "🌐 所有-手动",
         "DIRECT"
       ]
     },
@@ -335,7 +335,7 @@ function main(config) {
     },
 
     {
-      "name": "🖥️ All-Nodes",
+      "name": "🌐 所有-手动",
       "type": "select",
       "proxies": currentProxyNames.slice(),
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
@@ -383,7 +383,7 @@ function main(config) {
       "type": "select",
       "icon": serviceIcons[name] || "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png",
       "proxies": [
-        "🖥️ All-Nodes",
+        "🌐 所有-手动",
         "PROXY-Gate",
         "DIRECT"
       ]
@@ -524,16 +524,16 @@ function main(config) {
   ];
 
   const existingRegionalAutos = [];
-  const allRegionalGroupNames = []; // 包含按顺序排列的 Fallback组、Auto组与手动组
+  const allRegionalGroupNames = []; // 包含按顺序排列的 Fallback 故转组、Auto 自动组与 manual 手动组
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(
       name => region.filter.test(name)
     );
 
-    const manualName = region.name;
-    const autoName = region.name + "-Auto";
-    const fallbackName = region.name + "-Fallback";
+    const manualName = region.name + "-手动";
+    const autoName = region.name + "-自动";
+    const fallbackName = region.name + "-故转";
 
     if (matched.length === 0) {
       return;
@@ -560,7 +560,7 @@ function main(config) {
       tolerance: 50
     });
 
-    // 3. 生成地区手动选择组
+    // 3. 生成地区 manual 手动选择组
     fixed["proxy-groups"].push({
       name: manualName,
       type: "select",
@@ -578,8 +578,8 @@ function main(config) {
   // ============================================================
 
   const serviceProxyChoices = [
-    "🖥️ All-Nodes",
-    ...allRegionalGroupNames, // 顺序：🇺🇸 US-Fallback, 🇺🇸 US-Auto, 🇺🇸 US ...
+    "🌐 所有-手动",
+    ...allRegionalGroupNames, // 顺序：🇺🇸 US-故转, 🇺🇸 US-自动, 🇺🇸 US-手动 ...
     "PROXY-Gate",
     "DIRECT"
   ];
@@ -600,7 +600,7 @@ function main(config) {
 
   if (proxyGate) {
     proxyGate.proxies = [
-      "🖥️ All-Nodes",
+      "🌐 所有-手动",
       ...allRegionalGroupNames,
       "DIRECT"
     ];
