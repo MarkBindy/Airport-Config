@@ -391,7 +391,7 @@ function main(config) {
   });
 
   // ============================================================
-  // 3. 动态生成 地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）、地区 Manual 手动组
+  // 3. 动态生成地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）、地区 Manual 手动组
   // ============================================================
 
   const regionGroups = [
@@ -546,7 +546,7 @@ function main(config) {
     fixed["proxy-groups"].push({
       name: fallbackName,
       type: "fallback",
-      proxies: [manualName, ...matched],
+      proxies: [manualName, autoName],
       icon: region.icon,
       url: "http://www.gstatic.com/generate_204",
       interval: 300
@@ -563,7 +563,7 @@ function main(config) {
     // 3. 生成地区 Auto 自动选择组
     fixed["proxy-groups"].push({
       name: autoName,
-      type: "select",
+      type: "url-test",
       proxies: matched,
       icon: region.icon
     });
