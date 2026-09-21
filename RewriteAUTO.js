@@ -561,7 +561,7 @@ function main(config) {
     });
 
     existingRegionalFallbacks.push(fallbackName);
-    allRegionalGroupNames.push(fallbackName, manualName);  // 按顺序排列：故障转移 -> 手动
+    allRegionalGroupNames.push(fallbackName);  // 按顺序排列：故障转移 -> 手动
   });
 
   // ============================================================
