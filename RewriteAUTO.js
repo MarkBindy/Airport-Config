@@ -4,7 +4,7 @@
  *
  * 包含：
  * 1. 完整的高级全局配置、TUN、Sniffer 以及分流 DNS 防泄漏设置
- * 2. 根据实际节点动态生成地区 Fallback(故障转移)、地区 Auto 与 地区 Manual(手动组)
+ * 2. 根据实际节点动态生成地区 Fallback 故障转移组（含自动检测与手动回退）、地区 Auto 自动组、地区 Manual 手动组
  * 3. 完整的 Rule-Providers 规则源与包含高级逻辑运算符（AND/NOT/OR）的精准 Rules
  * 4. APNs-Fallback
  * 5. Rules
@@ -308,7 +308,7 @@ function main(config) {
   fixed["proxy-groups"] = [];
 
   // ============================================================
-  // 1. 主策略组
+  // 1. 主策略组（策略出站入口/代理网关/主选择组）
   // ============================================================
 
   fixed["proxy-groups"].push(
@@ -391,176 +391,168 @@ function main(config) {
   });
 
   // ============================================================
-  // 3. 地区 Fallback(故障转移) / Auto(自动组) / Manual(手动组)
+  // 3. 动态生成 地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）、地区 Manual 手动组
   // ============================================================
 
   const regionGroups = [
-    {
-      key: "US",
-      name: "🇺🇸 US",
-      filter: /([\[]US[\]]|^US$|USA|United[ _-]?States|\bUS\b|美国|美國|🇺🇸)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
-      key: "SG",
-      name: "🇸🇬 SG",
-      filter: /([\[]SG[\]]|^SG$|Singapore|\bSG\b|新加坡|狮城|🇸🇬)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
+    
+    
     {
       key: "HK",
-      name: "🇭🇰 HK",
+      name: "🇭🇰 香港",
       filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
-      key: "JP",
-      name: "🇯🇵 JP",
-      filter: /([\[]JP[\]]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
       key: "TW",
-      name: "🇹🇼 TW",
+      name: "🇹🇼 台湾",
       filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
+      key: "JP",
+      name: "🇯🇵 日本",
+      filter: /([\[]JP[\]]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      key: "KR",
+      name: "🇰🇷 韩国",
+      filter: /([\[]KR[\]]|^KR$|Korea|South[ _-]?Korea|\bKR\b|韩国|韓國|首尔|首爾|🇰🇷)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      key: "RU",
+      name: "🇷🇺 俄罗斯",
+      filter: /([\[]RU[\]]|^RU$|Russia|Russian[ _-]?Federation|\bRU\b|俄罗斯|俄羅斯|莫斯科|伯力|🇷🇺)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      key: "SG",
+      name: "🇸🇬 新加坡",
+      filter: /([\[]SG[\]]|^SG$|Singapore|\bSG\b|新加坡|狮城|🇸🇬)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
       key: "UK",
-      name: "🇬🇧 UK",
+      name: "🇬🇧 英国",
       filter: /([\[]UK[\]]|^UK$|United[ _-]?Kingdom|Britain|England|\bUK\b|英国|英國|伦敦|🇬🇧)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "DE",
-      name: "🇩🇪 DE",
+      name: "🇩🇪 德国",
       filter: /([\[]DE[\]]|^DE$|Germany|Deutschland|\bDE\b|德国|德國|法兰克福|🇩🇪)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "FR",
-      name: "🇫🇷 FR",
+      name: "🇫🇷 法国",
       filter: /([\[]FR[\]]|^FR$|France|\bFR\b|法国|法國|巴黎|🇫🇷)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
-      key: "RU",
-      name: "🇷🇺 RU",
-      filter: /([\[]RU[\]]|^RU$|Russia|Russian[ _-]?Federation|\bRU\b|俄罗斯|俄羅斯|莫斯科|伯力|🇷🇺)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
-      key: "CA",
-      name: "🇨🇦 CA",
-      filter: /([\[]CA[\]]|^CA$|Canada|\bCA\b|加拿大|🇨🇦)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
-      key: "AU",
-      name: "🇦🇺 AU",
-      filter: /([\[]AU[\]]|^AU$|Australia|\bAU\b|澳大利亚|澳洲|澳大利亞|🇦🇺)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
-      key: "KR",
-      name: "🇰🇷 KR",
-      filter: /([\[]KR[\]]|^KR$|Korea|South[ _-]?Korea|\bKR\b|韩国|韓國|首尔|首爾|🇰🇷)/i,
-      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
-    },
-    {
       key: "IT",
-      name: "🇮🇹 IT",
+      name: "🇮🇹 意大利",
       filter: /([\[]IT[\]]|^IT$|Italy|Italian|\bIT\b|意大利|義大利|米兰|米蘭|罗马|羅馬|🇮🇹)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
+      key: "CA",
+      name: "🇨🇦 加拿大",
+      filter: /([\[]CA[\]]|^CA$|Canada|\bCA\b|加拿大|🇨🇦)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      key: "MY",
+      name: "🇲🇾 马来西亚",
+      filter: /([\[]MY[\]]|^MY$|Malaysia|Malaysian|\bMY\b|马来西亚|馬來西亞|吉隆坡|🇲🇾)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      key: "AU",
+      name: "🇦🇺 澳大利亚",
+      filter: /([\[]AU[\]]|^AU$|Australia|\bAU\b|澳大利亚|澳洲|澳大利亞|🇦🇺)/i,
+      icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
       key: "ES",
-      name: "🇪🇸 ES",
+      name: "🇪🇸 西班牙",
       filter: /([\[]ES[\]]|^ES$|Spain|Spanish|\bES\b|西班牙|马德里|馬德里|🇪🇸)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "NL",
-      name: "🇳🇱 NL",
+      name: "🇳🇱 荷兰",
       filter: /([\[]NL[\]]|^NL$|Netherlands|Dutch|\bNL\b|荷兰|荷蘭|阿姆斯特丹|🇳🇱)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "FI",
-      name: "🇫🇮 FI",
+      name: "🇫🇮 芬兰",
       filter: /([\[]FI[\]]|^FI$|Finland|Finnish|\bFI\b|芬兰|芬蘭|赫尔辛基|赫爾辛基|🇫🇮)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "NO",
-      name: "🇳🇴 NO",
+      name: "🇳🇴 挪威",
       filter: /([\[]NO[\]]|^NO$|Norway|Norwegian|\bNO\b|挪威|奥斯陆|奧斯陸|🇳🇴)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "SE",
-      name: "🇸🇪 SE",
+      name: "🇸🇪 瑞典",
       filter: /([\[]SE[\]]|^SE$|Sweden|Swedish|\bSE\b|瑞典|斯德哥尔摩|斯德哥爾摩|🇸🇪)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "CH",
-      name: "🇨🇭 CH",
+      name: "🇨🇭 瑞士",
       filter: /([\[]CH[\]]|^CH$|Switzerland|Swiss|\bCH\b|瑞士|苏黎世|蘇黎世|日内瓦|日內瓦|🇨🇭)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
       key: "PL",
-      name: "🇵🇱 PL",
+      name: "🇵🇱 波兰",
       filter: /([\[]PL[\]]|^PL$|Poland|Polish|\bPL\b|波兰|波蘭|华沙|華沙|🇵🇱)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     },
     {
-      key: "MY",
-      name: "🇲🇾 MY",
-      filter: /([\[]MY[\]]|^MY$|Malaysia|Malaysian|\bMY\b|马来西亚|馬來西亞|吉隆坡|🇲🇾)/i,
+      key: "US",
+      name: "🇺🇸 美国",
+      filter: /([\[]US[\]]|^US$|USA|United[ _-]?States|\bUS\b|美国|美國|🇺🇸)/i,
       icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     }
   ];
 
-  const existingRegionalAutos = [];
-  const allRegionalGroupNames = []; // 包含按顺序排列的 Fallback 故转组、Auto 自动组与 manual 手动组
+  const existingRegionalFallbacks = [];
+  const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(
       name => region.filter.test(name)
     );
 
-    const manualName = region.name + "-手动";
-    const autoName = region.name + "-自动";
     const fallbackName = region.name + "-故转";
+    const manualName = region.name + "-手动";
 
     if (matched.length === 0) {
       return;
     }
 
-    // 1. 生成地区 Fallback 故障转移组
+    // 1. 生成地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）
+    // 将“手动选择组”放在第一位，后面跟该地区所有实际节点
+    // 效果：优先使用手动选中的节点；若手动组断连或未选，自动测试并回退至该地区其他可用节点
     fixed["proxy-groups"].push({
       name: fallbackName,
       type: "fallback",
-      proxies: matched,
+      proxies: [manualName, ...matched],
       icon: region.icon,
       url: "http://www.gstatic.com/generate_204",
       interval: 300
     });
 
-    // 2. 生成地区 Auto 自动测速组
-    fixed["proxy-groups"].push({
-      name: autoName,
-      type: "url-test",
-      proxies: matched,
-      icon: region.icon,
-      url: "http://www.gstatic.com/generate_204",
-      interval: 900,
-      tolerance: 50
-    });
-
-    // 3. 生成地区 manual 手动选择组
+    // 2. 生成地区 Manual 手动选择组
     fixed["proxy-groups"].push({
       name: manualName,
       type: "select",
@@ -568,18 +560,17 @@ function main(config) {
       icon: region.icon
     });
 
-    existingRegionalAutos.push(autoName);
-    // 按需求设定顺序：故障转移 -> 自动 -> 手动
-    allRegionalGroupNames.push(fallbackName, autoName, manualName);
+    existingRegionalFallbacks.push(fallbackName);
+    allRegionalGroupNames.push(fallbackName, manualName);  // 按顺序排列：故障转移 -> 手动
   });
 
   // ============================================================
-  // 4. 将生成的地区组按指定顺序插入服务策略组
+  // 4. 将生成的地区组插入服务策略组
   // ============================================================
 
   const serviceProxyChoices = [
     "🌐 所有-手动",
-    ...allRegionalGroupNames, // 顺序：🇺🇸 US-故转, 🇺🇸 US-自动, 🇺🇸 US-手动 ...
+    ...allRegionalGroupNames,
     "PROXY-Gate",
     "DIRECT"
   ];
@@ -613,12 +604,12 @@ function main(config) {
   fixed["proxy-groups"].push({
     name: "APNs-Fallback",
     type: "fallback",
-    proxies: existingRegionalAutos.length ? existingRegionalAutos : ["DIRECT"],
+    proxies: existingRegionalFallbacks.length ? existingRegionalFallbacks : ["DIRECT"],
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available_1.png",
     url: "http://captive.apple.com/hotspot-detect.html",
     interval: 300
   });
-
+  
   // ============================================================
   // Rules
   // ============================================================
