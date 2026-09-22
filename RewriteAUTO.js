@@ -503,7 +503,8 @@ function main(config) {
   if (proxyGate) {
     proxyGate.proxies = [
       "🌐 所有-手动",
-      ...allRegionalGroupNames,
+      ...existingRegionalFallbacks,
+      ...existingRegionalAutos,
       "DIRECT"
     ];
   }
