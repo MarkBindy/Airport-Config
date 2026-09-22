@@ -450,7 +450,6 @@ function main(config) {
       url: "http://www.gstatic.com/generate_204",
       interval: 300
     });
-
     // 生成地区 Manual 手动选择组
     fixed["proxy-groups"].push({
       name: manualName,
@@ -458,7 +457,6 @@ function main(config) {
       proxies: matched,
       icon: region.icon
     });
-
     // 生成地区 Auto 自动择优组
     fixed["proxy-groups"].push({
       name: autoName,
