@@ -328,7 +328,7 @@ function main(config) {
     },
 
     {
-      "name": "苹果通知推送",
+      "name": "Apple Push 苹果通知推送",
       "type": "fallback",
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
       "proxies": [
@@ -540,18 +540,18 @@ function main(config) {
     "GEOIP,private,DIRECT,no-resolve",
 
     // Apple Push 必须在普通 Apple 规则之前
-    "DOMAIN-SUFFIX,push.apple.com,Apple Push",
-    "DOMAIN-SUFFIX,push-apple.com.akadns.net,Apple Push",
-    "DOMAIN-KEYWORD,apple.com.edgekey.net,Apple Push",
-    "IP-CIDR,17.249.0.0/16,Apple Push,no-resolve",
-    "IP-CIDR,17.252.0.0/16,Apple Push,no-resolve",
-    "IP-CIDR,17.57.144.0/22,Apple Push,no-resolve",
-    "IP-CIDR,17.188.128.0/18,Apple Push,no-resolve",
-    "IP-CIDR,17.188.20.0/23,Apple Push,no-resolve",
-    "IP-CIDR6,2620:149:a44::/48,Apple Push,no-resolve",
-    "IP-CIDR6,2403:300:a42::/48,Apple Push,no-resolve",
-    "IP-CIDR6,2403:300:a51::/48,Apple Push,no-resolve",
-    "IP-CIDR6,2a01:b740:a42::/48,Apple Push,no-resolve",
+    "DOMAIN-SUFFIX,push.apple.com,Apple Push 苹果通知推送",
+    "DOMAIN-SUFFIX,push-apple.com.akadns.net,Apple Push 苹果通知推送",
+    "DOMAIN-KEYWORD,apple.com.edgekey.net,Apple Push 苹果通知推送",
+    "IP-CIDR,17.249.0.0/16,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR,17.252.0.0/16,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR,17.57.144.0/22,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR,17.188.128.0/18,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR,17.188.20.0/23,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR6,2620:149:a44::/48,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR6,2403:300:a42::/48,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR6,2403:300:a51::/48,Apple Push 苹果通知推送,no-resolve",
+    "IP-CIDR6,2a01:b740:a42::/48,Apple Push 苹果通知推送,no-resolve",
 
     // 普通 Apple 流量进入 Apple 策略组
     "RULE-SET,Apple,Apple",
