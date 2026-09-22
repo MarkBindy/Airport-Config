@@ -440,8 +440,10 @@ function main(config) {
     fixed["proxy-groups"].push({
       name: fallbackName,
       type: "fallback",
+      lazy: false,
       proxies: [manualName, autoName],
       icon: region.icon,
+      hidden: true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300
     });
@@ -460,6 +462,7 @@ function main(config) {
       type: "url-test",
       proxies: matched,
       icon: region.icon,
+      hidden: true,
       url: "http://www.gstatic.com/generate_204",
       interval: 900,
       tolerance: 50
