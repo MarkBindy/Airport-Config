@@ -453,7 +453,7 @@ function main(config) {
       name: manualName,
       type: "select",
       proxies: matched,
-      icon: region.icon
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Available.png"
     });
 
     // 3. 生成地区 Auto 自动选择组
