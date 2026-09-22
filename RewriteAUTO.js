@@ -63,10 +63,10 @@ function main(config) {
       "enable": true,                             // 网卡模式  是否启用 TUN 虚拟网卡模式
       "stack": "mips",                            // 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
       "mtu": 1492,                                // 最大传输  单元
-      "dns-hijack": {                             // 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
+      "dns-hijack": [                             // 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
         "udp://any:53",
         "tcp://any:53"
-      },
+      ],
       "auto-route": true,                         // 自动路由  自动添加系统路由表      （仅内核模式有效）
       "auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
       "auto-detect-interface": true,              // 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
