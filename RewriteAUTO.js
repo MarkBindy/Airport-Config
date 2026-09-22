@@ -465,6 +465,8 @@ function main(config) {
       tolerance: 50
     });
 
+    // 这里只记录实际生成的 Auto。
+    // 后续服务策略组和 APNs-Fallback 都只引用这个数组。
     existingRegionalFallbacks.push(fallbackName);
     allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
