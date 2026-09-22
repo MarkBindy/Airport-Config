@@ -11,8 +11,9 @@
  * 6. Rule Providers
  */
 
+
+// Hako 当前选中的所有机场节点都会合并到 config.proxies。
 function main(config) {
-  // Hako 当前选中的所有机场节点都会合并到 config.proxies。
   const currentProxies = Array.isArray(config && config.proxies)
     ? config.proxies
     : [];
@@ -26,9 +27,8 @@ function main(config) {
     .filter(Boolean);
 
 // =============================================
-// 1. 全局基础配置 TUN / Sniffer / DNS 防泄漏
+//  一. 全局基础配置
 // =============================================
-
   const fixed = {
     "port": 7890,
     "socks-port": 7891,
@@ -46,18 +46,20 @@ function main(config) {
     "keep-alive-interval": 15,
     "global-ua": "clash",
     "geodata-loader": "memconservative",
-
+    
     "profile": {
       "store-selected": true,
       "store-fake-ip": true
     },
-
+    
     "experimental": {
       "quic-go-disable-gso": true,
       "quic-go-disable-ecn": true,
       "dialer-ip4p-convert": false
     },
-
+// ==============
+//      TUN
+// ==============
     "tun": {
       "enable": true,
       "stack": "mips",
@@ -79,7 +81,9 @@ function main(config) {
       "endpoint-independent-nat": true,
       "route-exclude-address-set": ["cn_ip"]
     },
-
+// ==============
+//  Sniffer 嗅探
+// ==============
     "sniffer": {
       "enable": true,
       "override-destination": true,
@@ -105,7 +109,9 @@ function main(config) {
         "+.push.apple.com"
       ]
     },
-
+// ==============
+//   DNS 防泄漏
+// ==============
     "dns": {
       "enable": true,
       "ipv6": false,
@@ -300,17 +306,16 @@ function main(config) {
     }
   };
 
-  // ===========================================
-  // 节点池
-  // ===========================================
+// =============================================
+//  二. 节点池
+// =============================================
 
   fixed.proxies = currentProxies;
   fixed["proxy-groups"] = [];
 
-  // ============================================================
-  // 1. 主策略组（策略出站入口/代理网关/主选择组）
-  // ============================================================
-
+// =============================================
+// 三. 主策略组（策略出站入口/代理网关/主选择组）
+// =============================================
   fixed["proxy-groups"].push(
     {
       "name": "PROXY-Gate",
@@ -341,11 +346,9 @@ function main(config) {
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
     }
   );
-
-  // ============================================================
-  // 2. 普通服务策略组
-  // ============================================================
-
+  // =================
+  //   普通服务策略组
+  // =================
   const serviceGroupNames = [
     "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
     "GPT", "Gemini", "Claude", "Copilot", "Grok", "Microsoft",
@@ -389,11 +392,10 @@ function main(config) {
       ]
     });
   });
-
-  // ============================================================
-  // 3. 动态生成地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）、地区 Manual 手动组
-  // ============================================================
-
+  // ============================================
+  //   动态生成地区
+  //   Fallback 故转 / Auto 自动 / Manual 手动组
+  // ============================================
   const regionGroups = [
     {key: "HK", name: "🇭🇰 香港", filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
     {key: "TW", name: "🇹🇼 台湾", filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
@@ -431,13 +433,12 @@ function main(config) {
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
-    // 只有 3 个及以上节点才生成该地区 Auto。
+    // 满足下列条件数，才会生成该地区相应节点组
     if (matched.length === 0) {
       return;
     }
 
-    // 1. 生成地区 Fallback 故障转移组（含地区自动组与无缝兼容手动切换/自动回退）
-    // 将“手动选择组”放在第一位，后面跟该地区所有实际节点
+    // 生成地区 Fallback 故障转移组
     // 效果：优先使用手动选中的节点；若手动组断连或未选，自动测试并回退至该地区其他可用节点
     fixed["proxy-groups"].push({
       name: fallbackName,
@@ -450,7 +451,7 @@ function main(config) {
       interval: 300
     });
 
-    // 2. 生成地区 Manual 手动选择组
+    // 生成地区 Manual 手动选择组
     fixed["proxy-groups"].push({
       name: manualName,
       type: "select",
@@ -458,7 +459,7 @@ function main(config) {
       icon: region.icon
     });
 
-    // 3. 生成地区 Auto 自动选择组
+    // 生成地区 Auto 自动择优组
     fixed["proxy-groups"].push({
       name: autoName,
       type: "url-test",
@@ -470,17 +471,15 @@ function main(config) {
       tolerance: 50
     });
 
-    // 这里只记录实际生成的 Auto数组。
-    // 后续服务策略组和 APNs-Fallback 都只引用这个数组。
+    // 只记录实际生成的数组
+    // 后续服务策略组和 APNs-Fallback 都只引用此处数组
     existingRegionalFallbacks.push(fallbackName);
     existingRegionalAutos.push(autoName);
     //allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
-
-  // ============================================================
-  // 4. 将生成的地区组插入服务策略组
-  // ============================================================
-
+  // ==============================
+  //   将生成的地区组插入服务策略组
+  // ==============================
   const serviceProxyChoices = [
     "🌐 所有-手动",
     ...existingRegionalFallbacks,
@@ -494,11 +493,9 @@ function main(config) {
       group.proxies = serviceProxyChoices.slice();
     }
   });
-
-  // ============================================================
-  // 5. PROXY-Gate 选项更新
-  // ============================================================
-
+  // =======================
+  //   PROXY-Gate 选项更新
+  // =======================
   const proxyGate = fixed["proxy-groups"].find(
     group => group.name === "PROXY-Gate"
   );
@@ -510,11 +507,9 @@ function main(config) {
       "DIRECT"
     ];
   }
-
-  // ============================================================
-  // 6. Apple Push 专用 APNs-Fallback
-  // ============================================================
-
+  // =================================
+  //   Apple Push 专用 APNs-Fallback
+  // =================================
   fixed["proxy-groups"].push({
     name: "APNs-Fallback",
     type: "fallback",
