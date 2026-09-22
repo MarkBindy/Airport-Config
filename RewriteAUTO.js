@@ -426,7 +426,7 @@ function main(config) {
       name => region.filter.test(name)
     );
 
-    const fallbackName = region.name + "-故转";
+    const fallbackName = region.name + "-故障转移";
     const autoName = region.name + "-自动";
     const manualName = region.name + "-手动";
 
