@@ -464,6 +464,7 @@ function main(config) {
       interval: 900,
       tolerance: 50
     });
+
     existingRegionalFallbacks.push(fallbackName);
     allRegionalGroupNames.push(fallbackName);  // 按顺序排列：故障转移 -> 手动
   });
