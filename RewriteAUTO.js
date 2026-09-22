@@ -478,7 +478,8 @@ function main(config) {
 
   const serviceProxyChoices = [
     "🌐 所有-手动",
-    ...allRegionalGroupNames,
+    ...existingRegionalFallbacks,
+    ...existingRegionalAutos,
     "PROXY-Gate",
     "DIRECT"
   ];
