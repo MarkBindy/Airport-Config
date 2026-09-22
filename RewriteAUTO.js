@@ -351,9 +351,8 @@ function main(config) {
   // =================
   const serviceGroupNames = [
     "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
-    "GPT", "Gemini", "Claude", "Copilot", "Grok", "Microsoft",
-    "Google", "Apple", "X", "Facebook", "Instagram", "WhatsApp",
-    "Telegram", "Github", "Speedtest"
+    "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
+    "WhatsApp", "Telegram", "Github", "Speedtest"
   ];
 
   const serviceIcons = {
@@ -521,23 +520,34 @@ function main(config) {
 // 四. Rules 规则列表
 // =============================================
   fixed.rules = [
-    "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
+    // --- 本地/局域网 ---
+    "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",   //禁用国外 QUIC 流量
+    "DOMAIN-SUFFIX,localhost,DIRECT",
+    "DOMAIN,local.adguard.org,DIRECT",
+    "DOMAIN-SUFFIX,local,DIRECT",
+    "DOMAIN-SUFFIX,lan,DIRECT",
+    "IP-CIDR,0.0.0.0/8,DIRECT,no-resolve",
     "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
+    "IP-CIDR,100.64.0.0/10,DIRECT,no-resolve",
     "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
-    "GEOIP,LAN,DIRECT,no-resolve",
+    "IP-CIDR,169.254.0.0/16,DIRECT,no-resolve",
+    "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
+    "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
+    "IP-CIDR,224.0.0.0/4,DIRECT,no-resolve",
+    "IP-CIDR,240.0.0.0/4,DIRECT,no-resolve",
+    "IP-CIDR,111.208.73.0/24,DIRECT,no-resolve",
+    "GEOSITE,private,DIRECT",
+    "GEOIP,private,DIRECT,no-resolve",
 
     // Apple Push 必须在普通 Apple 规则之前
     "DOMAIN-SUFFIX,push.apple.com,Apple Push",
     "DOMAIN-SUFFIX,push-apple.com.akadns.net,Apple Push",
     "DOMAIN-KEYWORD,apple.com.edgekey.net,Apple Push",
-
     "IP-CIDR,17.249.0.0/16,Apple Push,no-resolve",
     "IP-CIDR,17.252.0.0/16,Apple Push,no-resolve",
     "IP-CIDR,17.57.144.0/22,Apple Push,no-resolve",
     "IP-CIDR,17.188.128.0/18,Apple Push,no-resolve",
     "IP-CIDR,17.188.20.0/23,Apple Push,no-resolve",
-
     "IP-CIDR6,2620:149:a44::/48,Apple Push,no-resolve",
     "IP-CIDR6,2403:300:a42::/48,Apple Push,no-resolve",
     "IP-CIDR6,2403:300:a51::/48,Apple Push,no-resolve",
@@ -555,6 +565,218 @@ function main(config) {
     "RULE-SET,ACL4SSR_BanAD,REJECT",
     "RULE-SET,ACL4SSR_BanProgramAD,REJECT",
 
+    // --- 银行登录修复与风控 SDK ---
+    "DOMAIN-SUFFIX,tongdun.net,DIRECT",
+    "DOMAIN-SUFFIX,tongduncdn.com,DIRECT",
+    "DOMAIN-SUFFIX,ishumei.com,DIRECT",
+    "DOMAIN-SUFFIX,riskradar.net,DIRECT",
+    "DOMAIN-SUFFIX,geetest.com,DIRECT",
+    "DOMAIN-SUFFIX,dingxiangyun.com,DIRECT",
+    "DOMAIN-SUFFIX,dingxiangyun.cn,DIRECT",
+    "DOMAIN-SUFFIX,trustdevice.net,DIRECT",
+    "DOMAIN-SUFFIX,aegis.qq.com,DIRECT",
+    "DOMAIN-SUFFIX,antpay.com,DIRECT",
+    "DOMAIN-SUFFIX,rong360.com,DIRECT",
+
+    // --- 银行 APP 推送与统计服务 ---
+    "DOMAIN-SUFFIX,jiguang.cn,DIRECT",
+    "DOMAIN-SUFFIX,jpush.cn,DIRECT",
+    "DOMAIN-SUFFIX,jpush.io,DIRECT",
+    "DOMAIN-SUFFIX,umeng.com,DIRECT",
+    "DOMAIN-SUFFIX,umengcloud.com,DIRECT",
+    "DOMAIN-SUFFIX,rongcloud.cn,DIRECT",
+    "DOMAIN-SUFFIX,rongcloud.com,DIRECT",
+
+    // --- 国内银行域名 ---
+    "DOMAIN-KEYWORD,bank,DIRECT",
+    "DOMAIN-SUFFIX,95516.com,DIRECT",
+    "DOMAIN-SUFFIX,unionpay.com,DIRECT",
+    "DOMAIN-SUFFIX,unionpaysecure.com,DIRECT",
+    "DOMAIN-SUFFIX,icbc.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,ccb.com,DIRECT",
+    "DOMAIN-SUFFIX,ccblife.com,DIRECT",
+    "DOMAIN-SUFFIX,boc.cn,DIRECT",
+    "DOMAIN-SUFFIX,abchina.com,DIRECT",
+    "DOMAIN-SUFFIX,psbc.com,DIRECT",
+    "DOMAIN-SUFFIX,bankcomm.com,DIRECT",
+    "DOMAIN-SUFFIX,cmbchina.com,DIRECT",
+    "DOMAIN-SUFFIX,spdb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,cib.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,cebbank.com,DIRECT",
+    "DOMAIN-SUFFIX,pingan.com,DIRECT",
+    "DOMAIN-SUFFIX,pingan.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,cmbwinglungbank.com,DIRECT",
+    "DOMAIN-SUFFIX,cmbc.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,cgbchina.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,hxb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,bankofshanghai.com,DIRECT",
+    "DOMAIN-SUFFIX,shrcb.com,DIRECT",
+    "DOMAIN-SUFFIX,gzcb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,nbcb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,njcb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,cqrcb.com,DIRECT",
+    "DOMAIN-SUFFIX,brcb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,czbank.com,DIRECT",
+    "DOMAIN-SUFFIX,hkbchina.com,DIRECT",
+    "DOMAIN-SUFFIX,bocd.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,bocsh.com,DIRECT",
+    "DOMAIN-SUFFIX,srcb.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,gdb.com.cn,DIRECT",
+
+    // --- 支付 / 微信生态 ---
+    "DOMAIN-SUFFIX,alipay.com,DIRECT",
+    "DOMAIN-SUFFIX,alipayobjects.com,DIRECT",
+    "DOMAIN-SUFFIX,alipayhk.com,DIRECT",
+    "DOMAIN-SUFFIX,antgroup.com,DIRECT",
+    "DOMAIN-SUFFIX,antfinancial.com,DIRECT",
+    "DOMAIN-SUFFIX,tenpay.com,DIRECT",
+    "DOMAIN-SUFFIX,weixin.qq.com,DIRECT",
+    "DOMAIN-SUFFIX,wechat.com,DIRECT",
+    "DOMAIN-SUFFIX,servicewechat.com,DIRECT",
+    "DOMAIN-SUFFIX,qpic.cn,DIRECT",
+    "DOMAIN-SUFFIX,qlogo.cn,DIRECT",
+    "DOMAIN-SUFFIX,url.cn,DIRECT",
+    "DOMAIN-SUFFIX,wechatpay.cn,DIRECT",
+    "DOMAIN-SUFFIX,wx.qq.com,DIRECT",
+    "DOMAIN-SUFFIX,weixinbridge.com,DIRECT",
+
+    // --- 内容社区：小红书 ---
+    "DOMAIN-SUFFIX,xiaohongshu.com,DIRECT",
+    "DOMAIN-SUFFIX,xiaohongshu.net,DIRECT",
+    "DOMAIN-SUFFIX,xhscdn.com,DIRECT",
+
+    // --- 政务与公共服务 ---
+    "DOMAIN-SUFFIX,12315.cn,DIRECT",
+    "DOMAIN-SUFFIX,gov.cn,DIRECT",
+    "DOMAIN-KEYWORD,12315,DIRECT",
+    "DOMAIN-KEYWORD,gjzwfw,DIRECT",
+    "DOMAIN-KEYWORD,12306,DIRECT",
+    "DOMAIN-SUFFIX,12306.cn,DIRECT",
+    "DOMAIN-SUFFIX,govapp.cn,DIRECT",
+
+    // --- 运营商与网络服务 ---
+    "DOMAIN-SUFFIX,10086.cn,DIRECT",
+    "DOMAIN-SUFFIX,10010.com,DIRECT",
+    "DOMAIN-SUFFIX,189.cn,DIRECT",
+    "DOMAIN-SUFFIX,chinamobile.com,DIRECT",
+    "DOMAIN-SUFFIX,chinaunicom.com,DIRECT",
+    "DOMAIN-SUFFIX,chinatelecom.com.cn,DIRECT",
+
+    // --- 小米 / 米家生态 ---
+    "DOMAIN-SUFFIX,mi.com,DIRECT",
+    "DOMAIN-SUFFIX,miui.com,DIRECT",
+    "DOMAIN-SUFFIX,miwifi.com,DIRECT",
+    "DOMAIN-SUFFIX,xiaomi.com,DIRECT",
+    "DOMAIN-SUFFIX,xiaomicp.com,DIRECT",
+    "DOMAIN-SUFFIX,miot-spec.com,DIRECT",
+
+    // --- 智能家居 / 家电品牌 ---
+    "DOMAIN-SUFFIX,midea.com,DIRECT",
+    "DOMAIN-SUFFIX,midea.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,smartmidea.net,DIRECT",
+    "DOMAIN-SUFFIX,haier.net,DIRECT",
+    "DOMAIN-SUFFIX,haier.com,DIRECT",
+    "DOMAIN-SUFFIX,hisense.com,DIRECT",
+    "DOMAIN-SUFFIX,tcl.com,DIRECT",
+    "DOMAIN-SUFFIX,yeelight.com,DIRECT",
+    "DOMAIN-SUFFIX,aqara.com,DIRECT",
+    "DOMAIN-SUFFIX,tuya.com,DIRECT",
+    "DOMAIN-SUFFIX,tuyaus.com,DIRECT",
+
+    // --- 电商购物 ---
+    "DOMAIN-SUFFIX,taobao.com,DIRECT",
+    "DOMAIN-KEYWORD,taobao,DIRECT",
+    "DOMAIN-SUFFIX,tmall.com,DIRECT",
+    "DOMAIN-SUFFIX,jd.com,DIRECT",
+    "DOMAIN-SUFFIX,meituan.net,DIRECT",
+    "DOMAIN-SUFFIX,meituan.com,DIRECT",
+    "DOMAIN-SUFFIX,pinduoduo.com,DIRECT",
+    "DOMAIN-SUFFIX,suning.com,DIRECT",
+
+    // --- 内容平台 / 短视频 ---
+    "DOMAIN-SUFFIX,douyin.com,DIRECT",
+    "DOMAIN-SUFFIX,douyinpic.com,DIRECT",
+    "DOMAIN-SUFFIX,iesdouyin.com,DIRECT",
+    "DOMAIN-SUFFIX,snssdk.com,DIRECT",
+    "DOMAIN-SUFFIX,amemv.com,DIRECT",
+    "DOMAIN-SUFFIX,byteimg.com,DIRECT",
+    "DOMAIN-SUFFIX,ibytedtos.com,DIRECT",
+    "DOMAIN-SUFFIX,volccdn.com,DIRECT",
+    "DOMAIN-SUFFIX,ixigua.com,DIRECT",
+    "DOMAIN-SUFFIX,bilibili.com,DIRECT",
+    "DOMAIN-SUFFIX,bilivideo.com,DIRECT",
+    "DOMAIN-SUFFIX,iqiyi.com,DIRECT",
+    "DOMAIN-SUFFIX,youku.com,DIRECT",
+    "DOMAIN-SUFFIX,weibo.com,DIRECT",
+    "DOMAIN-SUFFIX,zhihu.com,DIRECT",
+
+    // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
+    "GEOSITE,category-games@cn,DIRECT",
+    "GEOSITE,steam@cn,DIRECT",
+    "GEOSITE,microsoft@cn,DIRECT",
+    "GEOSITE,apple-cn,DIRECT",
+    "GEOSITE,apple@cn,DIRECT",
+    "GEOSITE,apple,DIRECT",
+    "DOMAIN-SUFFIX,mzstatic.com,DIRECT",
+    "DOMAIN-SUFFIX,itunes.apple.com,DIRECT",
+    "DOMAIN-SUFFIX,icloud.com,DIRECT",
+    "DOMAIN-SUFFIX,icloud-content.com,DIRECT",
+    "DOMAIN-SUFFIX,me.com,DIRECT",
+    "DOMAIN-SUFFIX,aaplimg.com,DIRECT",
+    "DOMAIN-SUFFIX,cdn20.com,DIRECT",
+    "DOMAIN-SUFFIX,cdn-apple.com,DIRECT",
+    "DOMAIN-SUFFIX,akadns.net,DIRECT",
+    "DOMAIN-SUFFIX,akamaiedge.net,DIRECT",
+    "DOMAIN-SUFFIX,edgekey.net,DIRECT",
+    "DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT",
+    "DOMAIN-SUFFIX,mwcname.com,DIRECT",
+    "DOMAIN-SUFFIX,apple.com,DIRECT",
+    "DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT",
+    "DOMAIN-SUFFIX,apple-mapkit.com,DIRECT",
+    "DOMAIN,cn.bing.com,DIRECT",
+    "DOMAIN-SUFFIX,office.com,DIRECT",
+    "DOMAIN-SUFFIX,office365.com,DIRECT",
+    "DOMAIN-KEYWORD,officecdn,DIRECT",
+    "DOMAIN-KEYWORD,-cn,DIRECT",
+    "DOMAIN-SUFFIX,cn,DIRECT",
+    "DOMAIN-SUFFIX,中国,DIRECT",
+    "DOMAIN-SUFFIX,公司,DIRECT",
+    "DOMAIN-SUFFIX,网络,DIRECT",
+    "DOMAIN-SUFFIX,qq.com,DIRECT",
+    "DOMAIN-SUFFIX,qqurl.com,DIRECT",
+    "DOMAIN-SUFFIX,tencent.com,DIRECT",
+    "DOMAIN-SUFFIX,gtimg.com,DIRECT",
+    "DOMAIN-SUFFIX,gtimg.cn,DIRECT",
+    "DOMAIN-SUFFIX,gtimg.net,DIRECT",
+    "DOMAIN-SUFFIX,idqqimg.com,DIRECT",
+    "DOMAIN-SUFFIX,qqmail.com,DIRECT",
+    "DOMAIN-SUFFIX,foxmail.com,DIRECT",
+    "DOMAIN-SUFFIX,weiyun.com,DIRECT",
+    "DOMAIN-SUFFIX,myapp.com,DIRECT",
+    "DOMAIN-SUFFIX,qcloud.com,DIRECT",
+    "DOMAIN-SUFFIX,myqcloud.com,DIRECT",
+    "DOMAIN-SUFFIX,tencentcloud.com,DIRECT",
+    "DOMAIN-SUFFIX,alicdn.com,DIRECT",
+    "DOMAIN-KEYWORD,alicdn,DIRECT",
+    "DOMAIN-KEYWORD,alipay,DIRECT",
+    "DOMAIN-SUFFIX,aliyuncs.com,DIRECT",
+    "DOMAIN-SUFFIX,baidu.com,DIRECT",
+    "DOMAIN-SUFFIX,gtimg.com,DIRECT",
+    "DOMAIN-SUFFIX,amemv.com,DIRECT",
+    "DOMAIN-SUFFIX,bytedance.com,DIRECT",
+    "DOMAIN-SUFFIX,byteimg.com,DIRECT",
+    "DOMAIN-SUFFIX,csdn.net,DIRECT",
+    "DOMAIN-SUFFIX,douban.com,DIRECT",
+    "DOMAIN-SUFFIX,doubanio.com,DIRECT",
+    "DOMAIN-SUFFIX,163.com,DIRECT",
+    "DOMAIN-SUFFIX,126.com,DIRECT",
+    "DOMAIN-SUFFIX,127.net,DIRECT",
+    "DOMAIN-SUFFIX,xmcdn.com,DIRECT",
+    "DOMAIN-SUFFIX,xunlei.com,DIRECT",
+
+    // --- AI 服务 ---
+    "GEOSITE,category-ai-!cn,Ai",
+    
     // YouTube
     "DOMAIN-SUFFIX,youtube.com,YouTube",
     "DOMAIN-SUFFIX,youtu.be,YouTube",
@@ -564,6 +786,7 @@ function main(config) {
     "DOMAIN-SUFFIX,ytimg.com,YouTube",
     "DOMAIN-SUFFIX,googlevideo.com,YouTube",
     "DOMAIN-SUFFIX,ggpht.com,YouTube",
+    "GEOSITE,youtube,YouTube",
 
     // Netflix
     "DOMAIN-SUFFIX,netflix.com,Netflix",
@@ -589,6 +812,8 @@ function main(config) {
     "DOMAIN-SUFFIX,netflixinvestor.com,Netflix",
     "DOMAIN-SUFFIX,netflixtechblog.com,Netflix",
     "DOMAIN,netflix.com.edgesuite.net,Netflix",
+    "GEOSITE,netflix,Netflix",
+    "GEOIP,netflix,Netflix,no-resolve",
 
     // Disney+
     "DOMAIN-SUFFIX,disneyplus.com,Disney+",
@@ -600,6 +825,7 @@ function main(config) {
     "DOMAIN-SUFFIX,disney.playback.edge.bamgrid.com,Disney+",
     "DOMAIN-SUFFIX,star.playback.edge.bamgrid.com,Disney+",
     "DOMAIN-SUFFIX,search-api-disney.bamgrid.com,Disney+",
+    "GEOSITE,disney,Disney+",
 
     // Spotify
     "DOMAIN-SUFFIX,spotify.com,Spotify",
@@ -609,6 +835,7 @@ function main(config) {
     "DOMAIN-SUFFIX,api-partner.spotify.com,Spotify",
     "DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,Spotify",
     "DOMAIN-SUFFIX,spotifycdn.com,Spotify",
+    "GEOSITE,spotify,Spotify",
 
     // TikTok
     "DOMAIN-SUFFIX,tiktok.com,TikTok",
@@ -621,6 +848,7 @@ function main(config) {
     "DOMAIN-SUFFIX,byteoversea.com,TikTok",
     "DOMAIN-SUFFIX,muscdn.com,TikTok",
     "DOMAIN-SUFFIX,musical.ly,TikTok",
+    "GEOSITE,tiktok,TikTok",
 
     // Twitch
     "DOMAIN-SUFFIX,twitch.tv,Twitch",
@@ -628,64 +856,7 @@ function main(config) {
     "DOMAIN-SUFFIX,jtvnw.net,Twitch",
     "DOMAIN-SUFFIX,ttvnw.net,Twitch",
     "DOMAIN-SUFFIX,twitchsvc.net,Twitch",
-
-    // GPT
-    "DOMAIN-SUFFIX,chatgpt.com,GPT",
-    "DOMAIN-SUFFIX,openai.com,GPT",
-    "DOMAIN-SUFFIX,auth.openai.com,GPT",
-    "DOMAIN-SUFFIX,oaistatic.com,GPT",
-    "DOMAIN-SUFFIX,oaiusercontent.com,GPT",
-    "DOMAIN,android.chat.openai.com,GPT",
-    "DOMAIN,auth0.openai.com,GPT",
-    "DOMAIN,chat.openai.com,GPT",
-    "DOMAIN,desktop.chat.openai.com,GPT",
-    "DOMAIN,ios.chat.openai.com,GPT",
-    "DOMAIN,tcr9i.chat.openai.com,GPT",
-    "DOMAIN,cdn.openaimerge.com,GPT",
-    "DOMAIN,ws.chatgpt.com,GPT",
-    "DOMAIN,setup.auth.openai.com,GPT",
-    "DOMAIN,cdn.workos.com,GPT",
-    "DOMAIN,forwarder.workos.com,GPT",
-    "DOMAIN,images.workoscdn.com,GPT",
-    "DOMAIN,workos.imgix.net,GPT",
-    "DOMAIN,setup.workos.com,GPT",
-    "DOMAIN,ct.sendgrid.net,GPT",
-    "DOMAIN,oaistatsig.com,GPT",
-    "DOMAIN,intercom.io,GPT",
-    "DOMAIN,intercomcdn.com,GPT",
-    "DOMAIN,js.intercomcdn.com,GPT",
-    "DOMAIN,js.stripe.com,GPT",
-    "DOMAIN,o207216.ingest.sentry.io,GPT",
-    "DOMAIN,o33249.ingest.sentry.io,GPT",
-    "DOMAIN,rum.browser-intake-datadoghq.com,GPT",
-    "DOMAIN,challenges.cloudflare.com,GPT",
-    "DOMAIN,humb.apple.com,GPT",
-
-    // Gemini
-    "DOMAIN-SUFFIX,gemini.google.com,Gemini",
-    "DOMAIN-SUFFIX,aistudio.google.com,Gemini",
-    "DOMAIN-SUFFIX,deepmind.com,Gemini",
-    "DOMAIN-SUFFIX,deepmind.google,Gemini",
-    "DOMAIN-SUFFIX,gemini.googleusercontent.com,Gemini",
-    "DOMAIN-SUFFIX,makersuite.google.com,Gemini",
-
-    // Claude
-    "DOMAIN-SUFFIX,claude.ai,Claude",
-    "DOMAIN-SUFFIX,anthropic.com,Claude",
-    "DOMAIN-SUFFIX,claudeusercontent.com,Claude",
-    "DOMAIN-SUFFIX,claudeusercontent.com.cdn.cloudflare.net,Claude",
-
-    // Copilot
-    "DOMAIN-SUFFIX,copilot.microsoft.com,Copilot",
-    "DOMAIN-SUFFIX,ai.microsoft.com,Copilot",
-    "DOMAIN-SUFFIX,designer.microsoft.com,Copilot",
-    "DOMAIN-SUFFIX,copilot.com,Copilot",
-    "DOMAIN-KEYWORD,copilot,Copilot",
-
-    // Grok
-    "DOMAIN-SUFFIX,grok.com,Grok",
-    "DOMAIN-SUFFIX,x.ai,Grok",
-    "DOMAIN-KEYWORD,grok,Grok",
+    "GEOSITE,twitch,Twitch",
 
     // Microsoft
     "DOMAIN-SUFFIX,account.microsoft.com,Microsoft",
@@ -699,7 +870,6 @@ function main(config) {
     "DOMAIN-SUFFIX,msftauth.net,Microsoft",
     "DOMAIN-SUFFIX,msftauthimages.net,Microsoft",
     "DOMAIN-SUFFIX,msidentity.com,Microsoft",
-
     "DOMAIN-SUFFIX,outlook.com,Microsoft",
     "DOMAIN-SUFFIX,outlook.office.com,Microsoft",
     "DOMAIN-SUFFIX,outlook.office365.com,Microsoft",
@@ -709,7 +879,6 @@ function main(config) {
     "DOMAIN-SUFFIX,live.net,Microsoft",
     "DOMAIN-SUFFIX,office.live.com,Microsoft",
     "DOMAIN-SUFFIX,mail.live.com,Microsoft",
-
     "DOMAIN-SUFFIX,microsoft365.com,Microsoft",
     "DOMAIN-SUFFIX,office.com,Microsoft",
     "DOMAIN-SUFFIX,office.net,Microsoft",
@@ -722,21 +891,18 @@ function main(config) {
     "DOMAIN-SUFFIX,microsoftonline.com,Microsoft",
     "DOMAIN-SUFFIX,microsoftonline-p.com,Microsoft",
     "DOMAIN-SUFFIX,microsoftonline-p.net,Microsoft",
-
     "DOMAIN-SUFFIX,onedrive.com,Microsoft",
     "DOMAIN-SUFFIX,onedrive.live.com,Microsoft",
     "DOMAIN-SUFFIX,1drv.com,Microsoft",
     "DOMAIN-SUFFIX,sharepoint.com,Microsoft",
     "DOMAIN-SUFFIX,sharepointonline.com,Microsoft",
     "DOMAIN-SUFFIX,sharepointonline.com.edgesuite.net,Microsoft",
-
     "DOMAIN-SUFFIX,teams.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,teams.live.com,Microsoft",
     "DOMAIN-SUFFIX,teams.events.data.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,teams.microsoft.net,Microsoft",
     "DOMAIN-SUFFIX,skype.com,Microsoft",
     "DOMAIN-SUFFIX,skypeforbusiness.com,Microsoft",
-
     "DOMAIN-SUFFIX,microsoftstore.com,Microsoft",
     "DOMAIN-SUFFIX,microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,store.microsoft.com,Microsoft",
@@ -744,7 +910,6 @@ function main(config) {
     "DOMAIN-SUFFIX,displaycatalog.mp.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,delivery.mp.microsoft.com,Microsoft",
-
     "DOMAIN-SUFFIX,windows.com,Microsoft",
     "DOMAIN-SUFFIX,windows.net,Microsoft",
     "DOMAIN-SUFFIX,windowsupdate.com,Microsoft",
@@ -756,7 +921,6 @@ function main(config) {
     "DOMAIN-SUFFIX,download.windows.com,Microsoft",
     "DOMAIN-SUFFIX,msftconnecttest.com,Microsoft",
     "DOMAIN-SUFFIX,msftncsi.com,Microsoft",
-
     "DOMAIN-SUFFIX,azure.com,Microsoft",
     "DOMAIN-SUFFIX,azure.net,Microsoft",
     "DOMAIN-SUFFIX,azureedge.net,Microsoft",
@@ -767,7 +931,6 @@ function main(config) {
     "DOMAIN-SUFFIX,msft.net,Microsoft",
     "DOMAIN-SUFFIX,msftstatic.com,Microsoft",
     "DOMAIN-SUFFIX,msecnd.net,Microsoft",
-
     "DOMAIN-SUFFIX,data.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,events.data.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,settings-win.data.microsoft.com,Microsoft",
@@ -775,26 +938,21 @@ function main(config) {
     "DOMAIN-SUFFIX,watson.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,watson.telemetry.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,telemetry.microsoft.com,Microsoft",
-
     "DOMAIN-SUFFIX,xbox.com,Microsoft",
     "DOMAIN-SUFFIX,xboxlive.com,Microsoft",
     "DOMAIN-SUFFIX,xboxlive.net,Microsoft",
     "DOMAIN-SUFFIX,xboxservices.com,Microsoft",
     "DOMAIN-SUFFIX,xboxab.com,Microsoft",
-
     "DOMAIN-SUFFIX,visualstudio.com,Microsoft",
     "DOMAIN-SUFFIX,visualstudio.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,vsassets.io,Microsoft",
     "DOMAIN-SUFFIX,vsblob.vsassets.io,Microsoft",
-
     "DOMAIN-SUFFIX,bing.com,Microsoft",
     "DOMAIN-SUFFIX,bing.net,Microsoft",
     "DOMAIN-SUFFIX,bingapis.com,Microsoft",
     "DOMAIN-SUFFIX,bingusercontent.com,Microsoft",
-
     "DOMAIN-SUFFIX,akamaized.net,Microsoft",
     "DOMAIN-SUFFIX,microsoft.com.akamaized.net,Microsoft",
-
     "DOMAIN-KEYWORD,microsoft,Microsoft",
     "DOMAIN-KEYWORD,windows,Microsoft",
     "DOMAIN-KEYWORD,office365,Microsoft",
@@ -802,6 +960,8 @@ function main(config) {
     "DOMAIN-KEYWORD,outlook,Microsoft",
     "DOMAIN-KEYWORD,hotmail,Microsoft",
     "DOMAIN-KEYWORD,xbox,Microsoft",
+    "GEOSITE,microsoft,Microsoft",
+    "GEOSITE,microsoft@cn,Microsoft",
 
     // Google
     "DOMAIN-KEYWORD,google,Google",
@@ -810,12 +970,16 @@ function main(config) {
     "DOMAIN-SUFFIX,gstatic.com,Google",
     "DOMAIN-SUFFIX,googleapis.com,Google",
     "DOMAIN-SUFFIX,googleusercontent.com,Google",
+    "GEOSITE,google,Google",
+    "GEOIP,google,Google,no-resolve",
 
     // X
     "DOMAIN-SUFFIX,x.com,X",
     "DOMAIN-SUFFIX,twitter.com,X",
     "DOMAIN-SUFFIX,t.co,X",
     "DOMAIN-SUFFIX,twimg.com,X",
+    "GEOSITE,twitter,X",
+    "GEOIP,twitter,X,no-resolve",
 
     // Facebook
     "DOMAIN-SUFFIX,facebook.com,Facebook",
@@ -823,17 +987,21 @@ function main(config) {
     "DOMAIN-SUFFIX,fbcdn.net,Facebook",
     "DOMAIN-SUFFIX,fbsbx.com,Facebook",
     "DOMAIN-SUFFIX,fb.com,Facebook",
+    "GEOSITE,facebook,Facebook",
+    "GEOIP,facebook,Facebook,no-resolve",
 
     // Instagram
     "DOMAIN-SUFFIX,instagram.com,Instagram",
     "DOMAIN-SUFFIX,cdninstagram.com,Instagram",
     "DOMAIN-SUFFIX,instagram.net,Instagram",
+    "GEOSITE,instagram,Instagram",
 
     // WhatsApp
     "DOMAIN-SUFFIX,whatsapp.com,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.net,WhatsApp",
     "DOMAIN-SUFFIX,wa.me,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.org,WhatsApp",
+    "GEOSITE,whatsapp,WhatsApp",
 
     // Telegram
     "DOMAIN-SUFFIX,telegram.org,Telegram",
@@ -842,7 +1010,6 @@ function main(config) {
     "DOMAIN-SUFFIX,tdesktop.com,Telegram",
     "DOMAIN-SUFFIX,telegra.ph,Telegram",
     "DOMAIN-SUFFIX,telegram.dog,Telegram",
-
     "IP-CIDR,91.108.4.0/22,Telegram,no-resolve",
     "IP-CIDR,91.108.8.0/22,Telegram,no-resolve",
     "IP-CIDR,91.108.12.0/22,Telegram,no-resolve",
@@ -853,6 +1020,8 @@ function main(config) {
     "IP-CIDR6,2001:b28:f23d::/48,Telegram,no-resolve",
     "IP-CIDR6,2001:b28:f23f::/48,Telegram,no-resolve",
     "IP-CIDR6,2001:67c:4e8::/48,Telegram,no-resolve",
+    "GEOSITE,telegram,Telegram",
+    "GEOIP,telegram,Telegram,no-resolve",
 
     // Github
     "DOMAIN-SUFFIX,github.com,Github",
@@ -862,6 +1031,7 @@ function main(config) {
     "DOMAIN-SUFFIX,github.io,Github",
     "DOMAIN-SUFFIX,github.dev,Github",
     "DOMAIN-SUFFIX,githubstatus.com,Github",
+    "GEOSITE,github,Github",
 
     // Speedtest
     "DOMAIN-SUFFIX,speedtest.net,Speedtest",
@@ -870,13 +1040,16 @@ function main(config) {
     "DOMAIN-SUFFIX,ooklaserver.net,Speedtest",
     "DOMAIN-SUFFIX,ookla.net,Speedtest",
     "DOMAIN-SUFFIX,speedtestcustom.com,Speedtest",
+    "GEOSITE,category-speedtest,Speedtest",
+    "GEOSITE,category-speedtest@cn,Speedtest",
+    "GEOSITE,category-speedtest@!cn,Speedtest",
+    "GEOSITE,speedtest,Speedtest",
 
     // 中国大陆
-    "RULE-SET,ChinaMax,DIRECT",
-    "RULE-SET,ChinaMax_Domain,DIRECT",
-    "RULE-SET,ChinaMax_IP,DIRECT",
-    "GEOSITE,CN,DIRECT",
-    "GEOIP,CN,DIRECT,no-resolve",
+    "GEOSITE,geolocation-!cn,PROXY-Gate",
+    "GEOSITE,cn,DIRECT",
+    "RULE-SET,add_direct_domain,DIRECT",
+    "GEOIP,CN,DIRECT",
 
     // 最终兜底
     "MATCH,PROXY-Gate"
@@ -886,109 +1059,17 @@ function main(config) {
 // 五. Rule Providers 规则集源
 // =============================================
   fixed["rule-providers"] = {
-    "Apple": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
-    },
-
-    "Apple_Domain": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Apple_Domain.mrs"
-    },
-
-    "AdvertisingLite": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"
-    },
-
-    "AdvertisingLite_Domain": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"
-    },
-
-    "Privacy": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.yaml"
-    },
-
-    "Privacy_Domain": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Privacy_Domain.mrs"
-    },
-
-    "ACL4SSR_BanAD": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanAD_domain.mrs"
-    },
-
-    "ACL4SSR_BanProgramAD": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanProgramAD_domain.mrs"
-    },
-
-    "ChinaMax": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.yaml"
-    },
-
-    "ChinaMax_Domain": {
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/ChinaMax_Domain.mrs"
-    },
-
-    "fakeipfilter_domain": { 
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"
-    },
- 
-    "add_direct_domain": { 
-      "type": "http",
-      "behavior": "domain",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"
-    },
-
-    "ChinaMax_IP": {
-      "type": "http",
-      "behavior": "ipcidr",
-      "format": "mrs",
-      "interval": 86400,
-      "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/ChinaMax_IP.mrs"
-    }
+    "Apple":                  {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"},
+    "Apple_Domain":           {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Apple_Domain.mrs"},
+    "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
+    "AdvertisingLite_Domain": {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"},
+    "Privacy":                {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.yaml"},
+    "Privacy_Domain":         {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Privacy_Domain.mrs"},
+    "ACL4SSR_BanAD":          {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanAD_domain.mrs"},
+    "ACL4SSR_BanProgramAD":   {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanProgramAD_domain.mrs"},
+    "fakeipfilter_domain":    {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"},
+    "add_direct_domain":      {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", url: "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"},
+    "cn_ip":                  {"type": "http", "interval": 86400, "behavior": "ipcidr", "format": "mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   };
 
   return fixed;
