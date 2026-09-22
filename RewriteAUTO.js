@@ -30,102 +30,104 @@ function main(config) {
 // 一. 全局基础配置
 // =============================================
   const fixed = {
-    "port": 7890,
-    "socks-port": 7891,
-    "redir-port": 7892,
-    "mixed-port": 7893,
-    "tproxy-port": 7895,
-    "allow-lan": true,
-    "bind-address": "*",
-    "mode": "rule",
-    "ipv6": true,
-    "log-level": "info",
-    "unified-delay": true,
-    "tcp-concurrent": true,
-    "keep-alive-idle": 600,
-    "keep-alive-interval": 15,
-    "global-ua": "clash",
-    "geodata-loader": "memconservative",
-    
+    "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
+    "socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
+    "redir-port": 7892,                           // 监听端口  重定向代理端口
+    "mixed-port": 7893,                           // 监听端口  HTTP + SOCKS5 混合代理端口
+    "tproxy-port": 7895,                          // 监听端口  透明代理端口
+    "allow-lan": true,                            // 局域连接  是否允许局域网设备连接
+    "bind-address": "*",                          // 监听接口  监听的网络接口（* 表示所有接口）
+    "mode": "rule",                               // 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
+    "ipv6": true,                                 // 网络协议  是否启用 IPv6 支持
+    "log-level": "info",                          // 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+    "unified-delay": true,                        // 统一延迟  减少节点延迟抖动
+    "tcp-concurrent": true,                       // 并发连接  提升多任务性能
+    "keep-alive-idle": 600,                       // 保活时间  TCP
+    "keep-alive-interval": 15,                    // 保活时间  间隔 TCP
+    "global-ua": "clash",                         // 用户代理  全局默认UA
+    "geodata-loader": "memconservative",          // 数据加载  模式 standard（标准）memconservative（低内存）       
     "profile": {
-      "store-selected": true,
-      "store-fake-ip": true
+      "store-selected": true,                     // 保存选择  记住选择的节点和策略组
+      "store-fake-ip": true                       // 保存选择  Fake-IP 映射
     },
     
     "experimental": {
-      "quic-go-disable-gso": true,
-      "quic-go-disable-ecn": true,
-      "dialer-ip4p-convert": false
+      "quic-go-disable-gso": true,                // 快速禁用  GSO
+      "quic-go-disable-ecn": true,                // 快速禁用  ECN
+      "dialer-ip4p-convert": false                // 地址转换  IP4P
     },
 // ==============
 //      TUN
 // ==============
     "tun": {
-      "enable": true,
-      "stack": "mips",
-      "mtu": 1492,
-      "dns-hijack": ["udp://any:53", "tcp://any:53"],
-      "auto-route": true,
-      "auto-redirect": true,
-      "auto-detect-interface": true,
-      "strict-route": true,
-      "route-exclude-address": [
+      "enable": true,                             // 网卡模式  是否启用 TUN 虚拟网卡模式
+      "stack": "mips",                            // 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
+      "mtu": 1492,                                // 最大传输  单元
+      "dns-hijack": {                             // 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
+        "udp://any:53",
+        "tcp://any:53"
+      },
+      "auto-route": true,                         // 自动路由  自动添加系统路由表      （仅内核模式有效）
+      "auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
+      "auto-detect-interface": true,              // 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
+      "strict-route": true,                       // 路由模式  严格路由,所有流量包括未匹配 auto-route 规则、其他网卡产生的流量,都会被强制送入 TUN，避免 DNS/流量 绕过代理直接从物理网卡发出而泄露
+      "route-exclude-address": [                  // 路由排除  本机连接 局域网设备/Docker/虚拟网卡 等可能受影响，按需把相关网段/接口排除掉，保证局域网访问和虚拟化网络正常
         "192.168.0.0/16",
         "10.0.0.0/8",
         "172.16.0.0/12"
       ],
-      "exclude-interface": [
+      "exclude-interface": [                      // 排除接口
         "docker*",
         "podman*"
       ],
-      "endpoint-independent-nat": true,
-      "route-exclude-address-set": ["cn_ip"]
+      "endpoint-independent-nat": true,           // 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
+      "route-exclude-address-set": ["cn_ip"]      // 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
     },
 // ==============
 //  Sniffer 嗅探
 // ==============
     "sniffer": {
-      "enable": true,
-      "override-destination": true,
-      "parse-pure-ip": true,
-      "force-dns-mapping": true,
+      "enable": true,                             // 启用嗅探  提升分流准确性
+      "override-destination": true,               // 成功解析  使用嗅探到的域名覆盖原始目标地址
+      "parse-pure-ip": true,                      // 反向解析  解析纯 IP 连接（尝试反向解析获得域名）
+      "force-dns-mapping": true,                  // 强制映射  DNS 映射（对纯 IP 连接尝试 DNS 映射）
       "sniff": {
-        "QUIC": { "ports": [443, 8443] },
-        "TLS": { "ports": [443, 8443] },
-        "HTTP": { "ports": [80, "8080-8880"] }
+        "QUIC": { "ports": [443, 8443] },         // 嗅探参数  QUIC 协议流量（HTTP/3 常用端口）
+        "TLS": { "ports": [443, 8443] },          // 嗅探参数  HTTPS（TLS）常用及备用端口
+        "HTTP": { "ports": [80, "8080-8880"] }    // 嗅探参数  HTTP 及常见 Web 代理端口段
       },
       "force-domain": [
-        "+.netflix.com",
-        "+.nflxvideo.net",
-        "+.amazonaws.com",
-        "+.media.dssott.com",
-        "+.tiktok.com"
+        "+.netflix.com",                          // 强制嗅探  Netflix 主域名
+        "+.nflxvideo.net",                        // 强制嗅探  Netflix CDN
+        "+.amazonaws.com",                        // 强制嗅探  AWS 云服务
+        "+.media.dssott.com",                     // 强制嗅探  Disney+ 流媒体
+        "+.tiktok.com"                            // 强制嗅探  TikTok 流媒体
       ],
       "skip-domain": [
-        "Mijia Cloud",
-        "dlg.io.mi.com",
-        "+.oray.com",
-        "+.sunlogin.net",
-        "+.push.apple.com"
+        "Mijia Cloud",                            // 跳过嗅探  米家云服务
+        "dlg.io.mi.com",                          // 跳过嗅探  小米设备通信
+        "+.oray.com",                             // 跳过嗅探  花生壳服务
+        "+.sunlogin.net",                         // 跳过嗅探  向日葵远程控制
+        "+.push.apple.com"                        // 跳过嗅探  苹果推送服务
       ]
     },
 // ==============
 //   DNS 防泄漏
 // ==============
     "dns": {
-      "enable": true,
-      "ipv6": false,
-      "prefer-h3": true,
-      "respect-rules": true,
-      "use-hosts": true,
-      "use-system-hosts": false,
-      "cache-algorithm": "arc",
-      "listen": "0.0.0.0:7874",
-      "enhanced-mode": "fake-ip",
-      "fake-ip-range": "198.18.0.1/16",
-      "fake-ip-filter-mode": "blacklist",
+      "enable": true,                             // 解析服务  启用 Clash 内置 DNS 服务
+      "ipv6": false,                              // 网络协议  启用 IPv6 DNS 解析支持
+      "prefer-h3": true,                          // 首选 H3
+      "respect-rules": true,                      // 遵循规则  强制遵循规则顺序
+      "use-hosts": true,                          // 配置映射  使用 Mihomo 配置中的 hosts 映射,优先使用 hosts 记录，
+      "use-system-hosts": false,                  // 系统映射  使用操作系统 hosts 文件中的域名映射
+      "cache-algorithm": "arc",                   // 缓存算法
+      "listen": "0.0.0.0:7874",                   // 监听服务  DNS 服务监听地址与端口
+      "enhanced-mode": "fake-ip",                 // 增强模式  FDNS 增强模式（Fake-IP，用于防止 DNS 泄露）
+      "fake-ip-range": "198.18.0.1/16",           // 虚拟地址  Fake-IP 虚拟地址池范围
+      "fake-ip-filter-mode": "blacklist",         // 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
       "fake-ip-filter": [
-        "+.lan",
+        "+.lan",                                  // 真实解析  常见局域网域名后缀
         "+.local",
         "+.localdomain",
         "localhost.ptlogin2.qq.com",
@@ -137,33 +139,33 @@ function main(config) {
         "+.ntp.org.cn",
         "+.pool.ntp.org",
         "rule-set:fakeipfilter_domain",
-        "rule-set:add_direct_domain",
-        "geosite:cn"
+        "rule-set:add_direct_domain",             // 真实解析  大陆冷门域名
+        "geosite:cn"                              // 真实解析  大陆域 GeoSite 数据
       ],
-      "default-nameserver": [
+      "default-nameserver": [                     // 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
         "1.1.1.1",
         "8.8.8.8"
       ],
-      "direct-nameserver": [
+      "direct-nameserver": [                      // 直连查询服务器
         "223.6.6.6",
         "223.5.5.5",
         "119.29.29.29",
         "https://dns.alidns.com/dns-query",
         "https://doh.pub/dns-query"
       ],
-      "direct-nameserver-follow-policy": true,
-      "proxy-server-nameserver": [
+      "direct-nameserver-follow-policy": true,    // 直连查询服务器遵循策略
+      "proxy-server-nameserver": [                // 节点域名解析服务器
         "1.1.1.1",
         "8.8.8.8"
       ],
-      "nameserver": [
+      "nameserver": [                             // 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
         "https://1.1.1.1/dns-query",
         "https://1.0.0.1/dns-query",
         "https://8.8.8.8/dns-query",
         "https://8.8.4.4/dns-query",
         "https://dns.google/dns-query"
       ],
-      "nameserver-policy": {
+      "nameserver-policy": {                      // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
         "geosite:private,cn,apple-cn,apple,microsoft@cn,category-games@cn,steam@cn": [
           "223.6.6.6",
           "223.5.5.5",
@@ -264,13 +266,13 @@ function main(config) {
           "https://dns.google/dns-query"
         ]
       },
-      "fallback": [
+      "fallback": [                               // 备用查询服务器
         "1.0.0.1",
         "8.8.4.4",
         "https://dns.cloudflare.com/dns-query",
         "https://1dot1dot1dot1.cloudflare-dns.com/"
       ],
-      "fallback-filter": {
+      "fallback-filter": {                        // 备用过滤器
         "geoip": true,
         "geoip-code": "CN",
         "geosite": ["gfw"],
