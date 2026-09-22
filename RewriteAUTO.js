@@ -420,7 +420,7 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  //const allRegionalGroupNames = [];
+  const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(
@@ -431,6 +431,7 @@ function main(config) {
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
+    // 只有 3 个及以上节点才生成该地区 Auto。
     if (matched.length === 0) {
       return;
     }
