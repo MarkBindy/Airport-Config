@@ -420,7 +420,7 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  const allRegionalGroupNames = [];
+  //const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(
@@ -428,8 +428,8 @@ function main(config) {
     );
 
     const fallbackName = region.name + "-故障转移";
-    const autoName = region.name + "-自动";
     const manualName = region.name + "-手动";
+    const autoName = region.name + "-自动";
 
     if (matched.length === 0) {
       return;
@@ -454,7 +454,7 @@ function main(config) {
       name: manualName,
       type: "select",
       proxies: matched,
-      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/blob/main/icon/qure/color/Available.png"
+      icon: region.icon
     });
 
     // 3. 生成地区 Auto 自动选择组
@@ -473,7 +473,7 @@ function main(config) {
     // 后续服务策略组和 APNs-Fallback 都只引用这个数组。
     existingRegionalFallbacks.push(fallbackName);
     existingRegionalAutos.push(autoName);
-    allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
+    //allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
 
   // ============================================================
