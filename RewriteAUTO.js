@@ -27,7 +27,7 @@ function main(config) {
     //"port": 7890,                                 // 监听端口  HTTP(S) 代理端口
     //"socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
     //"redir-port": 7892,                           // 监听端口  重定向代理端口
-    "mixed-port": 7890,                           // 监听端口  HTTP + SOCKS5 混合代理端口
+    "mixed-port": 7893,                           // 监听端口  HTTP + SOCKS5 混合代理端口
     //"tproxy-port": 7895,                          // 监听端口  透明代理端口
     "allow-lan": false,                           // 局域连接  是否允许局域网设备连接
     "bind-address": "*",                          // 监听接口  监听的网络接口（* 表示所有接口）
