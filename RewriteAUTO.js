@@ -363,23 +363,15 @@ function main(config) {
     {
       "name": "PROXY-Gate",
       "type": "select",
-      "proxies": [
-        "🌐 所有-手动",
-        ...existingRegionalFallbacks,
-        ...existingRegionalAutos,
-        "DIRECT"
-      ]
+      "proxies": ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
 
     {
       "name": "Apple Push 苹果通知推送",
       "type": "fallback",
+      "proxies": ["APNs-Fallback", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      "proxies": [
-        "APNs-Fallback",
-        "DIRECT"
-      ],
       "url": "http://captive.apple.com/hotspot-detect.html",
       "interval": 300
     },
