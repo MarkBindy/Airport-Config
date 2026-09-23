@@ -55,13 +55,13 @@ function main(config) {
     "tun": {
       "enable": true,                             // 网卡模式  是否启用 TUN 虚拟网卡模式
       "stack": "mips",                            // 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
-      //"mtu": 1492,                                // 最大传输  单元
+      "mtu": 1492,                                // 最大传输  单元
       "dns-hijack": [                             // 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
         "udp://any:53",
         "tcp://any:53"
       ],
       "auto-route": true,                         // 自动路由  自动添加系统路由表      （仅内核模式有效）
-      //"auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
+      "auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
       "auto-detect-interface": true,              // 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
       "strict-route": true,                       // 路由模式  严格路由,所有流量包括未匹配 auto-route 规则、其他网卡产生的流量,都会被强制送入 TUN，避免 DNS/流量 绕过代理直接从物理网卡发出而泄露
       "route-exclude-address": [                  // 路由排除  本机连接 局域网设备/Docker/虚拟网卡 等可能受影响，按需把相关网段/接口排除掉，保证局域网访问和虚拟化网络正常
@@ -69,15 +69,16 @@ function main(config) {
         "10.0.0.0/8",
         "172.16.0.0/12"
       ],
-      //"exclude-interface": [                      // 排除接口
-        //"docker*",
-        //"podman*"
+      "exclude-interface": [                      // 排除接口
+        "docker*",
+        "podman*"
       ],
       "endpoint-independent-nat": true,           // 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
       "route-exclude-address-set": ["cn_ip"]      // 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
     },
-
-    // Sniffer 流量嗅探
+// ==============
+//  Sniffer 嗅探
+// ==============
     "sniffer": {
       "enable": true,                             // 启用嗅探  提升分流准确性
       "override-destination": true,               // 成功解析  使用嗅探到的域名覆盖原始目标地址
