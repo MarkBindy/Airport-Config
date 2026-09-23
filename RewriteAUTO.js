@@ -39,7 +39,7 @@
  */
 
 
- // Hako 当前选中的所有机场节点都会合并到 config.proxies
+// Hako 当前选中的所有机场节点都会合并到 config.proxies
 function main(config) {
   const currentProxies = Array.isArray(config && config.proxies)
     ? config.proxies
@@ -54,7 +54,7 @@ function main(config) {
     .filter(Boolean);
 
 // =============================================
-// 一. 全局基础配置
+//  一. 全局基础配置
 // =============================================
   const fixed = {
     "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
@@ -351,14 +351,14 @@ function main(config) {
   };
 
 // =============================================
-// 二. 节点池
+//  二. 节点池
 // =============================================
 
   fixed.proxies = currentProxies;
   fixed["proxy-groups"] = [];
 
 // =============================================
-// 三. 主策略组（策略出站入口/代理网关/主选择组）
+//  三. 主策略组（策略出站入口/代理网关/主选择组）
 // =============================================
   fixed["proxy-groups"].push(
     {
@@ -391,7 +391,7 @@ function main(config) {
     }
   );
 
-   // 普通服务策略组
+  // 普通服务策略组
   const serviceGroupNames = [
     "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
     "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
@@ -436,7 +436,7 @@ function main(config) {
     });
   });
 
-   // 动态生成地区 Fallback 故转 / Auto 自动 / Manual 手动组
+  // 动态生成地区 Fallback 故转 / Auto 自动 / Manual 手动组
   const regionGroups = [
     {key: "HK", name: "🇭🇰 香港", filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
     {key: "TW", name: "🇹🇼 台湾", filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
@@ -512,7 +512,7 @@ function main(config) {
     //allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
 
-   // 将生成的地区组插入服务策略组
+  // 将生成的地区组插入服务策略组
   const serviceProxyChoices = [
     "🌐 所有-手动",
     ...existingRegionalFallbacks,
@@ -527,7 +527,7 @@ function main(config) {
     }
   });
 
-   // PROXY-Gate 选项更新
+  // PROXY-Gate 选项更新
   const proxyGate = fixed["proxy-groups"].find(
     group => group.name === "PROXY-Gate"
   );
@@ -541,7 +541,7 @@ function main(config) {
     ];
   }
 
-   // Apple Push 专用 APNs-Fallback
+  // Apple Push 专用 APNs-Fallback
   fixed["proxy-groups"].push({
     name: "APNs-Fallback",
     type: "fallback",
@@ -552,7 +552,7 @@ function main(config) {
   });
 
 // =============================================
-// 四. Rules 规则列表
+//  四. Rules 规则列表
 // =============================================
   fixed.rules = [
     // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
@@ -1066,7 +1066,7 @@ function main(config) {
   ];
 
 // =============================================
-// 五. Rule Providers 规则集源
+//  五. Rule Providers 规则集源
 // =============================================
   fixed["rule-providers"] = {
     "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
