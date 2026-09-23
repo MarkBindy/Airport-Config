@@ -464,6 +464,11 @@ function main(config) {
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
+    //regionalGroupsToAppend.push(
+      //{ name: fallbackName, type: "fallback", proxies: [manualName, autoName], interval: 300, url: "http://www.gstatic.com/generate_204" },
+      //{ name: manualName, type: "select", proxies: matched },
+      //{ name: autoName, type: "url-test", proxies: matched, interval: 600, url: "http://www.gstatic.com/generate_204" }
+    //);
     // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
     fixed["proxy-groups"].push({
       name: fallbackName, type: "fallback", proxies: [manualName, autoName], icon: region.icon,
