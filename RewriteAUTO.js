@@ -79,7 +79,6 @@ function main(config) {
       "store-selected": true,                     // 保存选择  记住选择的节点和策略组
       "store-fake-ip": true                       // 保存选择  Fake-IP 映射
     },
-
     "experimental": {
       "quic-go-disable-gso": true,                // 快速禁用  GSO
       "quic-go-disable-ecn": true,                // 快速禁用  ECN
@@ -467,8 +466,8 @@ function main(config) {
 
     // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
     fixed["proxy-groups"].push({
-      name: fallbackName, type: "fallback", proxies: [manualName, autoName],
-      icon: region.icon, hidden: true, url: "http://www.gstatic.com/generate_204", interval: 300
+      name: fallbackName, type: "fallback", proxies: [manualName, autoName], icon: region.icon,
+      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 300
     });
 
     // 生成地区 Manual 手动选择组
@@ -478,8 +477,8 @@ function main(config) {
 
     // 生成地区 Auto 自动择优组
     fixed["proxy-groups"].push({
-      name: autoName, type: "url-test", proxies: matched,
-      icon: region.icon, hidden: true, url: "http://www.gstatic.com/generate_204", interval: 600
+      name: autoName, type: "url-test", proxies: matched, icon: region.icon,
+      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 600
     });
 
     // 只记录实际生成的数组（后续服务策略组和 APNs-Fallback 都只引用此处数组）
@@ -509,8 +508,8 @@ function main(config) {
   );
 
   if (proxyGate) {
-    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
-  }
+    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"]
+  };
 
    // Apple Push 专用 APNs-Fallback
   fixed["proxy-groups"].push({
