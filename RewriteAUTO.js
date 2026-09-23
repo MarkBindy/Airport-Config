@@ -79,6 +79,7 @@ function main(config) {
       "store-selected": true,                     // 保存选择  记住选择的节点和策略组
       "store-fake-ip": true                       // 保存选择  Fake-IP 映射
     },
+
     "experimental": {
       "quic-go-disable-gso": true,                // 快速禁用  GSO
       "quic-go-disable-ecn": true,                // 快速禁用  ECN
