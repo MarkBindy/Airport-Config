@@ -503,6 +503,7 @@ function main(config) {
     proxyGate.proxies = [
       "🌐 所有-手动",
       ...existingRegionalFallbacks,
+      ...existingRegionalAutos,
       "DIRECT"
     ];
   }
@@ -516,7 +517,7 @@ function main(config) {
     url: "http://captive.apple.com/hotspot-detect.html",
     interval: 300
   });
-  
+
 // =============================================
 // 四. Rules 规则列表
 // =============================================
