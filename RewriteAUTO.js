@@ -8,7 +8,7 @@
  *1. 全局配置与高级特性 (Global & Advanced Settings)
  *网络与内核参数：开启统一延迟计算、TCP 并发连接以及针对内存优化
  *TUN 虚拟网卡：开启严格路由以防止 DNS 和流量绕过代理，同时对 P2P 下载和联机游戏极具优势的配置
- *Sniffer 流量嗅探：开启嗅探并设置了覆盖目标，能够识别出由于 Fake-IP 或纯 IP 连接导致的真实访问域名（如 Netflix、TikTok、Disney+ 等）
+ *Sniffer 流量嗅探：开启并设置了覆盖目标，能够识别出由于 Fake-IP 或纯 IP 连接导致的真实访问域名
  *
  *2. 严格的防 DNS 泄漏方案 (Anti-DNS Leak)
  *使用fake-ip 模式
@@ -36,7 +36,7 @@
  *QUIC 拦截：通过 AND 规则，强制禁用国外的 QUIC (HTTP/3) 流量，解决部分地区 QUIC 被运营商 QoS 导致加载缓慢的问题
  *Apple Push 专项处理：单独抽出 APNs 规则组并使用 Fallback 策略，确保苹果系统推送（APNs）在代理波动时不会失效
  *风控与银行防护：将同盾、数美、极光推送、各大银行域名及微信/支付宝直接划入 DIRECT（直连），防止触发国内银行和风控 SDK 的异地/代理异常警告
- *远程规则集 (rule-providers)：采用标准 YAML 及 Mihomo 高性能编译格式 (.mrs)，包含广告拦截（AdvertisingLite、ACL4SSR）、隐私防护与各类服务的分流规则
+ *远程规则集 (rule-providers)：采用标准 YAML 及 Mihomo 高性能编译格式 (.mrs)，包含广告拦截、隐私防护与各类服务的分流规则
  */
 
 
