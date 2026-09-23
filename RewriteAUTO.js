@@ -508,12 +508,7 @@ function main(config) {
   );
 
   if (proxyGate) {
-    proxyGate.proxies = [
-     "🌐 所有-手动", 
-     ...existingRegionalFallbacks, 
-     ...existingRegionalAutos, 
-     "DIRECT"
-    ];
+    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
   }
 
    // Apple Push 专用 APNs-Fallback
