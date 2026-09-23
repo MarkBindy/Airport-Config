@@ -68,7 +68,7 @@ function main(config) {
     "mode": "rule",                               // 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
     "ipv6": true,                                 // 网络协议  是否启用 IPv6 支持
     "log-level": "info",                          // 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
-    "external-controller": "127.0.0.1:9090",      // 监听端口  本地 9090 作为控制 API
+    "external-controller": "127.0.0.1:9090",      // 外部控制  API 监听地址与端口
     "unified-delay": true,                        // 统一延迟  减少节点延迟抖动
     "tcp-concurrent": true,                       // 并发连接  提升多任务性能
     //"keep-alive-idle": 600,                       // 保活时间  TCP
