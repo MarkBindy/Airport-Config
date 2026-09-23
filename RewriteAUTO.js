@@ -329,26 +329,32 @@ function main(config) {
 // =============================================
   fixed["proxy-groups"].push(
     {
-      name: "PROXY-Gate",
-      type: "select",
-      proxies: [ "🌐 所有-手动", "DIRECT" ],
-      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
+      "name": "PROXY-Gate",
+      "type": "select",
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
+      "proxies": [
+        "🌐 所有-手动",
+        "DIRECT"
+      ]
     },
 
     {
-      name: "Apple Push 苹果通知推送",
-      type: "fallback",
-      proxies: [ "APNs-Fallback", "DIRECT" ],
-      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      url: "http://captive.apple.com/hotspot-detect.html",
-      interval: 300
+      "name": "Apple Push 苹果通知推送",
+      "type": "fallback",
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
+      "proxies": [
+        "APNs-Fallback",
+        "DIRECT"
+      ],
+      "url": "http://captive.apple.com/hotspot-detect.html",
+      "interval": 300
     },
 
     {
-      name: "🌐 所有-手动",
-      type: "select",
-      proxies: currentProxyNames.slice(),
-      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
+      "name": "🌐 所有-手动",
+      "type": "select",
+      "proxies": currentProxyNames.slice(),
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
     }
   );
 
@@ -389,7 +395,11 @@ function main(config) {
       "name": name,
       "type": "select",
       "icon": serviceIcons[name] || "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png",
-      "proxies": ["🌐 所有-手动", "PROXY-Gate", "DIRECT"]
+      "proxies": [
+        "🌐 所有-手动",
+        "PROXY-Gate",
+        "DIRECT"
+      ]
     });
   });
 
