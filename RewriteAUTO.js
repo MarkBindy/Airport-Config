@@ -436,27 +436,41 @@ function main(config) {
       name => region.filter.test(name)
     );
 
-    if (matched.length === 0) return;   // 满足条件数，才会生成该地区相应节点组
-
     const fallbackName = region.name + "-故障转移";
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
+    // 满足条件数，才会生成该地区相应节点组
+    if (matched.length === 0) return;
+
     // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
     fixed["proxy-groups"].push({
-      name: fallbackName, type: "fallback", proxies: [manualName, autoName], icon: region.icon,
-      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 300
+      name: fallbackName,
+      type: "fallback",
+      lazy: false,
+      proxies: [manualName, autoName],
+      icon: region.icon,
+      hidden: true,
+      url: "http://www.gstatic.com/generate_204",
+      interval: 300
     });
-
     // 生成地区 Manual 手动选择组
     fixed["proxy-groups"].push({
-      name: manualName, type: "select", proxies: matched, icon: region.icon
+      name: manualName,
+      type: "select",
+      proxies: matched,
+      icon: region.icon
     });
-
     // 生成地区 Auto 自动择优组
     fixed["proxy-groups"].push({
-      name: autoName, type: "url-test", proxies: matched, icon: region.icon,
-      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 600
+      name: autoName,
+      type: "url-test",
+      proxies: matched,
+      icon: region.icon,
+      hidden: true,
+      url: "http://www.gstatic.com/generate_204",
+      interval: 900,
+      tolerance: 50
     });
 
     // 只记录实际生成的数组（后续服务策略组和 APNs-Fallback 都只引用此处数组）
