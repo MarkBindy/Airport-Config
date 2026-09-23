@@ -454,11 +454,10 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(name => region.filter.test(name));
-    if (matched.length === 0) return;   // 满足条件数，才会生成该地区相应节点组
+    //if (matched.length === 0) return;   // 满足条件数，才会生成该地区相应节点组
 
     const fallbackName = region.name + "-故障转移";
     const manualName = region.name + "-手动";
