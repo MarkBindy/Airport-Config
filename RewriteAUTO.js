@@ -363,13 +363,13 @@ function main(config) {
     {
       "name": "PROXY-Gate",
       "type": "select",
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
       "proxies": [
         "🌐 所有-手动",
-       ...existingRegionalFallbacks,
-       ...existingRegionalAutos,
+        ...existingRegionalFallbacks,
+        ...existingRegionalAutos,
         "DIRECT"
       ]
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
 
     {
