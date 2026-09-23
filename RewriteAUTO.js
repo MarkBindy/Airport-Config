@@ -423,11 +423,7 @@ function main(config) {
       "name": name,
       "type": "select",
       "icon": serviceIcons[name] || "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png",
-      "proxies": [
-        "🌐 所有-手动",
-        "PROXY-Gate",
-        "DIRECT"
-      ]
+      "proxies": ["🌐 所有-手动", "PROXY-Gate", "DIRECT"]
     });
   });
 
