@@ -365,7 +365,7 @@ function main(config) {
     {
       name: "PROXY-Gate",
       type: "select",
-      proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
+      proxies: ["🌐 所有-手动", "DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
 
@@ -464,11 +464,6 @@ function main(config) {
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
-    //regionalGroupsToAppend.push(
-      //{ name: fallbackName, type: "fallback", proxies: [manualName, autoName], interval: 300, url: "http://www.gstatic.com/generate_204" },
-      //{ name: manualName, type: "select", proxies: matched },
-      //{ name: autoName, type: "url-test", proxies: matched, interval: 600, url: "http://www.gstatic.com/generate_204" }
-    //);
     // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
     fixed["proxy-groups"].push({
       name: fallbackName, type: "fallback", proxies: [manualName, autoName], icon: region.icon,
@@ -508,13 +503,17 @@ function main(config) {
   });
 
    // PROXY-Gate 选项更新
-  //const proxyGate = fixed["proxy-groups"].find(
-    //group => group.name === "PROXY-Gate"
-  //);
+  const proxyGate = fixed["proxy-groups"].find(
+    group => group.name === "PROXY-Gate"
+  );
 
-  //if (proxyGate) {
-    //proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
-  //}
+  if (proxyGate) {
+    proxyGate.proxies = [
+      "🌐 所有-手动",
+      ...existingRegionalFallbacks,
+      "DIRECT"
+    ];
+  }
 
    // Apple Push 专用 APNs-Fallback
   fixed["proxy-groups"].push({
