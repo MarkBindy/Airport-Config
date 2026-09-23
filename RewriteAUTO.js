@@ -40,7 +40,7 @@
  */
 
 
-// Hako 当前选中的所有机场节点都会合并到 config.proxies。
+// Hako 当前选中的所有机场节点都会合并到 config.proxies
 function main(config) {
   const currentProxies = Array.isArray(config && config.proxies)
     ? config.proxies
