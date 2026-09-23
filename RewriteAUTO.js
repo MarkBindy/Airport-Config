@@ -40,7 +40,7 @@
  */
 
 
-// Hako 当前选中的所有机场节点都会合并到 config.proxies
+ // Hako 当前选中的所有机场节点都会合并到 config.proxies
 function main(config) {
   const currentProxies = Array.isArray(config && config.proxies)
     ? config.proxies
@@ -84,9 +84,8 @@ function main(config) {
       "quic-go-disable-ecn": true,                // 快速禁用  ECN
       "dialer-ip4p-convert": false                // 地址转换  IP4P
     },
-// ==============
-//      TUN
-// ==============
+
+    // TUN 虚拟网卡
     "tun": {
       "enable": true,                             // 网卡模式  是否启用 TUN 虚拟网卡模式
       "stack": "mips",                            // 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
@@ -111,9 +110,8 @@ function main(config) {
       "endpoint-independent-nat": true,           // 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
       "route-exclude-address-set": ["cn_ip"]      // 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
     },
-// ==============
-//  Sniffer 嗅探
-// ==============
+
+    // Sniffer 流量嗅探
     "sniffer": {
       "enable": true,                             // 启用嗅探  提升分流准确性
       "override-destination": true,               // 成功解析  使用嗅探到的域名覆盖原始目标地址
@@ -139,9 +137,8 @@ function main(config) {
         "+.push.apple.com"                        // 跳过嗅探  苹果推送服务
       ]
     },
-// ==============
-//   DNS 防泄漏
-// ==============
+
+    // DNS 防泄漏
     "dns": {
       "enable": true,                             // 解析服务  启用 Clash 内置 DNS 服务
       "ipv6": false,                              // 网络协议  启用 IPv6 DNS 解析支持
