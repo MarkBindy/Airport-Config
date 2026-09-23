@@ -525,13 +525,14 @@ function main(config) {
 // 四. Rules 规则列表
 // =============================================
   fixed.rules = [
+    // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
+    "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",
     // --- 本地/局域网 ---
-    "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",   //禁用国外 QUIC 流量
     "IP-CIDR,111.208.73.0/24,DIRECT,no-resolve",
     "GEOSITE,private,DIRECT",
     "GEOIP,private,DIRECT,no-resolve",
 
-    // Apple Push 必须在普通 Apple 规则之前
+    // --- Apple Push (需要在通用 Apple 规则前生效) ---
     "DOMAIN-SUFFIX,push.apple.com,Apple Push 苹果通知推送",
     "DOMAIN-SUFFIX,push-apple.com.akadns.net,Apple Push 苹果通知推送",
     "DOMAIN-KEYWORD,apple.com.edgekey.net,Apple Push 苹果通知推送",
@@ -545,7 +546,7 @@ function main(config) {
     "IP-CIDR6,2403:300:a51::/48,Apple Push 苹果通知推送,no-resolve",
     "IP-CIDR6,2a01:b740:a42::/48,Apple Push 苹果通知推送,no-resolve",
 
-    // 广告 / 隐私
+    // --- 广告 / 隐私拦截 ---
     "RULE-SET,AdvertisingLite,REJECT",
     "RULE-SET,AdvertisingLite_Domain,REJECT",
     "RULE-SET,Privacy,REJECT",
@@ -553,7 +554,7 @@ function main(config) {
     "RULE-SET,ACL4SSR_BanAD,REJECT",
     "RULE-SET,ACL4SSR_BanProgramAD,REJECT",
 
-    // --- 银行登录修复与风控 SDK ---
+    // --- 银行登录与风控 SDK 修复 (直连防止风控异常) ---
     "DOMAIN-SUFFIX,tongdun.net,DIRECT",
     "DOMAIN-SUFFIX,tongduncdn.com,DIRECT",
     "DOMAIN-SUFFIX,ishumei.com,DIRECT",
@@ -1020,13 +1021,17 @@ function main(config) {
     "GEOSITE,category-speedtest@!cn,Speedtest",
     "GEOSITE,speedtest,Speedtest",
 
-    // 中国大陆
+    // --- 非中国大陆区域 ---
     "GEOSITE,geolocation-!cn,PROXY-Gate",
+
+    // --- 国内常用服务/域名直连 ---
+    "GEOSITE,category-games@cn,DIRECT",
+    "GEOSITE,apple-cn,DIRECT",
+    "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,cn,DIRECT",
-    "RULE-SET,add_direct_domain,DIRECT",
     "GEOIP,CN,DIRECT",
 
-    // 最终兜底
+    // --- 兜底规则 ---
     "MATCH,PROXY-Gate"
   ];
 
