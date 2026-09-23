@@ -351,85 +351,14 @@ function main(config) {
   };
 
 // =============================================
-//  二. 节点池
+// 二. 节点池设置
 // =============================================
   fixed.proxies = currentProxies;
   fixed["proxy-groups"] = [];
 
 // =============================================
-//  三. 主策略组（策略出站入口/代理网关/主选择组）
+// 三. 动态计算与策略组构建
 // =============================================
-  fixed["proxy-groups"].push(
-    {
-      "name": "PROXY-Gate",
-      "type": "select",
-      "proxies": ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
-    },
-
-    {
-      "name": "Apple Push 苹果通知推送",
-      "type": "fallback",
-      "proxies": ["APNs-Fallback", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      "url": "http://captive.apple.com/hotspot-detect.html",
-      "interval": 300
-    },
-
-    {
-      "name": "🌐 所有-手动",
-      "type": "select",
-      "proxies": currentProxyNames.slice(),
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
-    }
-  );
-
-  // 普通服务策略组
-  const serviceGroupNames = [
-    "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
-    "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
-    "WhatsApp", "Telegram", "Github", "Speedtest"
-  ];
-
-  const serviceIcons = {
-    "YouTube": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png",
-    "Netflix": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png",
-    "Disney+": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png",
-    "Spotify": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png",
-    "TikTok": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png",
-    "Twitch": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png",
-    "Ai": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
-    "GPT": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
-    "Gemini": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png",
-    "Claude": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/anthropic.png",
-    "Copilot": "https://fastly.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/Microsoft/Copilot-1.png",
-    "Grok": "https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Grok.png",
-    "Microsoft": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
-    "Google": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png",
-    "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
-    "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png",
-    "Facebook": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png",
-    "Instagram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png",
-    "WhatsApp": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png",
-    "Telegram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png",
-    "Github": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png",
-    "Speedtest": "https://cdn.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png"
-  };
-
-  serviceGroupNames.forEach(name => {
-    fixed["proxy-groups"].push({
-      "name": name,
-      "type": "select",
-      "icon": serviceIcons[name] || "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png",
-      "proxies": [
-        "🌐 所有-手动",
-        "PROXY-Gate",
-        "DIRECT"
-      ]
-    });
-  });
-
-  // 动态生成地区 Fallback 故转 / Auto 自动 / Manual 手动组
   const regionGroups = [
     {key: "HK", name: "🇭🇰 香港", filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
     {key: "TW", name: "🇹🇼 台湾", filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
@@ -456,56 +385,86 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
+  const regionalGroupsToAppend = [];
 
+  // 1. 优先扫描节点生成存在的地区组
   regionGroups.forEach(region => {
-    const matched = currentProxyNames.filter(
-      name => region.filter.test(name)
-    );
+    const matched = currentProxyNames.filter(name => region.filter.test(name));
+    if (matched.length === 0) return;
 
     const fallbackName = region.name + "-故障转移";
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
-    // 满足条件数，才会生成该地区相应节点组
-    if (matched.length === 0) return;
-
-    // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
-    fixed["proxy-groups"].push({
-      name: fallbackName,
-      type: "fallback",
-      lazy: false,
-      proxies: [manualName, autoName],
-      icon: region.icon,
-      hidden: true,
-      url: "http://www.gstatic.com/generate_204",
-      interval: 300
-    });
-    // 生成地区 Manual 手动选择组
-    fixed["proxy-groups"].push({
-      name: manualName,
-      type: "select",
-      proxies: matched,
-      icon: region.icon
-    });
-    // 生成地区 Auto 自动择优组
-    fixed["proxy-groups"].push({
-      name: autoName,
-      type: "url-test",
-      proxies: matched,
-      icon: region.icon,
-      hidden: true,
-      url: "http://www.gstatic.com/generate_204",
-      interval: 900,
-      tolerance: 50
+    regionalGroupsToAppend.push({
+      name: fallbackName, type: "fallback", proxies: [manualName, autoName], icon: region.icon,
+      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 300
     });
 
-    // 只记录实际生成的数组（后续服务策略组和 APNs-Fallback 都只引用此处数组）
+    regionalGroupsToAppend.push({
+      name: manualName, type: "select", proxies: matched, icon: region.icon
+    });
+
+    regionalGroupsToAppend.push({
+      name: autoName, type: "url-test", proxies: matched, icon: region.icon,
+      hidden: true, url: "http://www.gstatic.com/generate_204", interval: 600
+    });
+
     existingRegionalFallbacks.push(fallbackName);
     existingRegionalAutos.push(autoName);
-    //allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
 
-  // 将生成的地区组插入服务策略组
+  // 2. 插入顶部主策略组
+  fixed["proxy-groups"].push(
+    {
+      name: "PROXY-Gate",
+      type: "select",
+      proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
+    },
+    {
+      name: "Apple Push 苹果通知推送",
+      type: "fallback",
+      proxies: ["APNs-Fallback", "DIRECT"],
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
+      url: "http://captive.apple.com/hotspot-detect.html",
+      interval: 300
+    },
+    {
+      name: "🌐 所有-手动",
+      type: "select",
+      proxies: currentProxyNames.length ? currentProxyNames.slice() : ["DIRECT"],
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
+    }
+  );
+
+  // 3. 构建服务类策略组
+  const serviceGroupNames = [
+    "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
+    "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
+    "WhatsApp", "Telegram", "Github", "Speedtest"
+  ];
+
+  const serviceIcons = {
+    "YouTube": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png",
+    "Netflix": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png",
+    "Disney+": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png",
+    "Spotify": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png",
+    "TikTok": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png",
+    "Twitch": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png",
+    "Ai": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
+    "Microsoft": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
+    "Google": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png",
+    "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
+    "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png",
+    "Facebook": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png",
+    "Instagram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png",
+    "WhatsApp": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png",
+    "Telegram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png",
+    "Github": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png",
+    "Speedtest": "https://cdn.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png"
+  };
+
   const serviceProxyChoices = [
     "🌐 所有-手动",
     ...existingRegionalFallbacks,
@@ -514,13 +473,19 @@ function main(config) {
     "DIRECT"
   ];
 
-  fixed["proxy-groups"].forEach(group => {
-    if (serviceGroupNames.includes(group.name)) {
-      group.proxies = serviceProxyChoices.slice();
-    }
+  serviceGroupNames.forEach(name => {
+    fixed["proxy-groups"].push({
+      "name": name,
+      "type": "select",
+      "icon": serviceIcons[name] || "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png",
+      "proxies": serviceProxyChoices.slice()
+    });
   });
 
-  // Apple Push 专用 APNs-Fallback
+  // 4. 将动态生成的地区组加入数组
+  fixed["proxy-groups"].push(...regionalGroupsToAppend);
+
+  // 5. APNs 专项 Fallback 组
   fixed["proxy-groups"].push({
     name: "APNs-Fallback",
     type: "fallback",
@@ -536,6 +501,7 @@ function main(config) {
   fixed.rules = [
     // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
     "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",
+    
     // --- 本地/局域网 ---
     "IP-CIDR,111.208.73.0/24,DIRECT,no-resolve",
     "GEOSITE,private,DIRECT",
@@ -1045,7 +1011,7 @@ function main(config) {
   ];
 
 // =============================================
-//  五. Rule Providers 规则集源
+//  五. Rule Providers (远程规则集)
 // =============================================
   fixed["rule-providers"] = {
     "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
