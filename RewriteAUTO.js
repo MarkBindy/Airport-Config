@@ -320,37 +320,30 @@ function main(config) {
 // =============================================
   fixed["proxy-groups"].push(
     {
-      "name": "PROXY-Gate",
-      "type": "select",
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png",
-      "proxies": [
-        "🌐 所有-手动",
-        "DIRECT"
-      ]
+      name: "PROXY-Gate",
+      type: "select",
+      proxies: ["🌐 所有-手动", "DIRECT"],
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
 
     {
-      "name": "Apple Push 苹果通知推送",
-      "type": "fallback",
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      "proxies": [
-        "APNs-Fallback",
-        "DIRECT"
-      ],
-      "url": "http://captive.apple.com/hotspot-detect.html",
-      "interval": 300
+      name: "Apple Push 苹果通知推送",
+      type: "fallback",
+      proxies: ["APNs-Fallback", "DIRECT"],
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
+      url: "http://captive.apple.com/hotspot-detect.html",
+      interval: 300
     },
 
     {
-      "name": "🌐 所有-手动",
-      "type": "select",
-      "proxies": currentProxyNames.slice(),
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
+      name: "🌐 所有-手动",
+      type: "select",
+      proxies: currentProxyNames.slice(),
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
     }
   );
-  // =================
-  //   普通服务策略组
-  // =================
+
+   // 普通服务策略组
   const serviceGroupNames = [
     "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
     "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
@@ -394,10 +387,8 @@ function main(config) {
       ]
     });
   });
-  // ============================================
-  //   动态生成地区
-  //   Fallback 故转 / Auto 自动 / Manual 手动组
-  // ============================================
+
+   // 动态生成地区 Fallback 故转 / Auto 自动 / Manual 手动组
   const regionGroups = [
     {key: "HK", name: "🇭🇰 香港", filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
     {key: "TW", name: "🇹🇼 台湾", filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
@@ -424,62 +415,40 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  const allRegionalGroupNames = [];
+  //const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
-    const matched = currentProxyNames.filter(
-      name => region.filter.test(name)
-    );
+    const matched = currentProxyNames.filter(name => region.filter.test(name));
+    if (matched.length === 0) return;   // 满足条件数，才会生成该地区相应节点组
 
     const fallbackName = region.name + "-故障转移";
     const manualName = region.name + "-手动";
     const autoName = region.name + "-自动";
 
-    // 满足下列条件数，才会生成该地区相应节点组
-    if (matched.length === 0) {
-      return;
-    }
-
-    // 生成地区 Fallback 故障转移组
-    // 效果：优先使用手动选中的节点；若手动组断连或未选，自动测试并回退至该地区其他可用节点
+    // 生成地区 Fallback 故障转移组（效果：优先走手动选择，断连时自动退回至自动测速组）
     fixed["proxy-groups"].push({
-      name: fallbackName,
-      type: "fallback",
-      lazy: false,
-      proxies: [manualName, autoName],
-      icon: region.icon,
-      hidden: true,
-      url: "http://www.gstatic.com/generate_204",
-      interval: 300
+      name: fallbackName, type: "fallback", proxies: [manualName, autoName],
+      icon: region.icon, hidden: true, url: "http://www.gstatic.com/generate_204", interval: 300
     });
+
     // 生成地区 Manual 手动选择组
     fixed["proxy-groups"].push({
-      name: manualName,
-      type: "select",
-      proxies: matched,
-      icon: region.icon
-    });
-    // 生成地区 Auto 自动择优组
-    fixed["proxy-groups"].push({
-      name: autoName,
-      type: "url-test",
-      proxies: matched,
-      icon: region.icon,
-      hidden: true,
-      url: "http://www.gstatic.com/generate_204",
-      interval: 900,
-      tolerance: 50
+      name: manualName, type: "select", proxies: matched, icon: region.icon
     });
 
-    // 只记录实际生成的数组
-    // 后续服务策略组和 APNs-Fallback 都只引用此处数组
+    // 生成地区 Auto 自动择优组
+    fixed["proxy-groups"].push({
+      name: autoName, type: "url-test", proxies: matched,
+      icon: region.icon, hidden: true, url: "http://www.gstatic.com/generate_204", interval: 600
+    });
+
+    // 只记录实际生成的数组（后续服务策略组和 APNs-Fallback 都只引用此处数组）
     existingRegionalFallbacks.push(fallbackName);
     existingRegionalAutos.push(autoName);
     //allRegionalGroupNames.push(fallbackName, autoName);  // 按顺序排列：故障转移 -> 手动
   });
-  // ==============================
-  //   将生成的地区组插入服务策略组
-  // ==============================
+
+   // 将生成的地区组插入服务策略组
   const serviceProxyChoices = [
     "🌐 所有-手动",
     ...existingRegionalFallbacks,
@@ -493,24 +462,17 @@ function main(config) {
       group.proxies = serviceProxyChoices.slice();
     }
   });
-  // =======================
-  //   PROXY-Gate 选项更新
-  // =======================
+
+   // PROXY-Gate 选项更新
   const proxyGate = fixed["proxy-groups"].find(
     group => group.name === "PROXY-Gate"
   );
 
   if (proxyGate) {
-    proxyGate.proxies = [
-      "🌐 所有-手动",
-      ...existingRegionalFallbacks,
-      ...existingRegionalAutos,
-      "DIRECT"
-    ];
+    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
   }
-  // =================================
-  //   Apple Push 专用 APNs-Fallback
-  // =================================
+
+   // Apple Push 专用 APNs-Fallback
   fixed["proxy-groups"].push({
     name: "APNs-Fallback",
     type: "fallback",
@@ -526,19 +488,6 @@ function main(config) {
   fixed.rules = [
     // --- 本地/局域网 ---
     "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",   //禁用国外 QUIC 流量
-    "DOMAIN-SUFFIX,localhost,DIRECT",
-    "DOMAIN,local.adguard.org,DIRECT",
-    "DOMAIN-SUFFIX,local,DIRECT",
-    "DOMAIN-SUFFIX,lan,DIRECT",
-    "IP-CIDR,0.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,100.64.0.0/10,DIRECT,no-resolve",
-    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
-    "IP-CIDR,169.254.0.0/16,DIRECT,no-resolve",
-    "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
-    "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
-    "IP-CIDR,224.0.0.0/4,DIRECT,no-resolve",
-    "IP-CIDR,240.0.0.0/4,DIRECT,no-resolve",
     "IP-CIDR,111.208.73.0/24,DIRECT,no-resolve",
     "GEOSITE,private,DIRECT",
     "GEOIP,private,DIRECT,no-resolve",
@@ -556,10 +505,6 @@ function main(config) {
     "IP-CIDR6,2403:300:a42::/48,Apple Push 苹果通知推送,no-resolve",
     "IP-CIDR6,2403:300:a51::/48,Apple Push 苹果通知推送,no-resolve",
     "IP-CIDR6,2a01:b740:a42::/48,Apple Push 苹果通知推送,no-resolve",
-
-    // 普通 Apple 流量进入 Apple 策略组
-    "RULE-SET,Apple,Apple",
-    "RULE-SET,Apple_Domain,Apple",
 
     // 广告 / 隐私
     "RULE-SET,AdvertisingLite,REJECT",
@@ -1028,22 +973,9 @@ function main(config) {
     "GEOIP,telegram,Telegram,no-resolve",
 
     // Github
-    "DOMAIN-SUFFIX,github.com,Github",
-    "DOMAIN-SUFFIX,githubusercontent.com,Github",
-    "DOMAIN-SUFFIX,githubassets.com,Github",
-    "DOMAIN-SUFFIX,raw.githubusercontent.com,Github",
-    "DOMAIN-SUFFIX,github.io,Github",
-    "DOMAIN-SUFFIX,github.dev,Github",
-    "DOMAIN-SUFFIX,githubstatus.com,Github",
     "GEOSITE,github,Github",
 
     // Speedtest
-    "DOMAIN-SUFFIX,speedtest.net,Speedtest",
-    "DOMAIN-SUFFIX,speedtest.com,Speedtest",
-    "DOMAIN-SUFFIX,ookla.com,Speedtest",
-    "DOMAIN-SUFFIX,ooklaserver.net,Speedtest",
-    "DOMAIN-SUFFIX,ookla.net,Speedtest",
-    "DOMAIN-SUFFIX,speedtestcustom.com,Speedtest",
     "GEOSITE,category-speedtest,Speedtest",
     "GEOSITE,category-speedtest@cn,Speedtest",
     "GEOSITE,category-speedtest@!cn,Speedtest",
@@ -1063,8 +995,6 @@ function main(config) {
 // 五. Rule Providers 规则集源
 // =============================================
   fixed["rule-providers"] = {
-    "Apple":                  {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"},
-    "Apple_Domain":           {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Apple_Domain.mrs"},
     "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
     "AdvertisingLite_Domain": {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"},
     "Privacy":                {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.yaml"},
