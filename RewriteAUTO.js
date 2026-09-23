@@ -365,7 +365,7 @@ function main(config) {
     {
       name: "PROXY-Gate",
       type: "select",
-      proxies: ["🌐 所有-手动", "DIRECT"],
+      proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
 
@@ -503,13 +503,13 @@ function main(config) {
   });
 
    // PROXY-Gate 选项更新
-  const proxyGate = fixed["proxy-groups"].find(
-    group => group.name === "PROXY-Gate"
-  );
+  //const proxyGate = fixed["proxy-groups"].find(
+    //group => group.name === "PROXY-Gate"
+  //);
 
-  if (proxyGate) {
-    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"]
-  };
+  //if (proxyGate) {
+    //proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
+  //}
 
    // Apple Push 专用 APNs-Fallback
   fixed["proxy-groups"].push({
