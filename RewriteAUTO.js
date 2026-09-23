@@ -76,9 +76,8 @@ function main(config) {
       "endpoint-independent-nat": true,           // 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
       "route-exclude-address-set": ["cn_ip"]      // 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
     },
-// ==============
-//  Sniffer 嗅探
-// ==============
+
+    // Sniffer 嗅探
     "sniffer": {
       "enable": true,                             // 启用嗅探  提升分流准确性
       "override-destination": true,               // 成功解析  使用嗅探到的域名覆盖原始目标地址
