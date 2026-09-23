@@ -24,27 +24,27 @@ function main(config) {
 // 一. 全局基础配置
 // =============================================
   const fixed = {
-    //"port": 7890,                                 // 监听端口  HTTP(S) 代理端口
-    //"socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
-    //"redir-port": 7892,                           // 监听端口  重定向代理端口
+    "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
+    "socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
+    "redir-port": 7892,                           // 监听端口  重定向代理端口
     "mixed-port": 7893,                           // 监听端口  HTTP + SOCKS5 混合代理端口
-    //"tproxy-port": 7895,                          // 监听端口  透明代理端口
-    "allow-lan": false,                           // 局域连接  是否允许局域网设备连接
+    "tproxy-port": 7895,                          // 监听端口  透明代理端口
+    "allow-lan": true,                            // 局域连接  是否允许局域网设备连接
     "bind-address": "*",                          // 监听接口  监听的网络接口（* 表示所有接口）
     "mode": "rule",                               // 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
     "ipv6": true,                                 // 网络协议  是否启用 IPv6 支持
     "log-level": "info",                          // 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
-    "external-controller": "127.0.0.1:9090",      // 外部控制  API 监听地址与端口
     "unified-delay": true,                        // 统一延迟  减少节点延迟抖动
     "tcp-concurrent": true,                       // 并发连接  提升多任务性能
-    //"keep-alive-idle": 600,                       // 保活时间  TCP
-    //"keep-alive-interval": 15,                    // 保活时间  间隔 TCP
+    "keep-alive-idle": 600,                       // 保活时间  TCP
+    "keep-alive-interval": 15,                    // 保活时间  间隔 TCP
     "global-ua": "clash",                         // 用户代理  全局默认UA
     "geodata-loader": "memconservative",          // 数据加载  模式 standard（标准）memconservative（低内存）       
     "profile": {
       "store-selected": true,                     // 保存选择  记住选择的节点和策略组
       "store-fake-ip": true                       // 保存选择  Fake-IP 映射
     },
+    
     "experimental": {
       "quic-go-disable-gso": true,                // 快速禁用  GSO
       "quic-go-disable-ecn": true,                // 快速禁用  ECN
