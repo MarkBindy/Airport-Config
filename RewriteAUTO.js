@@ -35,7 +35,7 @@ function main(config) {
     "redir-port": 7892,                           // 监听端口  重定向代理端口
     "mixed-port": 7893,                           // 监听端口  HTTP + SOCKS5 混合代理端口
     "tproxy-port": 7895,                          // 监听端口  透明代理端口
-    "allow-lan": true,                            // 局域连接  是否允许局域网设备连接
+    "allow-lan": false,                           // 局域连接  是否允许局域网设备连接
     "bind-address": "*",                          // 监听接口  监听的网络接口（* 表示所有接口）
     "mode": "rule",                               // 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
     "ipv6": true,                                 // 网络协议  是否启用 IPv6 支持
