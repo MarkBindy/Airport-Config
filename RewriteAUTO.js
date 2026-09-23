@@ -58,27 +58,27 @@ function main(config) {
 // 一. 全局基础配置
 // =============================================
   const fixed = {
-    "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
-    "socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
-    "redir-port": 7892,                           // 监听端口  重定向代理端口
-    "mixed-port": 7893,                           // 监听端口  HTTP + SOCKS5 混合代理端口
-    "tproxy-port": 7895,                          // 监听端口  透明代理端口
+    //"port": 7890,                                 // 监听端口  HTTP(S) 代理端口
+    //"socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
+    //"redir-port": 7892,                           // 监听端口  重定向代理端口
+    "mixed-port": 7890,                           // 监听端口  HTTP + SOCKS5 混合代理端口
+    //"tproxy-port": 7895,                          // 监听端口  透明代理端口
     "allow-lan": false,                           // 局域连接  是否允许局域网设备连接
     "bind-address": "*",                          // 监听接口  监听的网络接口（* 表示所有接口）
     "mode": "rule",                               // 工作模式  rule（规则模式）/ global（全局模式）/ direct（直连模式）
     "ipv6": true,                                 // 网络协议  是否启用 IPv6 支持
     "log-level": "info",                          // 日志级别  silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+    "external-controller": "127.0.0.1:9090",      // 监听端口  本地 9090 作为控制 API
     "unified-delay": true,                        // 统一延迟  减少节点延迟抖动
     "tcp-concurrent": true,                       // 并发连接  提升多任务性能
-    "keep-alive-idle": 600,                       // 保活时间  TCP
-    "keep-alive-interval": 15,                    // 保活时间  间隔 TCP
+    //"keep-alive-idle": 600,                       // 保活时间  TCP
+    //"keep-alive-interval": 15,                    // 保活时间  间隔 TCP
     "global-ua": "clash",                         // 用户代理  全局默认UA
     "geodata-loader": "memconservative",          // 数据加载  模式 standard（标准）memconservative（低内存）       
     "profile": {
       "store-selected": true,                     // 保存选择  记住选择的节点和策略组
       "store-fake-ip": true                       // 保存选择  Fake-IP 映射
     },
-    
     "experimental": {
       "quic-go-disable-gso": true,                // 快速禁用  GSO
       "quic-go-disable-ecn": true,                // 快速禁用  ECN
@@ -89,13 +89,13 @@ function main(config) {
     "tun": {
       "enable": true,                             // 网卡模式  是否启用 TUN 虚拟网卡模式
       "stack": "mips",                            // 协议类型  网络栈：system（系统栈）/ gvisor（内置用户态栈）/ mixed（混合）
-      "mtu": 1492,                                // 最大传输  单元
+      //"mtu": 1492,                                // 最大传输  单元
       "dns-hijack": [                             // 劫持请求  劫持所有 UDP/TCP 53 端口的 DNS 请求
         "udp://any:53",
         "tcp://any:53"
       ],
       "auto-route": true,                         // 自动路由  自动添加系统路由表      （仅内核模式有效）
-      "auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
+      //"auto-redirect": true,                      // 自动定向  自动将流量重定向至 TUN  （仅内核模式有效）
       "auto-detect-interface": true,              // 自动出口  自动识别默认出口网络接口 （仅内核模式有效）
       "strict-route": true,                       // 路由模式  严格路由,所有流量包括未匹配 auto-route 规则、其他网卡产生的流量,都会被强制送入 TUN，避免 DNS/流量 绕过代理直接从物理网卡发出而泄露
       "route-exclude-address": [                  // 路由排除  本机连接 局域网设备/Docker/虚拟网卡 等可能受影响，按需把相关网段/接口排除掉，保证局域网访问和虚拟化网络正常
@@ -103,9 +103,9 @@ function main(config) {
         "10.0.0.0/8",
         "172.16.0.0/12"
       ],
-      "exclude-interface": [                      // 排除接口
-        "docker*",
-        "podman*"
+      //"exclude-interface": [                      // 排除接口
+        //"docker*",
+        //"podman*"
       ],
       "endpoint-independent-nat": true,           // 端点无关  NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
       "route-exclude-address-set": ["cn_ip"]      // 绕过大陆  匹配大陆IP-CIDR（流量不进入代理）
@@ -141,20 +141,35 @@ function main(config) {
     // DNS 防泄漏
     "dns": {
       "enable": true,                             // 解析服务  启用 Clash 内置 DNS 服务
-      "ipv6": false,                              // 网络协议  启用 IPv6 DNS 解析支持
-      "prefer-h3": true,                          // 首选 H3
+      "ipv6": true,                               // 网络协议  启用 IPv6 DNS 解析支持
+      "prefer-h3": false,                         // 首选 H3   false 不使用
       "respect-rules": true,                      // 遵循规则  强制遵循规则顺序
       "use-hosts": true,                          // 配置映射  使用 Mihomo 配置中的 hosts 映射,优先使用 hosts 记录，
       "use-system-hosts": false,                  // 系统映射  使用操作系统 hosts 文件中的域名映射
       "cache-algorithm": "arc",                   // 缓存算法
-      "listen": "0.0.0.0:7874",                   // 监听服务  DNS 服务监听地址与端口
+      //"listen": "0.0.0.0:7874",                   // 监听服务  DNS 服务监听地址与端口
       "enhanced-mode": "fake-ip",                 // 增强模式  FDNS 增强模式（Fake-IP，用于防止 DNS 泄露）
       "fake-ip-range": "198.18.0.1/16",           // 虚拟地址  Fake-IP 虚拟地址池范围
       "fake-ip-filter-mode": "blacklist",         // 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
       "fake-ip-filter": [
-        "+.lan",                                  // 真实解析  常见局域网域名后缀
-        "+.local",
-        "+.localdomain",
+        "*.lan",                                  // 真实解析  常见局域网域名后缀
+        "*.local",
+        "localhost",
+        "*.localdomain",
+        "*.msftconnecttest.com",
+        "*.msftncsi.com",
+        "*.msidentity.com",
+        "captive.apple.com",
+        "*.push.apple.com",
+        "stun.*",
+        "+.stun.*.*",
+        "+.stun.*.*.*",
+        "+.stun.*.*.*.*",
+        "+.stun.*.*.*.*.*",
+        "+.weixin.com",
+        "+.wechat.com",
+        "+.qq.com",
+        "+.tencent.com",
         "localhost.ptlogin2.qq.com",
         "time.windows.com",
         "time.apple.com",
@@ -163,6 +178,7 @@ function main(config) {
         "+.xn--ngstr-lra8j.com",
         "+.ntp.org.cn",
         "+.pool.ntp.org",
+        "speedtest.net",
         "rule-set:fakeipfilter_domain",
         "rule-set:add_direct_domain",             // 真实解析  大陆冷门域名
         "geosite:cn"                              // 真实解析  大陆域 GeoSite 数据
@@ -327,7 +343,9 @@ function main(config) {
           "+.telegram.org"
         ],
         "ipcidr": [
-          "240.0.0.0/4"
+          "240.0.0.0/4",
+          "127.0.0.0/8",
+          "0.0.0.0/32"
         ]
       }
     }
