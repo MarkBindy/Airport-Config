@@ -3,27 +3,27 @@
  * 适合部署在支持 js 预处理的 Clash 客户端中，自动将普通机场订阅转化为功能极其强大且规整
  * 重构并重写整份配置，实现自动化的高级分流、防 DNS 泄漏以及精细化策略组管理
  * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/RewriteAUTO.js
- *
+
  *核心功能与架构拆解与特性：
  *1. 全局配置与高级特性 (Global & Advanced Settings)
  *网络与内核参数：开启统一延迟计算、TCP 并发连接以及针对内存优化
  *TUN 虚拟网卡：开启严格路由以防止 DNS 和流量绕过代理，同时对 P2P 下载和联机游戏极具优势的配置
  *Sniffer 流量嗅探：开启并设置了覆盖目标，能够识别出由于 Fake-IP 或纯 IP 连接导致的真实访问域名
- *
+
  *2. 严格的防 DNS 泄漏方案 (Anti-DNS Leak)
  *使用fake-ip 模式
  *采用了严格的 nameserver-policy 域名分流：
  *国内域名/服务（如 .cn、geosite:cn、apple-cn 等）走国内 DoH/UDP 解析（阿里 DNS、DNSPod 等）
  *国外关键服务与 AI 站点（Google、OpenAI、Claude 等）强制走 Cloudflare / Google 的海外 DoH 解析
  *域名防泄漏屏蔽：阻止国内运营商 DNS 拿到海外请求，也阻止海外 DNS 拿到国内请求
- *
+
  *3. 动态地区策略组生成 (Dynamic Regional Proxy Groups)
  *脚本内置了 20+ 个常见国家/地区的正则匹配规则（香港、台湾、日本、韩国、新加坡、美国、英国等）
  *按需生成：只有当你的节点列表中存在某个地区的节点时，才会为该地区动态生成对应的策略组，避免空组：
- *    地区-手动组 (Select)：列出该地区的所有节点供手动选择
- *    地区-自动组 (URL-Test)：后台自动测速选出延迟最低的节点
- *    地区-故障转移组 (Fallback)：优先走手动选择，断连时自动退回至自动测速组
- *
+     地区-手动组 (Select)：列出该地区的所有节点供手动选择
+     地区-自动组 (URL-Test)：后台自动测速选出延迟最低的节点
+     地区-故障转移组 (Fallback)：优先走手动选择，断连时自动退回至自动测速组
+
  *4. 独特的层级化出站结构 (PROXY-Gate 架构)
  *策略组形成了清晰的下层至上层逻辑：
  *底层：节点池
@@ -31,7 +31,7 @@
  *顶层服务组（YouTube、Netflix、AI、Google、Github 等）：
  *默认允许用户选择 🌐 所有-手动、PROXY-Gate（总网关）或者具体的 地区故障转移/自动组
  *实现了“修改一处，全局联动”的优雅配置
- *
+
  *5. 规则集与安全拦截 (Rules & Rule Providers)
  *QUIC 拦截：通过 AND 规则，强制禁用国外的 QUIC (HTTP/3) 流量，解决部分地区 QUIC 被运营商 QoS 导致加载缓慢的问题
  *Apple Push 专项处理：单独抽出 APNs 规则组并使用 Fallback 策略，确保苹果系统推送（APNs）在代理波动时不会失效
@@ -508,7 +508,12 @@ function main(config) {
   );
 
   if (proxyGate) {
-    proxyGate.proxies = ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"];
+    proxyGate.proxies = [
+     "🌐 所有-手动", 
+     ...existingRegionalFallbacks, 
+     ...existingRegionalAutos, 
+     "DIRECT"
+    ];
   }
 
    // Apple Push 专用 APNs-Fallback
