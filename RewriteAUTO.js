@@ -454,7 +454,7 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  //const allRegionalGroupNames = [];
+  const allRegionalGroupNames = [];
 
   regionGroups.forEach(region => {
     const matched = currentProxyNames.filter(name => region.filter.test(name));
