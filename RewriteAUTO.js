@@ -206,13 +206,14 @@ function main(config) {
         "https://dns.google/dns-query"
       ],
       "nameserver-policy": {                      // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
-        "geosite:private,cn,apple-cn,apple@cn,microsoft@cn,category-games@cn,steam@cn": [
-          "223.6.6.6",
-          "223.5.5.5",
-          "119.29.29.29",
-          "https://dns.alidns.com/dns-query",
-          "https://doh.pub/dns-query"
-        ],
+        "geosite:private": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:apple-cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:apple@cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:microsoft@cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:steam@cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:category-games@cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "geosite:category-speedtest@cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.中国": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.公司": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
@@ -230,7 +231,8 @@ function main(config) {
         "+.chatgpt.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.anthropic.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.claude.ai": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
-        "geosite:category-ai-!cn,geolocation-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"]
+        "geosite:category-ai-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "geosite:geolocation-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"]
       },
       "fallback": [                               // 备用查询服务器
         "1.0.0.1",
