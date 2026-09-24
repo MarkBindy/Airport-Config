@@ -595,7 +595,7 @@ function main(config) {
 
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,category-games@cn,DIRECT",
-    "GEOSITE,speedtest@cn,DIRECT",
+    "GEOSITE,category-speedtest@cn,DIRECT",
     "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
