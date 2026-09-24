@@ -365,22 +365,22 @@ function main(config) {
 
   // 3. 构建服务类策略组
   const serviceGroupNames = [
-    "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
-    "Ai", "Microsoft", "Google", "Apple", "X", "Facebook", "Instagram",
+    "Ai", "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
+    "Apple", "Microsoft", "Google", "X", "Facebook", "Instagram",
     "WhatsApp", "Telegram", "Github", "Speedtest"
   ];
 
   const serviceIcons = {
+    "Ai": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
     "YouTube": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png",
     "Netflix": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png",
     "Disney+": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png",
     "Spotify": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png",
     "TikTok": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png",
     "Twitch": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png",
-    "Ai": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
+    "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
     "Microsoft": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
     "Google": "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Google.png",
-    "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
     "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png",
     "Facebook": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png",
     "Instagram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png",
