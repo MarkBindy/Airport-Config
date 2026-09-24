@@ -1,5 +1,5 @@
 /*
- * Clash / Mihomo 配置文件预处理脚本
+ * Clash / Mihomo (Clash Meta) 配置文件预处理脚本
  * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Rewrite.json
  * 
  * 完整的高级全局配置、TUN、Sniffer 以及分流 DNS 防泄漏设置
