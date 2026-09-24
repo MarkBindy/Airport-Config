@@ -215,98 +215,24 @@ function main(config) {
           "https://dns.alidns.com/dns-query",
           "https://doh.pub/dns-query"
         ],
-        "+.cn": [
-          "223.6.6.6",
-          "223.5.5.5",
-          "119.29.29.29",
-          "https://dns.alidns.com/dns-query",
-          "https://doh.pub/dns-query"
-        ],
-        "+.中国": [
-          "223.6.6.6",
-          "223.5.5.5",
-          "119.29.29.29",
-          "https://dns.alidns.com/dns-query",
-          "https://doh.pub/dns-query"
-        ],
-        "+.公司": [
-          "223.6.6.6",
-          "223.5.5.5",
-          "119.29.29.29",
-          "https://dns.alidns.com/dns-query",
-          "https://doh.pub/dns-query"
-        ],
-        "+.网络": [
-          "223.6.6.6",
-          "223.5.5.5",
-          "119.29.29.29",
-          "https://dns.alidns.com/dns-query",
-          "https://doh.pub/dns-query"
-        ],
-        "+.google.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.googleapis.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.googleapis.cn": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.gstatic.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.gvt1.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.gvt2.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.gvt3.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.googleusercontent.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.ggpht.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.android.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.xn--ngstr-lra8j.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.openai.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.chatgpt.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.anthropic.com": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "+.claude.ai": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ],
-        "geosite:category-ai-!cn,geolocation-!cn": [
-          "https://1.1.1.1/dns-query",
-          "https://dns.google/dns-query"
-        ]
+        "+.cn": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "+.中国": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "+.公司": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "+.网络": ["223.6.6.6", "223.5.5.5", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+        "+.google.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.googleapis.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.googleapis.cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.googleusercontent.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.gstatic.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.ggpht.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.gvt1.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.gvt2.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.gvt3.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.openai.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.chatgpt.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.anthropic.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.claude.ai": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "geosite:category-ai-!cn,geolocation-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"]
       },
       "fallback": [                               // 备用查询服务器
         "1.0.0.1",
@@ -343,11 +269,7 @@ function main(config) {
           "+.twitter.com",
           "+.telegram.org"
         ],
-        "ipcidr": [
-          "240.0.0.0/4",
-          "127.0.0.0/8",
-          "0.0.0.0/32"
-        ]
+        "ipcidr": ["240.0.0.0/4", "127.0.0.0/8", "0.0.0.0/32"]
       }
     }
   };
@@ -404,7 +326,8 @@ function main(config) {
     });
 
     regionalGroupsToAppend.push({
-      name: manualName, type: "select", proxies: matched, icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Available.png"
+      name: manualName, type: "select", proxies: matched,
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Available.png"
     });
 
     regionalGroupsToAppend.push({
