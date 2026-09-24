@@ -456,7 +456,7 @@ function main(config) {
     "Twitch": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png",
     "Ai": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png",
     "Microsoft": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
-    "Google": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png",
+    "Google": "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Google.png",
     "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
     "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png",
     "Facebook": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png",
