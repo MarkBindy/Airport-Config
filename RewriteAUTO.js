@@ -208,7 +208,7 @@ function main(config) {
         "https://dns.google/dns-query"
       ],
       "nameserver-policy": {                      // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
-        "geosite:private,cn,apple-cn,apple,microsoft@cn,category-games@cn,steam@cn": [
+        "geosite:private,cn,apple-cn,apple@cn,microsoft@cn,category-games@cn,steam@cn": [
           "223.6.6.6",
           "223.5.5.5",
           "119.29.29.29",
@@ -421,7 +421,7 @@ function main(config) {
   });
 
 // █████████████████████████████████████████████
-//  四. Rules 规则列表
+// 四. Rules 规则列表
 // █████████████████████████████████████████████
   fixed.rules = [
     // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
@@ -602,30 +602,10 @@ function main(config) {
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,category-games@cn,DIRECT",
     "GEOSITE,steam@cn,DIRECT",
-    "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
-    "GEOSITE,apple,DIRECT",
-    "DOMAIN-SUFFIX,mzstatic.com,DIRECT",
-    "DOMAIN-SUFFIX,itunes.apple.com,DIRECT",
-    "DOMAIN-SUFFIX,icloud.com,DIRECT",
-    "DOMAIN-SUFFIX,icloud-content.com,DIRECT",
-    "DOMAIN-SUFFIX,me.com,DIRECT",
-    "DOMAIN-SUFFIX,aaplimg.com,DIRECT",
-    "DOMAIN-SUFFIX,cdn20.com,DIRECT",
-    "DOMAIN-SUFFIX,cdn-apple.com,DIRECT",
-    "DOMAIN-SUFFIX,akadns.net,DIRECT",
-    "DOMAIN-SUFFIX,akamaiedge.net,DIRECT",
-    "DOMAIN-SUFFIX,edgekey.net,DIRECT",
-    "DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT",
-    "DOMAIN-SUFFIX,mwcname.com,DIRECT",
-    "DOMAIN-SUFFIX,apple.com,DIRECT",
-    "DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT",
-    "DOMAIN-SUFFIX,apple-mapkit.com,DIRECT",
+    "GEOSITE,microsoft@cn,DIRECT",
     "DOMAIN,cn.bing.com,DIRECT",
-    "DOMAIN-SUFFIX,office.com,DIRECT",
-    "DOMAIN-SUFFIX,office365.com,DIRECT",
-    "DOMAIN-KEYWORD,officecdn,DIRECT",
     "DOMAIN-KEYWORD,-cn,DIRECT",
     "DOMAIN-SUFFIX,cn,DIRECT",
     "DOMAIN-SUFFIX,中国,DIRECT",
@@ -665,7 +645,7 @@ function main(config) {
 
     // --- AI 服务 ---
     "GEOSITE,category-ai-!cn,Ai",
-    
+
     // YouTube
     "DOMAIN-SUFFIX,youtube.com,YouTube",
     "DOMAIN-SUFFIX,youtu.be,YouTube",
@@ -714,7 +694,6 @@ function main(config) {
     "DOMAIN-SUFFIX,disney.playback.edge.bamgrid.com,Disney+",
     "DOMAIN-SUFFIX,star.playback.edge.bamgrid.com,Disney+",
     "DOMAIN-SUFFIX,search-api-disney.bamgrid.com,Disney+",
-    "GEOSITE,disney,Disney+",
 
     // Spotify
     "DOMAIN-SUFFIX,spotify.com,Spotify",
@@ -724,7 +703,6 @@ function main(config) {
     "DOMAIN-SUFFIX,api-partner.spotify.com,Spotify",
     "DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,Spotify",
     "DOMAIN-SUFFIX,spotifycdn.com,Spotify",
-    "GEOSITE,spotify,Spotify",
 
     // TikTok
     "DOMAIN-SUFFIX,tiktok.com,TikTok",
@@ -745,7 +723,25 @@ function main(config) {
     "DOMAIN-SUFFIX,jtvnw.net,Twitch",
     "DOMAIN-SUFFIX,ttvnw.net,Twitch",
     "DOMAIN-SUFFIX,twitchsvc.net,Twitch",
-    "GEOSITE,twitch,Twitch",
+
+    // Apple
+    "DOMAIN-SUFFIX,mzstatic.com,Apple",
+    "DOMAIN-SUFFIX,itunes.apple.com,Apple",
+    "DOMAIN-SUFFIX,icloud.com,Apple",
+    "DOMAIN-SUFFIX,icloud-content.com,Apple",
+    "DOMAIN-SUFFIX,me.com,Apple",
+    "DOMAIN-SUFFIX,aaplimg.com,Apple",
+    "DOMAIN-SUFFIX,cdn20.com,Apple",
+    "DOMAIN-SUFFIX,cdn-apple.com,Apple",
+    "DOMAIN-SUFFIX,akadns.net,Apple",
+    "DOMAIN-SUFFIX,akamaiedge.net,Apple",
+    "DOMAIN-SUFFIX,edgekey.net,Apple",
+    "DOMAIN-SUFFIX,mwcloudcdn.com,Apple",
+    "DOMAIN-SUFFIX,mwcname.com,Apple",
+    "DOMAIN-SUFFIX,apple.com,Apple",
+    "DOMAIN-SUFFIX,apple-cloudkit.com,Apple",
+    "DOMAIN-SUFFIX,apple-mapkit.com,Apple",
+    "RULE-SET,apple_domain,Apple",
 
     // Microsoft
     "DOMAIN-SUFFIX,account.microsoft.com,Microsoft",
@@ -845,12 +841,11 @@ function main(config) {
     "DOMAIN-KEYWORD,microsoft,Microsoft",
     "DOMAIN-KEYWORD,windows,Microsoft",
     "DOMAIN-KEYWORD,office365,Microsoft",
+    "DOMAIN-KEYWORD,officecdn,Microsoft",
     "DOMAIN-KEYWORD,onedrive,Microsoft",
     "DOMAIN-KEYWORD,outlook,Microsoft",
     "DOMAIN-KEYWORD,hotmail,Microsoft",
     "DOMAIN-KEYWORD,xbox,Microsoft",
-    "GEOSITE,microsoft,Microsoft",
-    "GEOSITE,microsoft@cn,Microsoft",
 
     // Google
     "DOMAIN-KEYWORD,google,Google",
@@ -883,14 +878,12 @@ function main(config) {
     "DOMAIN-SUFFIX,instagram.com,Instagram",
     "DOMAIN-SUFFIX,cdninstagram.com,Instagram",
     "DOMAIN-SUFFIX,instagram.net,Instagram",
-    "GEOSITE,instagram,Instagram",
 
     // WhatsApp
     "DOMAIN-SUFFIX,whatsapp.com,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.net,WhatsApp",
     "DOMAIN-SUFFIX,wa.me,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.org,WhatsApp",
-    "GEOSITE,whatsapp,WhatsApp",
 
     // Telegram
     "DOMAIN-SUFFIX,telegram.org,Telegram",
@@ -925,9 +918,6 @@ function main(config) {
     "GEOSITE,geolocation-!cn,PROXY-Gate",
 
     // --- 国内常用服务/域名直连 ---
-    "GEOSITE,category-games@cn,DIRECT",
-    "GEOSITE,apple-cn,DIRECT",
-    "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,cn,DIRECT",
     "GEOIP,CN,DIRECT",
 
@@ -936,18 +926,19 @@ function main(config) {
   ];
 
 // █████████████████████████████████████████████
-//  五. Rule Providers (远程规则集)
+// 五. Rule Providers (远程规则集)
 // █████████████████████████████████████████████
   fixed["rule-providers"] = {
-    "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
-    "AdvertisingLite_Domain": {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"},
     "Privacy":                {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.yaml"},
+    "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
     "Privacy_Domain":         {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/Privacy_Domain.mrs"},
+    "AdvertisingLite_Domain": {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"},
     "ACL4SSR_BanAD":          {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanAD_domain.mrs"},
     "ACL4SSR_BanProgramAD":   {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanProgramAD_domain.mrs"},
-    "fakeipfilter_domain":    {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"},
-    "add_direct_domain":      {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", url: "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"},
-    "cn_ip":                  {"type": "http", "interval": 86400, "behavior": "ipcidr", "format": "mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+    "apple_domain":           {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"},
+    "fakeipfilter_domain":    {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"},
+    "add_direct_domain":      {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/Seven1echo/Yaml/refs/heads/main/rules/Seven1_Direct_Domain.mrs"},
+    "cn_ip":                  {"type": "http", "interval": 86400, "behavior": "ipcidr", "format": "mrs", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   };
 
   return fixed;
