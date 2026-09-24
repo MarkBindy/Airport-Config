@@ -361,9 +361,8 @@ function main(config) {
 
   // 3. 构建服务类策略组
   const serviceGroupNames = [
-    "Ai", "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch",
-    "Apple", "Microsoft", "Google", "X", "Facebook", "Instagram",
-    "WhatsApp", "Telegram", "Github", "Speedtest"
+    "Ai", "YouTube", "Netflix", "Disney+", "Spotify", "TikTok", "Twitch", "Apple", "Microsoft",
+    "Google", "X", "Facebook", "Instagram", "WhatsApp", "Telegram", "Github", "Speedtest"
   ];
 
   const serviceIcons = {
@@ -412,8 +411,7 @@ function main(config) {
     type: "fallback",
     proxies: existingRegionalFallbacks.length ? existingRegionalFallbacks : ["DIRECT"],
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available_1.png",
-    url: "http://captive.apple.com/hotspot-detect.html",
-    interval: 300
+    interval: 300, url: "http://captive.apple.com/hotspot-detect.html"
   });
 
 // █████████████████████████████████████████████
