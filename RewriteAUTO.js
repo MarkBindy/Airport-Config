@@ -182,29 +182,17 @@ function main(config) {
         "rule-set:add_direct_domain",             // 真实解析  大陆冷门域名
         "geosite:cn"                              // 真实解析  大陆域 GeoSite 数据
       ],
-      "default-nameserver": [                     // 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
-        "1.1.1.1",
-        "8.8.8.8"
-      ],
-      "direct-nameserver": [                      // 直连查询服务器
-        "223.6.6.6",
-        "119.29.29.29",
-        "https://dns.alidns.com/dns-query",
-        "https://doh.pub/dns-query"
-      ],
+      // 默认解析服务器：仅用于解析本地策略组、订阅和一些基础的纯 IP 节点域名
+      "default-nameserver": ["1.1.1.1", "8.8.8.8"],
+      // 直连查询服务器
+      "direct-nameserver": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
       "direct-nameserver-follow-policy": true,    // 直连查询服务器遵循策略
-      "proxy-server-nameserver": [                // 节点域名解析服务器
-        "1.1.1.1",
-        "8.8.8.8"
-      ],
-      "nameserver": [                             // 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
-        "https://1.1.1.1/dns-query",
-        "https://1.0.0.1/dns-query",
-        "https://8.8.8.8/dns-query",
-        "https://8.8.4.4/dns-query",
-        "https://dns.google/dns-query"
-      ],
-      "nameserver-policy": {                      // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
+      // 节点域名解析服务器
+      "proxy-server-nameserver": ["1.1.1.1", "8.8.8.8"],
+      // 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
+      "nameserver": ["https://1.1.1.1/dns-query", "https://1.0.0.1/dns-query", "https://8.8.8.8/dns-query", "https://8.8.4.4/dns-query", "https://dns.google/dns-query"],
+      // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
+      "nameserver-policy": {                      
         "geosite:private": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple-cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
@@ -233,13 +221,10 @@ function main(config) {
         "geosite:category-ai-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "geosite:geolocation-!cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"]
       },
-      "fallback": [                               // 备用查询服务器
-        "1.0.0.1",
-        "8.8.4.4",
-        "https://dns.cloudflare.com/dns-query",
-        "https://1dot1dot1dot1.cloudflare-dns.com/"
-      ],
-      "fallback-filter": {                        // 备用过滤器
+      // 备用查询服务器
+      "fallback": ["1.0.0.1", "8.8.4.4", "https://dns.cloudflare.com/dns-query", "https://1dot1dot1dot1.cloudflare-dns.com/"],
+      // 备用过滤器
+      "fallback-filter": {                        
         "geoip": true,
         "geoip-code": "CN",
         "geosite": ["gfw"],
