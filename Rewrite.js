@@ -538,6 +538,7 @@ function main(config) {
 
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,category-games@cn,DIRECT",
+    "GEOSITE,category-speedtest@cn,DIRECT",
     "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
@@ -622,10 +623,9 @@ function main(config) {
     "GEOSITE,netflix,🎥 NETFLIX",
     "GEOIP,netflix,🎥 NETFLIX,no-resolve",
     "GEOSITE,disney,🎥 NETFLIX",
-    "GEOSITE,category-speedtest,⚡ Speedtest",
-    "GEOSITE,category-speedtest@cn,⚡ Speedtest",
-    "GEOSITE,category-speedtest@!cn,⚡ Speedtest",
     "GEOSITE,speedtest,⚡ Speedtest",
+    "GEOSITE,category-speedtest,⚡ Speedtest",
+    "GEOSITE,category-speedtest@!cn,⚡ Speedtest",
     "DOMAIN-SUFFIX,intercom.io,🚀 默认代理",
     "DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理",
 
