@@ -595,6 +595,7 @@ function main(config) {
 
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,category-games@cn,DIRECT",
+    "GEOSITE,speedtest@cn,DIRECT",
     "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
@@ -903,10 +904,9 @@ function main(config) {
     "GEOSITE,github,Github",
 
     // Speedtest
-    "GEOSITE,category-speedtest,Speedtest",
-    "GEOSITE,category-speedtest@cn,Speedtest",
-    "GEOSITE,category-speedtest@!cn,Speedtest",
     "GEOSITE,speedtest,Speedtest",
+    "GEOSITE,category-speedtest,Speedtest",
+    "GEOSITE,category-speedtest@!cn,Speedtest",
 
     // --- 非中国大陆区域 ---
     "GEOSITE,geolocation-!cn,PROXY-Gate",
