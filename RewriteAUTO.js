@@ -45,11 +45,7 @@ function main(config) {
   const currentProxies = Array.isArray(config && config.proxies) ? config.proxies : [];
 
   const currentProxyNames = currentProxies
-    .map(p =>
-      typeof p === "string"
-        ? p
-        : (p && typeof p.name === "string" ? p.name : null)
-    )
+    .map(p => typeof p === "string" ? p : (p && typeof p.name === "string" ? p.name : null))
     .filter(Boolean);
 
 // █████████████████████████████████████████████
