@@ -381,7 +381,7 @@ function main(config) {
     "Apple": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png",
     "Microsoft": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
     "Google": "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Google.png",
-    "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png",
+    "X": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/twitter.png",
     "Facebook": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png",
     "Instagram": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png",
     "WhatsApp": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png",
