@@ -342,22 +342,18 @@ function main(config) {
   // 2. 插入顶部主策略组
   fixed["proxy-groups"].push(
     {
-      name: "PROXY-Gate",
-      type: "select",
+      name: "PROXY-Gate", type: "select",
       proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
     {
-      name: "Apple Push 苹果通知推送",
-      type: "fallback",
+      name: "Apple Push 苹果通知推送", type: "fallback",
       proxies: ["APNs-Fallback", "DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png",
-      url: "http://captive.apple.com/hotspot-detect.html",
-      interval: 300
+      interval: 300, url: "http://captive.apple.com/hotspot-detect.html"
     },
     {
-      name: "🌐 所有-手动",
-      type: "select",
+      name: "🌐 所有-手动", type: "select",
       proxies: currentProxyNames.length ? currentProxyNames.slice() : ["DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png"
     }
