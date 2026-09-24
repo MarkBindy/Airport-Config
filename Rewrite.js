@@ -539,9 +539,9 @@ function main(config) {
     "DOMAIN-SUFFIX,zhihu.com,DIRECT",
 
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
+    "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,category-games@cn,DIRECT",
     "GEOSITE,category-speedtest@cn,DIRECT",
-    "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
