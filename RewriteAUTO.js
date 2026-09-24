@@ -40,8 +40,8 @@
  */
 
 
-// Hako 当前选中的所有机场节点都会合并到 config.proxies
 function main(config) {
+  // 当前选中的所有机场节点都会合并到 config.proxies,获取订阅中的节点列表
   const currentProxies = Array.isArray(config && config.proxies) ? config.proxies : [];
 
   const currentProxyNames = currentProxies
