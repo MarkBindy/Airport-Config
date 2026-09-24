@@ -147,7 +147,6 @@ function main(config) {
       ],
       "direct-nameserver": [                      // 直连查询服务器
         "223.6.6.6",
-        "223.5.5.5",
         "119.29.29.29",
         "https://dns.alidns.com/dns-query",
         "https://doh.pub/dns-query"
