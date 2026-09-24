@@ -1,7 +1,7 @@
 /*
  * Clash / Mihomo (Clash Meta) 配置文件预处理脚本
- * 适合部署在支持 js 预处理的 Clash 客户端中，自动将普通机场订阅转化为功能极其强大且规整
- * 重构并重写整份配置，实现自动化的高级分流、防 DNS 泄漏以及精细化策略组管理
+ * 适合部署在支持 js 预处理的 Clash 客户端中，自动将普通机场订阅转化为功能极其强大且规整重构并重写整份配置
+ * 实现自动化的高级分流、防 DNS 泄漏以及精细化策略组管理
  * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/RewriteAUTO.js
  *
  * 核心功能 / 架构拆解 / 特性：
