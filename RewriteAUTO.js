@@ -3,7 +3,9 @@
  * 适合部署在支持 js 预处理的 Clash 客户端中，自动将普通机场订阅转化为功能极其强大且规整
  * 重构并重写整份配置，实现自动化的高级分流、防 DNS 泄漏以及精细化策略组管理
  * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/RewriteAUTO.js
+ 
  *核心功能与架构拆解与特性：
+ 
  *1. 全局配置与高级特性 (Global & Advanced Settings)
  *网络与内核参数：开启统一延迟计算、TCP 并发连接以及针对内存优化
  *TUN 虚拟网卡：开启严格路由以防止 DNS 和流量绕过代理，同时对 P2P 下载和联机游戏极具优势的配置
@@ -53,9 +55,9 @@ function main(config) {
     )
     .filter(Boolean);
 
-// =============================================
+// █████████████████████████████████████████████
 //  一. 全局基础配置
-// =============================================
+// █████████████████████████████████████████████
   const fixed = {
     "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
     "socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
@@ -350,15 +352,15 @@ function main(config) {
     }
   };
 
-// =============================================
+// █████████████████████████████████████████████
 // 二. 节点池设置
-// =============================================
+// █████████████████████████████████████████████
   fixed.proxies = currentProxies;
   fixed["proxy-groups"] = [];
 
-// =============================================
+// █████████████████████████████████████████████
 // 三. 动态计算与策略组构建
-// =============================================
+// █████████████████████████████████████████████
   const regionGroups = [
     {key: "HK", name: "🇭🇰 香港", filter: /([\[]HK[\]]|^HK$|Hong[ _-]?Kong|\bHK\b|香港|🇭🇰)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
     {key: "TW", name: "🇹🇼 台湾", filter: /([\[]TW[\]]|^TW$|Taiwan|Taibei|Taipei|\bTW\b|台湾|臺灣|台北|高雄|🇹🇼)/i, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"},
@@ -495,9 +497,9 @@ function main(config) {
     interval: 300
   });
 
-// =============================================
+// █████████████████████████████████████████████
 //  四. Rules 规则列表
-// =============================================
+// █████████████████████████████████████████████
   fixed.rules = [
     // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
     "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",
@@ -1010,9 +1012,9 @@ function main(config) {
     "MATCH,PROXY-Gate"
   ];
 
-// =============================================
+// █████████████████████████████████████████████
 //  五. Rule Providers (远程规则集)
-// =============================================
+// █████████████████████████████████████████████
   fixed["rule-providers"] = {
     "AdvertisingLite":        {"type": "http", "interval": 86400, "behavior": "classical", "format": "yaml", "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"},
     "AdvertisingLite_Domain": {"type": "http", "interval": 86400, "behavior": "domain", "format": "mrs", "url": "https://raw.githubusercontent.com/kiki-rgb-00/kiki/refs/heads/main/MRS/AdvertisingLite_Domain.mrs"},
