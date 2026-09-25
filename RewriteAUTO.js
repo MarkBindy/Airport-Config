@@ -142,7 +142,7 @@ function main(config) {
       "use-hosts": true,                          // 配置映射  使用 Mihomo 配置中的 hosts 映射,优先使用 hosts 记录，
       "use-system-hosts": false,                  // 系统映射  使用操作系统 hosts 文件中的域名映射
       "cache-algorithm": "arc",                   // 缓存算法
-      //"listen": "0.0.0.0:7874",                   // 监听服务  DNS 服务监听地址与端口
+      "listen": "0.0.0.0:7874",                   // 监听服务  DNS 服务监听地址与端口
       "enhanced-mode": "fake-ip",                 // 增强模式  FDNS 增强模式（Fake-IP，用于防止 DNS 泄露）
       "fake-ip-range": "198.18.0.1/16",           // 虚拟地址  Fake-IP 虚拟地址池范围
       "fake-ip-filter-mode": "blacklist",         // 过滤模式  Fake-IP 过滤模式（命中规则则返回真实 IP）
