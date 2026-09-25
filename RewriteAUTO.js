@@ -623,7 +623,7 @@ function main(config) {
     // --- AI 服务 ---
     "GEOSITE,category-ai-!cn,Ai",
 
-    // YouTube
+    // --- YouTube ---
     "DOMAIN-SUFFIX,youtube.com,YouTube",
     "DOMAIN-SUFFIX,youtu.be,YouTube",
     "DOMAIN-SUFFIX,youtube-nocookie.com,YouTube",
@@ -634,7 +634,7 @@ function main(config) {
     "DOMAIN-SUFFIX,ggpht.com,YouTube",
     "GEOSITE,youtube,YouTube",
 
-    // Netflix
+    // --- Netflix ---
     "DOMAIN-SUFFIX,netflix.com,Netflix",
     "DOMAIN-SUFFIX,netflix.net,Netflix",
     "DOMAIN-SUFFIX,netflix.ca,Netflix",
@@ -661,7 +661,7 @@ function main(config) {
     "GEOSITE,netflix,Netflix",
     "GEOIP,netflix,Netflix,no-resolve",
 
-    // Disney+
+    // --- Disney+ ---
     "DOMAIN-SUFFIX,disneyplus.com,Disney+",
     "DOMAIN-SUFFIX,disney-plus.net,Disney+",
     "DOMAIN-SUFFIX,dssott.com,Disney+",
@@ -672,7 +672,7 @@ function main(config) {
     "DOMAIN-SUFFIX,star.playback.edge.bamgrid.com,Disney+",
     "DOMAIN-SUFFIX,search-api-disney.bamgrid.com,Disney+",
 
-    // Spotify
+    // --- Spotify ---
     "DOMAIN-SUFFIX,spotify.com,Spotify",
     "DOMAIN-SUFFIX,spotifycdn.com,Spotify",
     "DOMAIN-SUFFIX,scdn.co,Spotify",
@@ -681,7 +681,7 @@ function main(config) {
     "DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,Spotify",
     "DOMAIN-SUFFIX,spotifycdn.com,Spotify",
 
-    // TikTok
+    // --- TikTok ---
     "DOMAIN-SUFFIX,tiktok.com,TikTok",
     "DOMAIN-SUFFIX,tiktokcdn.com,TikTok",
     "DOMAIN-SUFFIX,tiktokcdn-us.com,TikTok",
@@ -694,14 +694,14 @@ function main(config) {
     "DOMAIN-SUFFIX,musical.ly,TikTok",
     "GEOSITE,tiktok,TikTok",
 
-    // Twitch
+    // --- Twitch --- 
     "DOMAIN-SUFFIX,twitch.tv,Twitch",
     "DOMAIN-SUFFIX,twitchcdn.net,Twitch",
     "DOMAIN-SUFFIX,jtvnw.net,Twitch",
     "DOMAIN-SUFFIX,ttvnw.net,Twitch",
     "DOMAIN-SUFFIX,twitchsvc.net,Twitch",
 
-    // Apple
+    // --- Apple --- 
     "DOMAIN-SUFFIX,mzstatic.com,Apple",
     "DOMAIN-SUFFIX,itunes.apple.com,Apple",
     "DOMAIN-SUFFIX,icloud.com,Apple",
@@ -720,7 +720,7 @@ function main(config) {
     "DOMAIN-SUFFIX,apple-mapkit.com,Apple",
     "RULE-SET,apple_domain,Apple",
 
-    // Microsoft
+    // --- Microsoft --- 
     "DOMAIN-SUFFIX,account.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,account.live.com,Microsoft",
     "DOMAIN-SUFFIX,login.live.com,Microsoft",
@@ -824,7 +824,7 @@ function main(config) {
     "DOMAIN-KEYWORD,hotmail,Microsoft",
     "DOMAIN-KEYWORD,xbox,Microsoft",
 
-    // Google
+    // --- Google --- 
     "DOMAIN-KEYWORD,google,Google",
     "DOMAIN-SUFFIX,gmail.com,Google",
     "DOMAIN-SUFFIX,googleusercontent.com,Google",
@@ -834,7 +834,7 @@ function main(config) {
     "GEOSITE,google,Google",
     "GEOIP,google,Google,no-resolve",
 
-    // X
+    // --- X --- 
     "DOMAIN-SUFFIX,x.com,X",
     "DOMAIN-SUFFIX,twitter.com,X",
     "DOMAIN-SUFFIX,t.co,X",
@@ -842,7 +842,7 @@ function main(config) {
     "GEOSITE,twitter,X",
     "GEOIP,twitter,X,no-resolve",
 
-    // Facebook
+    // --- Facebook --- 
     "DOMAIN-SUFFIX,facebook.com,Facebook",
     "DOMAIN-SUFFIX,facebook.net,Facebook",
     "DOMAIN-SUFFIX,fbcdn.net,Facebook",
@@ -851,18 +851,18 @@ function main(config) {
     "GEOSITE,facebook,Facebook",
     "GEOIP,facebook,Facebook,no-resolve",
 
-    // Instagram
+    // --- Instagram --- 
     "DOMAIN-SUFFIX,instagram.com,Instagram",
     "DOMAIN-SUFFIX,cdninstagram.com,Instagram",
     "DOMAIN-SUFFIX,instagram.net,Instagram",
 
-    // WhatsApp
+    // --- WhatsApp ---
     "DOMAIN-SUFFIX,whatsapp.com,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.net,WhatsApp",
     "DOMAIN-SUFFIX,wa.me,WhatsApp",
     "DOMAIN-SUFFIX,whatsapp.org,WhatsApp",
 
-    // Telegram
+    // --- Telegram ---
     "DOMAIN-SUFFIX,telegram.org,Telegram",
     "DOMAIN-SUFFIX,telegram.me,Telegram",
     "DOMAIN-SUFFIX,t.me,Telegram",
@@ -882,10 +882,10 @@ function main(config) {
     "GEOSITE,telegram,Telegram",
     "GEOIP,telegram,Telegram,no-resolve",
 
-    // Github
+    // --- Github ---
     "GEOSITE,github,Github",
 
-    // Speedtest
+    // --- Speedtest ---
     "GEOSITE,speedtest,Speedtest",
     "GEOSITE,category-speedtest,Speedtest",
     "GEOSITE,category-speedtest@!cn,Speedtest",
@@ -893,7 +893,7 @@ function main(config) {
     // --- 非中国大陆区域 ---
     "GEOSITE,geolocation-!cn,PROXY-Gate",
 
-    // --- 国内常用服务/域名直连 ---
+    // --- 国内域名直连 ---
     "GEOSITE,cn,DIRECT",
     "GEOIP,CN,DIRECT",
 
