@@ -189,7 +189,6 @@ function main(config) {
       "nameserver": ["https://1.1.1.1/dns-query", "https://1.0.0.1/dns-query", "https://8.8.8.8/dns-query", "https://8.8.4.4/dns-query", "https://dns.google/dns-query"],
       // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
       "nameserver-policy": {
-        "geosite:private": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple-cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
