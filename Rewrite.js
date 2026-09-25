@@ -151,15 +151,10 @@ function main(config) {
       // 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
       "nameserver": ["https://1.1.1.1/dns-query", "https://1.0.0.1/dns-query", "https://8.8.8.8/dns-query", "https://8.8.4.4/dns-query", "https://dns.google/dns-query"],
       // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
-      "nameserver-policy": {                      
-        "geosite:private": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
+      "nameserver-policy": {
         "geosite:cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple-cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:microsoft@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:steam@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:category-games@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:category-speedtest@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.中国": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.公司": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
@@ -358,7 +353,7 @@ function main(config) {
   fixed.rules = [
     // --- 拦截境外 QUIC 流量（防止 QoS 导致卡顿）---
     "AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((GEOSITE,cn),(GEOIP,CN,no-resolve)))))),REJECT",
-    
+
     // --- 本地/局域网 ---
     "DOMAIN-SUFFIX,localhost,DIRECT",
     "DOMAIN,local.adguard.org,DIRECT",
@@ -525,7 +520,6 @@ function main(config) {
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,category-games@cn,DIRECT",
-    "GEOSITE,category-speedtest@cn,DIRECT",
     "GEOSITE,microsoft@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
@@ -611,6 +605,7 @@ function main(config) {
     "GEOSITE,disney,🎥 NETFLIX",
     "GEOSITE,speedtest,⚡ Speedtest",
     "GEOSITE,category-speedtest,⚡ Speedtest",
+    "GEOSITE,category-speedtest@cn,⚡ Speedtest",
     "GEOSITE,category-speedtest@!cn,⚡ Speedtest",
     "DOMAIN-SUFFIX,intercom.io,🚀 默认代理",
     "DOMAIN-SUFFIX,intercomcdn.com,🚀 默认代理",
