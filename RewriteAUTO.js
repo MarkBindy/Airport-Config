@@ -188,15 +188,11 @@ function main(config) {
       // 基础查询服务器：未命中 nameserver-policy 的域名走境外加密 DoH（阻断局域网直接向运营商泄漏）
       "nameserver": ["https://1.1.1.1/dns-query", "https://1.0.0.1/dns-query", "https://8.8.8.8/dns-query", "https://8.8.4.4/dns-query", "https://dns.google/dns-query"],
       // 严格分流策略：按域名分流 DNS 解析，国内域名绝不走海外，海外域名绝不走国内大厂
-      "nameserver-policy": {                      
+      "nameserver-policy": {
         "geosite:private": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple-cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "geosite:apple@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:microsoft@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:steam@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:category-games@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
-        "geosite:category-speedtest@cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.cn": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.中国": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
         "+.公司": ["223.6.6.6", "119.29.29.29", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"],
@@ -693,7 +689,7 @@ function main(config) {
     "DOMAIN-SUFFIX,musical.ly,TikTok",
     "GEOSITE,tiktok,TikTok",
 
-    // --- Twitch --- 
+    // --- Twitch ---
     "DOMAIN-SUFFIX,twitch.tv,Twitch",
     "DOMAIN-SUFFIX,twitchcdn.net,Twitch",
     "DOMAIN-SUFFIX,jtvnw.net,Twitch",
@@ -719,7 +715,7 @@ function main(config) {
     "DOMAIN-SUFFIX,apple-mapkit.com,Apple",
     "RULE-SET,apple_domain,Apple",
 
-    // --- Microsoft --- 
+    // --- Microsoft ---
     "DOMAIN-SUFFIX,account.microsoft.com,Microsoft",
     "DOMAIN-SUFFIX,account.live.com,Microsoft",
     "DOMAIN-SUFFIX,login.live.com,Microsoft",
@@ -823,7 +819,7 @@ function main(config) {
     "DOMAIN-KEYWORD,hotmail,Microsoft",
     "DOMAIN-KEYWORD,xbox,Microsoft",
 
-    // --- Google --- 
+    // --- Google ---
     "DOMAIN-KEYWORD,google,Google",
     "DOMAIN-SUFFIX,gmail.com,Google",
     "DOMAIN-SUFFIX,googleusercontent.com,Google",
@@ -833,7 +829,7 @@ function main(config) {
     "GEOSITE,google,Google",
     "GEOIP,google,Google,no-resolve",
 
-    // --- X --- 
+    // --- X ---
     "DOMAIN-SUFFIX,x.com,X",
     "DOMAIN-SUFFIX,twitter.com,X",
     "DOMAIN-SUFFIX,t.co,X",
@@ -841,7 +837,7 @@ function main(config) {
     "GEOSITE,twitter,X",
     "GEOIP,twitter,X,no-resolve",
 
-    // --- Facebook --- 
+    // --- Facebook ---
     "DOMAIN-SUFFIX,facebook.com,Facebook",
     "DOMAIN-SUFFIX,facebook.net,Facebook",
     "DOMAIN-SUFFIX,fbcdn.net,Facebook",
@@ -850,7 +846,7 @@ function main(config) {
     "GEOSITE,facebook,Facebook",
     "GEOIP,facebook,Facebook,no-resolve",
 
-    // --- Instagram --- 
+    // --- Instagram ---
     "DOMAIN-SUFFIX,instagram.com,Instagram",
     "DOMAIN-SUFFIX,cdninstagram.com,Instagram",
     "DOMAIN-SUFFIX,instagram.net,Instagram",
