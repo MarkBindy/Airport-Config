@@ -48,9 +48,9 @@ function main(config) {
     .map(p => typeof p === "string" ? p : (p && typeof p.name === "string" ? p.name : null))
     .filter(Boolean);
 
-   // ██████████████████████████████████████████
-   //  一. 全局基础配置
-   // ██████████████████████████████████████████
+// █████████████████████████████████████████████
+//  一. 全局基础配置
+// █████████████████████████████████████████████
   const fixed = {
     "port": 7890,                                 // 监听端口  HTTP(S) 代理端口
     "socks-port": 7891,                           // 监听端口  SOCKS5 代理端口
@@ -578,7 +578,6 @@ function main(config) {
     // --- Apple/微软/腾讯/阿里/百度/云服务/其它 ---
     "GEOSITE,steam@cn,DIRECT",
     "GEOSITE,category-games@cn,DIRECT",
-    "GEOSITE,category-speedtest@cn,DIRECT",
     "GEOSITE,apple-cn,DIRECT",
     "GEOSITE,apple@cn,DIRECT",
     "GEOSITE,microsoft@cn,DIRECT",
@@ -889,6 +888,7 @@ function main(config) {
     "GEOSITE,speedtest,Speedtest",
     "GEOSITE,category-speedtest,Speedtest",
     "GEOSITE,category-speedtest@!cn,Speedtest",
+    "GEOSITE,category-speedtest@cn,Speedtest",
 
     // --- 非中国大陆区域 ---
     "GEOSITE,geolocation-!cn,PROXY-Gate",
