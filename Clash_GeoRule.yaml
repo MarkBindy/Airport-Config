@@ -1,4 +1,4 @@
-# 版本： V2026.9.25
+# 版本： V2026.9.26
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_GeoRule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
@@ -531,13 +531,13 @@ rules:
   #  --- 国外服务 --- 
   - GEOSITE,youtube,📹 YouTube
   - RULE-SET,youtube_classical,📹 YouTube
-  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
   - DOMAIN-SUFFIX,market.android.com,🍀 Google
-  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
   - DOMAIN-SUFFIX,developers.google.cn,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
   - GEOSITE,google,🍀 Google
   - RULE-SET,google_domain,🍀 Google
   - GEOIP,google,🍀 Google,no-resolve
