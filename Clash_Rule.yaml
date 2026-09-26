@@ -1,4 +1,4 @@
-# 版本： V2026.9.25
+# 版本： V2026.9.26
 # 地址： https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Clash_Rule.yaml
 # 说明： 使用前需补充完整机场信息 “订阅链接” 与 “机场名” 即可保存
 
@@ -549,15 +549,13 @@ rules:
   - RULE-SET,google_domain,🍀 Google
   # - GEOIP,google,🍀 Google,no-resolve
   - RULE-SET,google_ip,🍀 Google,no-resolve
-  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,android.com,🍀 Google
-  - DOMAIN-SUFFIX,android.clients.google.com,🍀 Google
-  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
-  - DOMAIN-SUFFIX,market.android.com,🍀 Google
-  - DOMAIN-SUFFIX,dl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
-  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google
+  - DOMAIN-SUFFIX,market.android.com,🍀 Google
+  - DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google
+  - DOMAIN-SUFFIX,developers.google.cn,🍀 Google
+  - DOMAIN-SUFFIX,play.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,android.googleapis.com,🍀 Google
+  - DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google
   # - GEOSITE,tiktok,🎵 TikTok
   - RULE-SET,tiktok_domain,🎵 TikTok
   - DOMAIN-KEYWORD,tiktok,🎵 TikTok
