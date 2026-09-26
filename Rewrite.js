@@ -319,8 +319,8 @@ function main(config) {
 
   urlTestList.forEach(item => {
     proxyGroups.push({
-      name: item.name, type: "url-test", proxies: item.proxies, "include-all": true, filter: item.filter,
-      "empty-fallback": "REJECT", lazy: false, hidden: true, timeout: 3000, "max-failed-times": 2,
+      name: item.name, type: "url-test", proxies: item.proxies, "include-all": true,
+      filter: item.filter, "empty-fallback": "REJECT", hidden: true, timeout: 3000, "max-failed-times": 2,
       interval: 600, tolerance: 50, url: "https://www.gstatic.com/generate_204",
       icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
     });
