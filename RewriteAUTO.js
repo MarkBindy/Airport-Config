@@ -322,7 +322,7 @@ function main(config) {
   fixed["proxy-groups"].push(
     {
       name: "PROXY-Gate", type: "select",
-      proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, "DIRECT"],
+      proxies: ["🌐 所有-手动", ...existingRegionalFallbacks, ...existingRegionalAutos, ...existingRegionalManuals, "DIRECT"],
       icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png"
     },
     {
@@ -368,6 +368,7 @@ function main(config) {
     "🌐 所有-手动",
     ...existingRegionalFallbacks,
     ...existingRegionalAutos,
+    ...existingRegionalManuals,
     "PROXY-Gate",
     "DIRECT"
   ];
