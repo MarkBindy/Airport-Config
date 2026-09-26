@@ -586,13 +586,13 @@ function main(config) {
 
     // --- 国外服务 ---
     "GEOSITE,youtube,📹 YouTube",
-    "DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google",
     "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🍀 Google",
     "DOMAIN-SUFFIX,market.android.com,🍀 Google",
-    "DOMAIN-SUFFIX,android.googleapis.com,🍀 Google",
-    "DOMAIN-SUFFIX,play.googleapis.com,🍀 Google",
-    "DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google",
+    "DOMAIN-SUFFIX,dl-ssl.google.com,🍀 Google",
     "DOMAIN-SUFFIX,developers.google.cn,🍀 Google",
+    "DOMAIN-SUFFIX,play.googleapis.com,🍀 Google",
+    "DOMAIN-SUFFIX,android.googleapis.com,🍀 Google",
+    "DOMAIN-SUFFIX,services.googleapis.cn,🍀 Google",
     "GEOSITE,google,🍀 Google",
     "GEOIP,google,🍀 Google,no-resolve",
     "GEOSITE,tiktok,🎵 TikTok",
