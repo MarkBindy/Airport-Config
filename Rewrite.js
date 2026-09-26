@@ -257,13 +257,9 @@ function main(config) {
   ];
 
   serviceGroups.forEach(item => {
-    proxyGroups.push({
-      name: item.name,
-      type: "select",
-      "include-all": true,
-      proxies: anchorPGProxies,
-      icon: item.icon
-    });
+    proxyGroups.push(
+      {name: item.name, type: "select", proxies: anchorPGProxies, "include-all": true, icon: item.icon}
+    );
   });
 
   // 2. 故转组 (Fallback)
@@ -279,19 +275,11 @@ function main(config) {
   ];
 
   fallbackList.forEach(item => {
-    proxyGroups.push({
-      name: item.name,
-      type: "fallback",
-      "empty-fallback": "REJECT",
-      interval: 150,
-      lazy: false,
-      timeout: 3000,
-      "max-failed-times": 2,
-      hidden: true,
-      url: "https://www.gstatic.com/generate_204",
-      proxies: item.proxies,
-      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
-    });
+    proxyGroups.push(
+      {name: item.name, type: "fallback", proxies: item.proxies, "empty-fallback": "REJECT", lazy: false, hidden: true,
+      timeout: 3000, "max-failed-times": 2, interval: 300, url: "https://www.gstatic.com/generate_204",
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"}
+    );
   });
 
   // 3. 手动选择组 (Select + Filter)
@@ -309,10 +297,7 @@ function main(config) {
 
   selectList.forEach(item => {
     const group = {
-      name: item.name,
-      type: "select",
-      "empty-fallback": "REJECT",
-      "include-all": true,
+      name: item.name, type: "select", "include-all": true, "empty-fallback": "REJECT",
       icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Available.png"
     };
     if (item.filter) group.filter = item.filter;
@@ -333,21 +318,12 @@ function main(config) {
   ];
 
   urlTestList.forEach(item => {
-    proxyGroups.push({
-      name: item.name,
-      type: "url-test",
-      "empty-fallback": "REJECT",
-      interval: 300,
-      lazy: false,
-      timeout: 3000,
-      "max-failed-times": 2,
-      hidden: true,
-      url: "https://www.gstatic.com/generate_204",
-      tolerance: 50,
-      "include-all": true,
-      filter: item.filter,
-      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
-    });
+    proxyGroups.push(
+      {name: item.name, type: "fallback", proxies: item.proxies, "include-all": true, filter: item.filter,
+      "empty-fallback": "REJECT", lazy: false, hidden: true, timeout: 3000, "max-failed-times": 2,
+      interval: 600, tolerance: 50, url: "https://www.gstatic.com/generate_204",
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"}
+    );
   });
 
   fixed["proxy-groups"] = proxyGroups;
