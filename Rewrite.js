@@ -289,7 +289,8 @@ function main(config) {
       "max-failed-times": 2,
       hidden: true,
       url: "https://www.gstatic.com/generate_204",
-      proxies: item.proxies
+      proxies: item.proxies,
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
     });
   });
 
@@ -311,7 +312,8 @@ function main(config) {
       name: item.name,
       type: "select",
       "empty-fallback": "REJECT",
-      "include-all": true
+      "include-all": true,
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Available.png"
     };
     if (item.filter) group.filter = item.filter;
     proxyGroups.push(group);
@@ -343,7 +345,8 @@ function main(config) {
       url: "https://www.gstatic.com/generate_204",
       tolerance: 50,
       "include-all": true,
-      filter: item.filter
+      filter: item.filter,
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
     });
   });
 
