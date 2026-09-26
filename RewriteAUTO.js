@@ -299,9 +299,9 @@ function main(config) {
     const autoName = region.name + "-自动";
 
     regionalGroupsToAppend.push({
-      name: fallbackName, type: "fallback", proxies: [manualName, autoName], hidden: true,
-      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png",
-      interval: 300, url: "http://www.gstatic.com/generate_204"
+      name: fallbackName, type: "fallback", proxies: [manualName, autoName], lazy: false, hidden: true,
+      timeout: 3000, "max-failed-times": 2, interval: 300, url: "http://www.gstatic.com/generate_204",
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
     });
 
     regionalGroupsToAppend.push({
@@ -311,8 +311,8 @@ function main(config) {
 
     regionalGroupsToAppend.push({
       name: autoName, type: "url-test", proxies: matched, hidden: true,
-      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png",
-      interval: 600, url: "http://www.gstatic.com/generate_204"
+      timeout: 3000, "max-failed-times": 2, interval: 600, url: "http://www.gstatic.com/generate_204",
+      icon: "https://raw.githubusercontent.com/MarkBindy/Airport-Config/main/icon/qure/color/Auto.png"
     });
 
     existingRegionalFallbacks.push(fallbackName);
