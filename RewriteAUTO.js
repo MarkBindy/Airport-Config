@@ -286,7 +286,7 @@ function main(config) {
 
   const existingRegionalFallbacks = [];
   const existingRegionalAutos = [];
-  //const existingRegionalManuals = [];
+  const existingRegionalManuals = [];
   const regionalGroupsToAppend = [];
 
   // 1. 优先扫描节点生成存在的地区组
