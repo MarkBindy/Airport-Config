@@ -199,6 +199,8 @@ function main(config) {
         "+.google.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.googleapis.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.googleapis.cn": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.android.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
+        "+.xn--ngstr-lra8j.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.googleusercontent.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.gstatic.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
         "+.ggpht.com": ["https://1.1.1.1/dns-query", "https://dns.google/dns-query"],
