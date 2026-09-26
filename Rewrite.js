@@ -257,9 +257,9 @@ function main(config) {
   ];
 
   serviceGroups.forEach(item => {
-    proxyGroups.push(
-      {name: item.name, type: "select", proxies: anchorPGProxies, "include-all": true, icon: item.icon}
-    );
+    proxyGroups.push({
+      name: item.name, type: "select", proxies: anchorPGProxies, "include-all": true, icon: item.icon
+    });
   });
 
   // 2. 故转组 (Fallback)
