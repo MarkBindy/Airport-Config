@@ -317,6 +317,7 @@ function main(config) {
 
     existingRegionalFallbacks.push(fallbackName);
     existingRegionalAutos.push(autoName);
+    existingRegionalManuals.push(manualName);
   });
 
   // 2. 插入顶部主策略组
