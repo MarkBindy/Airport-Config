@@ -347,7 +347,7 @@ function main(config) {
   ];
 
   const serviceIcons = {
-    "Ai": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png",
+    "Ai": "https://github.com/MarkBindy/Airport-Config/raw/main/icon/qure/color/ChatGPT.png",
     "YouTube": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png",
     "Netflix": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png",
     "Disney+": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png",
