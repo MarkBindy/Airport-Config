@@ -80,9 +80,31 @@
     {"tag": "🇯🇵AWS日本08 | 电信移动联通推荐", "type": "vless", "server": "pq.aws55.yydjc.top", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "flow": "xtls-rprx-vision", "tls": { "enabled": true, "server_name": "updates.cdn-apple.com", "utls": { "enabled": true, "fingerprint": "ios" }, "reality": { "enabled": true, "public_key": "Zzn7SxtTRMANwRwOvn87ZpNQ8zjjzcKOznE_sG_7UQU", "short_id": "6b584a0d" }}},
     {"tag": "🇯🇵AWS日本09 | 电信移动联通推荐", "type": "vless", "server": "pq.aws56.yydjc.top", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "flow": "xtls-rprx-vision", "tls": { "enabled": true, "server_name": "updates.cdn-apple.com", "utls": { "enabled": true, "fingerprint": "ios" }, "reality": { "enabled": true, "public_key": "scnmyqQqGfHXAG9Ihe-bzs1xvqwQlMhCc87zJdIzPTs", "short_id": "2edcfbb7" }}},
     {"tag": "🇯🇵AWS日本10 | 电信移动联通推荐", "type": "vless", "server": "pq.aws57.yydjc.top", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "flow": "xtls-rprx-vision", "tls": { "enabled": true, "server_name": "updates.cdn-apple.com", "utls": { "enabled": true, "fingerprint": "ios" }, "reality": { "enabled": true, "public_key": "KeIvEyXB-ftboKdIoaSDyUKJPQpmcZiVaqY2JndkX08", "short_id": "55fbcc37" }}},
-    
-
-
+    {"tag": "🇸🇬新加坡01 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sgp1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "ios" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sgp1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡02 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sgp1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "chrome" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sgp1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡01-0.1倍 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sg1p1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "ios" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sg1p1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡02-0.1倍 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sg2p1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "chrome" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sg2p1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡03-0.1倍 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sg3p1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "chrome" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sg3p1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡04-0.1倍 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sg4p1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "chrome" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sg4p1.xn--ghq880n3na965a.com" }}},
+    {"tag": "🇸🇬新加坡05-0.1倍 | 电信联通推荐", "type": "vless", "server": "downloadcfpro.xn--ghq880n3na965a.com", "server_port": 443, "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4", "tls": { "enabled": true, "server_name": "sg5p1.xn--ghq880n3na965a.com", "utls": { "enabled": true, "fingerprint": "chrome" }}, "transport": { "type": "ws", "path": "/pq/sg1", "headers": { "Host": "sg5p1.xn--ghq880n3na965a.com" }}},
+    {
+      "type": "vless",
+      "tag": "🇸🇬AWS新加坡01 | 电信移动联通推荐",
+      "server": "pq.aws63.yydjc.top",
+      "server_port": 443,
+      "uuid": "7164df9d-036d-4a78-9034-628989c5c8d4",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "iosapps.itunes.apple.com",
+        "utls": { "enabled": true, "fingerprint": "chrome" },
+        "reality": {
+          "enabled": true,
+          "public_key": "mnshlVo5tkzYbmEB9xrgmUHwYETnXLAjjlGAssqaDGI",
+          "short_id": "436299c6"
+        }
+      }
+    },
 
 
 
