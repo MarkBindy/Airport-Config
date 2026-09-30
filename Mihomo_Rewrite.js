@@ -1,6 +1,6 @@
 /*
  * Clash / Mihomo (Clash Meta) 配置文件预处理脚本
- * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Rewrite.json
+ * URL: https://raw.githubusercontent.com/MarkBindy/Airport-Config/refs/heads/main/Mihomo_Rewrite.js
  * 
  * 完整的高级全局配置、TUN、Sniffer 以及分流 DNS 防泄漏设置
  * 性能与规范：使用了 Mihomo 内置的 filter 正则过滤节点机制，无需遍历 DOM 加载速度极快且保持配置的轻量纯净
